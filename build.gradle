@@ -1,0 +1,116 @@
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+    }
+}
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+apply from: 'https://raw.githubusercontent.com/SizableShrimp/Forge-Class-Remapper/main/classremapper.gradle'
+
+version = 'alpha-0.2'
+group = 'at.akunatur.cheesus' 
+archivesBaseName = 'chessus'
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '16'
+
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
+minecraft {
+	mappings channel: 'official', version: '1.17.1'
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+			property 'forge.logging.console.level', 'debug'
+
+            mods {
+                cheesus {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                cheesus {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+
+            mods {
+                cheesus {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+//	maven {
+//		url "https://www.cursemaven.com"
+//	}
+//	maven {
+//		url "https://dvs1.progwml6.com/files/maven/"
+//	}
+//	maven {
+//		url "https://modmaven.k-4u.nl"
+//	}
+}
+
+dependencies {
+	minecraft 'net.minecraftforge:forge:1.17.1-37.0.104'
+	
+	//compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
+    //runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+
+    //runtimeOnly fg.deobf("curse.maven:curdforge-478703:3304481")
+    //runtimeOnly fg.deobf("curse.maven:reap-mod-244256:3169773")
+}
+
+jar {
+    manifest {
+        attributes([
+            "Specification-Title": "cheesus",
+            "Specification-Vendor": "nudelauflauch",
+            "Specification-Version": "1", // We are version 1 of ourselves
+            "Implementation-Title": project.name,
+            "Implementation-Version": "${version}",
+            "Implementation-Vendor" :"nudelauflauch",
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+jar.finalizedBy('reobfJar') 
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file:///${project.projectDir}/mcmodsrepo"
+        }
+    }
+}

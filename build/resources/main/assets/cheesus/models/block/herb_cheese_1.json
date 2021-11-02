@@ -1,0 +1,40 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "cheesus:block/herb_cheese",
+		"particle": "cheesus:block/herb_cheese"
+	},
+	"elements": [
+		{
+			"from": [2, 0, 8],
+			"to": [8, 4, 14],
+			"faces": {
+				"north": {"uv": [1.5, 4, 3, 5], "texture": "#0"},
+				"east": {"uv": [0, 0, 6, 4], "texture": "#0"},
+				"south": {"uv": [6, 3, 7.5, 4], "texture": "#0"},
+				"west": {"uv": [4.5, 3, 6, 4], "texture": "#0"},
+				"up": {"uv": [3, 1.5, 4.5, 3], "texture": "#0"},
+				"down": {"uv": [6, 1.5, 7.5, 3], "texture": "#0"}
+			}
+		},
+		{
+			"from": [8, 0, 2],
+			"to": [14, 4, 14],
+			"faces": {
+				"north": {"uv": [0, 3, 1.5, 4], "texture": "#0"},
+				"east": {"uv": [9, 3, 12, 4], "texture": "#0"},
+				"south": {"uv": [7.5, 3, 9, 4], "texture": "#0"},
+				"west": {"uv": [0, 4, 3, 5], "texture": "#0"},
+				"up": {"uv": [4.5, 0, 6, 3], "texture": "#0"},
+				"down": {"uv": [7.5, 0, 9, 3], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "VoxelShapes",
+			"origin": [0, 0, 0],
+			"children": [0, 1]
+		}
+	]
+}

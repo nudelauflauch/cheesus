@@ -1,0 +1,28 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "cheesus:block/camembert",
+		"particle": "cheesus:block/camembert"
+	},
+	"elements": [
+		{
+			"from": [8, 0, 2],
+			"to": [14, 4, 8],
+			"faces": {
+				"north": {"uv": [0, 3, 1.5, 4], "texture": "#0"},
+				"east": {"uv": [10.5, 3, 12, 4], "texture": "#0"},
+				"south": {"uv": [1.5, 4, 3, 5], "texture": "#0"},
+				"west": {"uv": [0, 4, 1.5, 5], "texture": "#0"},
+				"up": {"uv": [4.5, 0, 6, 1.5], "texture": "#0"},
+				"down": {"uv": [7.5, 1.5, 9, 3], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "VoxelShapes",
+			"origin": [0, 0, 0],
+			"children": [0]
+		}
+	]
+}

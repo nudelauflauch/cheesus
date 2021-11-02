@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"level=0": {
+			"model": "cheesus:block/graukas_0"
+		},
+		"level=1": {
+			"model": "cheesus:block/graukas_1"
+		},
+		"level=2": {
+			"model": "cheesus:block/graukas_2"
+		},
+		"level=3": {
+			"model": "cheesus:block/graukas_3"
+		}
+	}
+}

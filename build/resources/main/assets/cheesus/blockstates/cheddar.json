@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"level=0": {
+			"model": "cheesus:block/cheddar_0"
+		},
+		"level=1": {
+			"model": "cheesus:block/cheddar_1"
+		},
+		"level=2": {
+			"model": "cheesus:block/cheddar_2"
+		},
+		"level=3": {
+			"model": "cheesus:block/cheddar_3"
+		}
+	}
+}

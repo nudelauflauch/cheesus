@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: cheesus
+Implementation-Version: 0.1
+Specification-Vendor: nudelauflauch
+Specification-Title: cheesus
+Implementation-Timestamp: 2021-07-09T18:06:06+0200
+Specification-Version: 1
+Implementation-Vendor: nudelauflauch
+

@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"level=0": {
+			"model": "cheesus:block/herb_cheese_0"
+		},
+		"level=1": {
+			"model": "cheesus:block/herb_cheese_1"
+		},
+		"level=2": {
+			"model": "cheesus:block/herb_cheese_2"
+		},
+		"level=3": {
+			"model": "cheesus:block/herb_cheese_3"
+		}
+	}
+}
