@@ -21,19 +21,21 @@ public class Cheesus {
 
 	public static final String MOD_ID = "cheesus";
 	public static final Logger LOGGER = LogManager.getLogger();
-	public static final CreativeModeTab CHEESUS_GROUP = new CreativeModeTab("cheesus_tab");
+
+	public static final CheesusItemGroup CHEESUS_TAB = new CheesusItemGroup("cheesus_tab");
+
 	IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 
 	public Cheesus() {
 
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		bus.addListener(this::setup);
+		MinecraftForge.EVENT_BUS.register(this);
 
 		ItemInit.ITEMS.register(bus);
 		BlockInit.BLOCKS.register(bus);
 		TileEntityTypesInit.TILE_ENTITY_TYPE.register(bus);
 
-		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	private void setup(final FMLClientSetupEvent event) {
