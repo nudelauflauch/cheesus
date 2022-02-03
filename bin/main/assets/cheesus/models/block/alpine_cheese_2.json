@@ -1,28 +1,6 @@
 {
-	"credit": "Made with Blockbench",
+	"parent": "cheesus:block/cheese2",
 	"textures": {
-		"0": "cheesus:block/alpine_cheese",
-		"particle": "cheesus:block/alpine_cheese"
-	},
-	"elements": [
-		{
-			"from": [8, 0, 2],
-			"to": [14, 4, 14],
-			"faces": {
-				"north": {"uv": [3, 3, 4.5, 4], "texture": "#0"},
-				"east": {"uv": [0, 3, 3, 4], "texture": "#0"},
-				"south": {"uv": [10.5, 3, 12, 4], "texture": "#0"},
-				"west": {"uv": [0, 4, 3, 5], "texture": "#0"},
-				"up": {"uv": [4.5, 0, 6, 3], "texture": "#0"},
-				"down": {"uv": [7.5, 0, 9, 3], "texture": "#0"}
-			}
-		}
-	],
-	"groups": [
-		{
-			"name": "VoxelShapes",
-			"origin": [8, 8, 8],
-			"children": [0]
-		}
-	]
+		"texture": "cheesus:block/alpine_cheese"
+	}
 }

@@ -1,7 +1,6 @@
 {
     "pack": {
-        "description": "cheese Recources",
-        "pack_format": 7,
-        "_comment": "as"
+        "description": "examplemod resources",
+        "pack_format": 8
     }
 }

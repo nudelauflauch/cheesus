@@ -1,15 +1,15 @@
 {
 	"variants": {
-		"level=0": {
+		"bites=0": {
 			"model": "cheesus:block/camembert_0"
 		},
-		"level=1": {
+		"bites=1": {
 			"model": "cheesus:block/camembert_1"
 		},
-		"level=2": {
+		"bites=2": {
 			"model": "cheesus:block/camembert_2"
 		},
-		"level=3": {
+		"bites=3": {
 			"model": "cheesus:block/camembert_3"
 		}
 	}

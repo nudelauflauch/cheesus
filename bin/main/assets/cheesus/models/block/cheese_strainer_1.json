@@ -1,10 +1,10 @@
 {
-	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
 		"1": "cheesus:block/cheese_strainer_0",
 		"2": "cheesus:block/cheese_strainer_1",
 		"particle": "cheesus:block/cheese_strainer_1"
+	
 	},
 	"elements": [
 		{

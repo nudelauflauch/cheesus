@@ -20,115 +20,67 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class Cheese extends Block {
-
-	public static final IntegerProperty LEVEL = IntegerProperty.create("level", 0, 3);
+	public static final IntegerProperty LEVEL = IntegerProperty.create("bites", 0, 3);
 
 	public Cheese(Properties porperties) {
 		super(porperties);
 	}
 
-	private static final VoxelShape SHAPE_ALPINE_CHEESE_0 = Block.box(2, 0, 2, 14, 4, 14);
-	private static final VoxelShape SHAPE_ALPINE_CHEESE_1 = Shapes.join(Block.box(2, 0, 8, 8, 4, 14),
-			Block.box(8, 0, 2, 14, 4, 14), BooleanOp.OR);
-	private static final VoxelShape SHAPE_ALPINE_CHEESE_2 = Block.box(8, 0, 2, 14, 4, 14);
-	private static final VoxelShape SHAPE_ALPINE_CHEESE_3 = Block.box(8, 0, 2, 14, 4, 8);
+	public VoxelShape cheese3() {
+		VoxelShape shape = Shapes.empty();
+		shape = Shapes.join(shape, Shapes.box(0.5, 0, 0.125, 0.875, 0.375, 0.5), BooleanOp.OR);
 
-	private static final VoxelShape SHAPE_CAMEMBERT_0 = Block.box(2, 0, 2, 14, 4, 14);
-	private static final VoxelShape SHAPE_CAMEMBERT_1 = Shapes.join(Block.box(2, 0, 8, 8, 4, 14),
-			Block.box(8, 0, 2, 14, 4, 14), BooleanOp.OR);
-	private static final VoxelShape SHAPE_CAMEMBERT_2 = Block.box(8, 0, 2, 14, 4, 14);
-	private static final VoxelShape SHAPE_CAMEMBERT_3 = Block.box(8, 0, 2, 14, 4, 8);
+		return shape;
+	}
 
-	private static final VoxelShape SHAPE_CHEDDAR_0 = Block.box(2, 0, 2, 14, 4, 14);
-	private static final VoxelShape SHAPE_CHEDDAR_1 = Shapes.join(Block.box(2, 0, 8, 8, 4, 14),
-			Block.box(8, 0, 2, 14, 4, 14), BooleanOp.OR);
-	private static final VoxelShape SHAPE_CHEDDAR_2 = Block.box(8, 0, 2, 14, 4, 14);
-	private static final VoxelShape SHAPE_CHEDDAR_3 = Block.box(8, 0, 2, 14, 4, 8);
+	public VoxelShape cheese2() {
+		VoxelShape shape = Shapes.empty();
+		shape = Shapes.join(shape, Shapes.box(0.5, 0, 0.125, 0.875, 0.375, 0.875), BooleanOp.OR);
 
-	private static final VoxelShape SHAPE_DIABOLICAL_CHEESE_0 = Block.box(2, 0, 2, 14, 4, 14);
-	private static final VoxelShape SHAPE_DIABOLICAL_CHEESE_1 = Shapes.join(Block.box(2, 0, 8, 8, 4, 14),
-			Block.box(8, 0, 2, 14, 4, 14), BooleanOp.OR);
-	private static final VoxelShape SHAPE_DIABOLICAL_CHEESE_2 = Block.box(8, 0, 2, 14, 4, 14);
-	private static final VoxelShape SHAPE_DIABOLICAL_CHEESE_3 = Block.box(8, 0, 2, 14, 4, 8);
+		return shape;
+	}
 
-	private static final VoxelShape SHAPE_GRAUKAS_0 = Block.box(2, 0, 2, 14, 3, 14);
-	private static final VoxelShape SHAPE_GRAUKAS_1 = Shapes.join(Block.box(2, 0, 8, 8, 3, 14),
-			Block.box(8, 0, 2, 14, 3, 14), BooleanOp.OR);
-	private static final VoxelShape SHAPE_GRAUKAS_2 = Block.box(8, 0, 2, 14, 3, 14);
-	private static final VoxelShape SHAPE_GRAUKAS_3 = Block.box(8, 0, 2, 14, 3, 8);
+	public VoxelShape cheese1() {
+		VoxelShape shape = Shapes.empty();
+		shape = Shapes.join(shape, Shapes.box(0.5, 0, 0.125, 0.875, 0.375, 0.875), BooleanOp.OR);
+		shape = Shapes.join(shape, Shapes.box(0.125, 0, 0.5, 0.5, 0.375, 0.875), BooleanOp.OR);
 
-	private static final VoxelShape SHAPE_HERB_CHEESE_0 = Block.box(2, 0, 2, 14, 4, 14);
-	private static final VoxelShape SHAPE_HERB_CHEESE_1 = Shapes.join(Block.box(2, 0, 8, 8, 4, 14),
-			Block.box(8, 0, 2, 14, 4, 14), BooleanOp.OR);
-	private static final VoxelShape SHAPE_HERB_CHEESE_2 = Block.box(8, 0, 2, 14, 4, 14);
-	private static final VoxelShape SHAPE_HERB_CHEESE_3 = Block.box(8, 0, 2, 14, 4, 8);
+		return shape;
+	}
+
+	public VoxelShape cheese0() {
+		VoxelShape shape = Shapes.empty();
+		shape = Shapes.join(shape, Shapes.box(0.125, 0, 0.125, 0.875, 0.375, 0.875), BooleanOp.OR);
+		shape = Shapes.join(shape, Shapes.box(0.125, 0, 0.5, 0.5, 0.375, 0.875), BooleanOp.OR);
+
+		return shape;
+	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-		int i = state.getValue(LEVEL);
-		if (state.getBlock() == BlockInit.ALPINE_CHEESE.get()) {
-			if (i == 0) {
-				return SHAPE_ALPINE_CHEESE_0;
-			} else if (i == 1) {
-				return SHAPE_ALPINE_CHEESE_1;
-			} else if (i == 2) {
-				return SHAPE_ALPINE_CHEESE_2;
-			} else {
-				return SHAPE_ALPINE_CHEESE_3;
-			}
-		} else if (state.getBlock() == BlockInit.CAMEMBERT.get()) {
-			if (i == 0) {
-				return SHAPE_CAMEMBERT_0;
-			} else if (i == 1) {
-				return SHAPE_CAMEMBERT_1;
-			} else if (i == 2) {
-				return SHAPE_CAMEMBERT_2;
-			} else {
-				return SHAPE_CAMEMBERT_3;
-			}
-		} else if (state.getBlock() == BlockInit.CHEDDAR.get()) {
-			if (i == 0) {
-				return SHAPE_CHEDDAR_0;
-			} else if (i == 1) {
-				return SHAPE_CHEDDAR_1;
-			} else if (i == 2) {
-				return SHAPE_CHEDDAR_2;
-			} else {
-				return SHAPE_CHEDDAR_3;
-			}
-		} else if (state.getBlock() == BlockInit.DIABOLICAL_CHEESE.get()) {
-			if (i == 0) {
-				return SHAPE_DIABOLICAL_CHEESE_0;
-			} else if (i == 1) {
-				return SHAPE_DIABOLICAL_CHEESE_1;
-			} else if (i == 2) {
-				return SHAPE_DIABOLICAL_CHEESE_2;
-			} else {
-				return SHAPE_DIABOLICAL_CHEESE_3;
-			}
-		} else if (state.getBlock() == BlockInit.GRAUKAS.get()) {
-			if (i == 0) {
-				return SHAPE_GRAUKAS_0;
-			} else if (i == 1) {
-				return SHAPE_GRAUKAS_1;
-			} else if (i == 2) {
-				return SHAPE_GRAUKAS_2;
-			} else {
-				return SHAPE_GRAUKAS_3;
-			}
-		} else if (state.getBlock() == BlockInit.HERB_CHEESE.get()) {
-			if (i == 0) {
-				return SHAPE_HERB_CHEESE_0;
-			} else if (i == 1) {
-				return SHAPE_HERB_CHEESE_1;
-			} else if (i == 2) {
-				return SHAPE_HERB_CHEESE_2;
-			} else {
-				return SHAPE_HERB_CHEESE_3;
+		if (state.getBlock() != BlockInit.GRAUKAS.get()) {
+			System.out.println("");
+			switch (state.getValue(LEVEL)) {
+			case 0:
+				return cheese0();
+			case 1:
+				return cheese1();
+			case 2:
+				return cheese2();
+			default:
+				return cheese3();
 			}
 		} else {
-
-			return SHAPE_ALPINE_CHEESE_0;
+			switch (state.getValue(LEVEL)) {
+			case 0:
+				return Block.box(2, 0, 2, 14, 3, 14);
+			case 1:
+				return Shapes.join(Block.box(2, 0, 8, 8, 3, 14), Block.box(8, 0, 2, 14, 3, 14), BooleanOp.OR);
+			case 2:
+				return Block.box(8, 0, 2, 14, 3, 14);
+			default:
+				return Block.box(8, 0, 2, 14, 3, 8);
+			}
 		}
 	}
 

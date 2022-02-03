@@ -3,7 +3,8 @@
 	"texture_size": [64, 64],
 	"textures": {
 		"1": "cheesus:block/cheese_strainer_0",
-		"particle": "cheesus:block/cheese_strainer_1"	},
+		"particle": "cheesus:block/cheese_strainer_0"
+	},
 	"elements": [
 		{
 			"from": [13, 0, 13],

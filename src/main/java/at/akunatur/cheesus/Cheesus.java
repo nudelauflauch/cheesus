@@ -3,9 +3,10 @@ package at.akunatur.cheesus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import at.akunatur.cheesus.core.init.BlockEntityTypesInit;
 import at.akunatur.cheesus.core.init.BlockInit;
+import at.akunatur.cheesus.core.init.ContainerTypesInit;
 import at.akunatur.cheesus.core.init.ItemInit;
-import at.akunatur.cheesus.core.init.TileEntityTypesInit;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.CreativeModeTab;
@@ -34,8 +35,8 @@ public class Cheesus {
 
 		ItemInit.ITEMS.register(bus);
 		BlockInit.BLOCKS.register(bus);
-		TileEntityTypesInit.TILE_ENTITY_TYPE.register(bus);
-
+		BlockEntityTypesInit.TILE_ENTITY_TYPE.register(bus);
+		ContainerTypesInit.CONTAINER_TYPES.register(bus);
 	}
 
 	private void setup(final FMLClientSetupEvent event) {
