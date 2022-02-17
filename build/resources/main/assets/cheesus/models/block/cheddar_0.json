@@ -1,6 +1,0 @@
-{
-	"parent": "cheesus:block/cheese0",
-	"textures": {
-		"texture": "cheesus:block/cheddar"
-	}
-}

@@ -1,0 +1,23 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cheesus:cheddar"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "cheesus:cheddar",
+          "properties": {
+            "bites": "0"
+          }
+        }
+      ]
+    }
+  ]
+}

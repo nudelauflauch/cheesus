@@ -1,9 +1,7 @@
 {
-	//blöcke
 	"block.cheesus.cheese_strainer":"Cheese Strainer",
 	"block.cheesus.cheese_cover":"Cheese Cover",
 	
-	//Cheese
 	"block.cheesus.camembert":"Camembert",
 	"block.cheesus.cheddar":"Cheddar",
 	"block.cheesus.diabolical_cheese":"Diabolical Cheese",
@@ -11,6 +9,21 @@
 	"block.cheesus.graukas":"Graukas",
 	"block.cheesus.herb_cheese":"Herb Cheese",
 	
-	//itemGroup
+	"item.cheesus.breaded_camembert": "Breaded Camembert",
+	"item.cheesus.cheese_bread": "Cheese Bread",
+	"item.cheesus.cheese_from_hell": "Cheese From Hell",
+	"item.cheesus.graukas_knedl": "Graukas Knedl",
+	"item.cheesus.graukas_soup": "Graukas Soup",
+	"item.cheesus.scollop_potato": "Scollop Potato",
+	"item.cheesus.salmon_herb_cheese": "Salmon In Herb Cheese",
+	"item.cheesus.tarte_de_soleil_au_camembert": "Tarte De Soleil Au Camembert",
+	
+	"item.cheesus.piece_camembert":"Piece Of Camembert",
+	"item.cheesus.piece_cheddar":"Piece Of Cheddar",
+	"item.cheesus.piece_diabolical_cheese":"Piece Of Diabolical Cheese",
+	"item.cheesus.piece_alpine_cheese":"Piece Of Alpine Cheese",
+	"item.cheesus.piece_graukas":"Piece Of Graukas",
+	"item.cheesus.piece_herb_cheese":"Piece Of Herb Cheese",
+	
 	"itemGroup.cheesus_tab":"Cheesus"
 }

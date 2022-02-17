@@ -5,6 +5,7 @@ import at.akunatur.cheesus.common.blocks.Cheese;
 import at.akunatur.cheesus.common.blocks.CheeseCover;
 import at.akunatur.cheesus.common.blocks.CheeseStrainer;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
@@ -21,8 +22,7 @@ public class BlockInit {
 					.sound(SoundType.STONE).requiresCorrectToolForDrops()));
 
 	public static final RegistryObject<CheeseCover> CHEESE_COVER = BLOCKS.register("cheese_cover",
-			() -> new CheeseCover(BlockBehaviour.Properties.of(Material.GLASS).strength(0.8f, 1.5f)
-					.sound(SoundType.GLASS).requiresCorrectToolForDrops()));
+			() -> new CheeseCover(BlockBehaviour.Properties.copy(Blocks.GLASS)));
 
 	public static final RegistryObject<Cheese> CAMEMBERT = BLOCKS.register("camembert", () -> new Cheese(
 			BlockBehaviour.Properties.of(Material.PLANT).strength(0.8f, 1.5f).sound(SoundType.FUNGUS)));

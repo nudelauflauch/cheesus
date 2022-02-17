@@ -7,21 +7,24 @@
 			"model": "cheesus:block/cheese_strainer_1"
 		},
 		"level=2": {
-			"model": "cheesus:block/cheese_strainer_2"
+			"model": "cheesus:block/cheese_strainer_1"
 		},
 		"level=3": {
-			"model": "cheesus:block/cheese_strainer_3"
+			"model": "cheesus:block/cheese_strainer_2"
 		},
 		"level=4": {
-			"model": "cheesus:block/cheese_strainer_4"
+			"model": "cheesus:block/cheese_strainer_3"
 		},
 		"level=5": {
-			"model": "cheesus:block/cheese_strainer_5"
+			"model": "cheesus:block/cheese_strainer_4"
 		},
 		"level=6": {
-			"model": "cheesus:block/cheese_strainer_6"
+			"model": "cheesus:block/cheese_strainer_5"
 		},
 		"level=7": {
+			"model": "cheesus:block/cheese_strainer_6"
+		},
+		"level=8": {
 			"model": "cheesus:block/cheese_strainer_7"
 		}
 	}

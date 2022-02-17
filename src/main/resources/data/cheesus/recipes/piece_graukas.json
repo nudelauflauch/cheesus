@@ -1,0 +1,12 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "cheesus:graukas"
+		}
+	],
+	"result": {
+		"item": "cheesus:piece_graukas",
+		"count": 4
+	}
+}

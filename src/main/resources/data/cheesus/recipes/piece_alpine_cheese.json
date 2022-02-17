@@ -1,0 +1,12 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "cheesus:alpine_cheese"
+		}
+	],
+	"result": {
+		"item": "cheesus:piece_alpine_cheese",
+		"count": 4
+	}
+}
