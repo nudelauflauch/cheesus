@@ -1,6 +1,7 @@
 package at.akunatur.cheesus.core.init;
 
 import at.akunatur.cheesus.Cheesus;
+import at.akunatur.cheesus.common.items.WearAbleBlock;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -11,8 +12,8 @@ import net.minecraftforge.registries.RegistryObject;
 public class ItemInit {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Cheesus.MOD_ID);
 
-	public static final RegistryObject<BlockItem> CHEESE_COVER = ITEMS.register("cheese_cover",
-			() -> new BlockItem(BlockInit.CHEESE_COVER.get(), new Item.Properties().tab(Cheesus.CHEESUS_TAB)));
+	public static final RegistryObject<WearAbleBlock> CHEESE_COVER = ITEMS.register("cheese_cover",
+			() -> new WearAbleBlock(BlockInit.CHEESE_COVER.get(), new Item.Properties().tab(Cheesus.CHEESUS_TAB)));
 
 	public static final RegistryObject<BlockItem> CHEESE_STRAINER = ITEMS.register("cheese_strainer",
 			() -> new BlockItem(BlockInit.CHEESE_STRAINER.get(), new Item.Properties().tab(Cheesus.CHEESUS_TAB)));
