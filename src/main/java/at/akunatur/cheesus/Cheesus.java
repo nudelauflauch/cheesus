@@ -1,13 +1,12 @@
 package at.akunatur.cheesus;
 
+import at.akunatur.cheesus.core.init.CheesusItemGroup;
+import at.akunatur.cheesus.core.init.ItemInit;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import at.akunatur.cheesus.core.init.BlockEntityInit;
 import at.akunatur.cheesus.core.init.BlockInit;
-import at.akunatur.cheesus.core.init.ItemInit;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -21,7 +20,8 @@ public class Cheesus {
 	public static final String MOD_ID = "cheesus";
 	public static final Logger LOGGER = LogManager.getLogger();
 
-	public static final CheesusItemGroup CHEESUS_TAB = new CheesusItemGroup("cheesus_tab");
+	public static final CheesusItemGroup CHEESUS_TAB = new CheesusItemGroup(
+			"cheesus_tab");
 
 	IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 
@@ -31,13 +31,14 @@ public class Cheesus {
 		bus.addListener(this::commonSetup);
 		MinecraftForge.EVENT_BUS.register(this);
 
-		ItemInit.ITEMS.register(bus);
+		 ItemInit.ITEMS.register(bus);
+		// BlockInit.ITEMS.register(bus);
 		BlockInit.BLOCKS.register(bus);
+		BlockInit.BLOCK_ITEMS.register(bus);
 		BlockEntityInit.BLOCK_ENTITY.register(bus);
 	}
 
 	private void setup(final FMLClientSetupEvent event) {
-		ItemBlockRenderTypes.setRenderLayer(BlockInit.CHEESE_COVER.get(), RenderType.translucent());
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event) {

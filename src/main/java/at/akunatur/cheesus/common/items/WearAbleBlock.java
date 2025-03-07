@@ -3,6 +3,8 @@ package at.akunatur.cheesus.common.items;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
@@ -33,5 +35,15 @@ public class WearAbleBlock extends BlockItem implements Wearable {
 			return InteractionResultHolder.fail(itemstack);
 		}
 	}
+	
+	public EquipmentSlot getSlot() {
+	      return EquipmentSlot.HEAD;
+	   }
 
+	
+	@Override
+	public void onArmorTick(ItemStack stack, Level world, Player player) {
+		player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 10, 1));
+		super.onArmorTick(stack, world, player);
+	}
 }

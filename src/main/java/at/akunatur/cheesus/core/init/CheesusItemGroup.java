@@ -1,6 +1,5 @@
-package at.akunatur.cheesus;
+package at.akunatur.cheesus.core.init;
 
-import at.akunatur.cheesus.core.init.ItemInit;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -13,24 +12,27 @@ public class CheesusItemGroup extends CreativeModeTab {
 
 	@Override
 	public ItemStack makeIcon() {
-		return ItemInit.CHEESE_STRAINER.get().getDefaultInstance();
+		return new ItemStack(BlockInit.CHEDDAR.get());
 	}
 
 	@Override
 	public void fillItemList(NonNullList<ItemStack> items) {
-		registerTools(items);
-		registerCheese(items);
-		registerCheesePieces(items);
-		registerFood(items);
+		 registerTools(items);
+		 registerCheese(items);
+		 registerCheesePieces(items);
+		 registerFood(items);
+		 items.add(new ItemStack(BlockInit.CHEESE.get()));
+		 items.add(new ItemStack(BlockInit.REFINIED_CHEESE.get()));
+		 items.add(new ItemStack(BlockInit.WHITE_MOLD_CHEESE.get()));
 	}
 
 	private void registerCheese(NonNullList<ItemStack> items) {
-		items.add(new ItemStack(ItemInit.ALPINE_CHEESE.get()));
-		items.add(new ItemStack(ItemInit.CAMAEMBERT.get()));
-		items.add(new ItemStack(ItemInit.CHEDDAR.get()));
-		items.add(new ItemStack(ItemInit.DIABOLICAL_CHEESE.get()));
-		items.add(new ItemStack(ItemInit.GRAUKAS.get()));
-		items.add(new ItemStack(ItemInit.HERB_CHEESE.get()));
+		items.add(new ItemStack(BlockInit.ALPINE_CHEESE.get()));
+		items.add(new ItemStack(BlockInit.CAMEMBERT.get()));
+		items.add(new ItemStack(BlockInit.CHEDDAR.get()));
+		items.add(new ItemStack(BlockInit.DIABOLICAL_CHEESE.get()));
+		items.add(new ItemStack(BlockInit.BLUE_CHEESE.get()));
+		items.add(new ItemStack(BlockInit.HERB_CHEESE.get()));
 	}
 
 	private void registerCheesePieces(NonNullList<ItemStack> items) {
@@ -43,8 +45,8 @@ public class CheesusItemGroup extends CreativeModeTab {
 	}
 
 	private void registerTools(NonNullList<ItemStack> items) {
-		items.add(new ItemStack(ItemInit.CHEESE_COVER.get()));
-		items.add(new ItemStack(ItemInit.CHEESE_STRAINER.get()));
+		items.add(new ItemStack(BlockInit.CHEESE_COVER.get()));
+		items.add(new ItemStack(BlockInit.CHEESE_STRAINER.get()));
 	}
 
 	private void registerFood(NonNullList<ItemStack> items) {
@@ -57,5 +59,4 @@ public class CheesusItemGroup extends CreativeModeTab {
 		items.add(new ItemStack(ItemInit.SALMON_HERB_CHEESE.get()));
 		items.add(new ItemStack(ItemInit.TARTE_DE_SOLEIL_AU_CAMEMBER.get()));
 	}
-
 }
