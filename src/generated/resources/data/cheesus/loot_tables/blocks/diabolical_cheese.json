@@ -1,0 +1,82 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "cheesus:diabolical_cheese",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "bites": "0"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cheesus:diabolical_cheese_slice"
+        }
+      ],
+      "rolls": 4.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "cheesus:diabolical_cheese",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "bites": "1"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cheesus:diabolical_cheese_slice"
+        }
+      ],
+      "rolls": 3.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "cheesus:diabolical_cheese",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "bites": "2"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cheesus:diabolical_cheese_slice"
+        }
+      ],
+      "rolls": 2.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "cheesus:diabolical_cheese",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "bites": "3"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cheesus:diabolical_cheese_slice"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "cheesus:blocks/diabolical_cheese"
+}

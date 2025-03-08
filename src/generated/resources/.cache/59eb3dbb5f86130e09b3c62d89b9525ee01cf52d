@@ -1,0 +1,11 @@
+// 1.20.1	2025-03-07T16:37:16.6339735	Loot Tables
+43cbe27aee8e724fcdadc924d16f8195e073791d data/cheesus/loot_tables/blocks/alpine_cheese.json
+86238926c18982624620283803c5f5d86982e214 data/cheesus/loot_tables/blocks/blue_cheese.json
+7510f83b8649818a7fbffe8c453753dc70578ae5 data/cheesus/loot_tables/blocks/camembert.json
+9eeb775008c5f757f27258c9a7a5a4f59dcee3c9 data/cheesus/loot_tables/blocks/cheddar.json
+8118904b5abfd319a5648a0fc57d1c83d8948397 data/cheesus/loot_tables/blocks/cheese_cover.json
+fb0ae3d5f2f598c8f8b9353b79c45825ffb5482e data/cheesus/loot_tables/blocks/cheese_strainer.json
+57d19b670befe7e4d83a0dfee1495ccbf70752f1 data/cheesus/loot_tables/blocks/diabolical_cheese.json
+fcdf50cfb549078485b1fb593eba74262090fa29 data/cheesus/loot_tables/blocks/herb_cheese.json
+f998f8a3aedb4427d762b6e9e67db60a6c6a0f46 data/cheesus/loot_tables/blocks/refined_cheese.json
+e77c27530ab0b2c6a61182833029fe3758fe0170 data/cheesus/loot_tables/blocks/white_mold_cheese.json
