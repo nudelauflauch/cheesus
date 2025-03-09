@@ -22,10 +22,10 @@ public class DataGenerators {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        generator.addProvider(event.includeClient(), new CheesusBlockStateGenerator(packOutput, existingFileHelper));
+        generator.addProvider(event.includeClient(), new CheesusBlockStateProvider(packOutput, existingFileHelper));
         generator.addProvider(event.includeServer(), LootTableProvider.create(packOutput));
-        generator.addProvider(event.includeClient(), new CheesusItemModelGenerator(packOutput, existingFileHelper));
-        generator.addProvider(event.includeServer(), new CheesusRecipeGenerator(packOutput));
+        generator.addProvider(event.includeClient(), new CheesusItemModelProvider(packOutput, existingFileHelper));
+        generator.addProvider(event.includeServer(), new CheesusRecipeProvider(packOutput));
 
         generator.run();
     }

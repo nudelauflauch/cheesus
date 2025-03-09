@@ -3,7 +3,7 @@
 	"textures": {
 		"1": "minecraft:block/oak_planks",
 		"2": "cheesus:block/glass_cheese_cover",
-		"3": "cheesus:block/glass_cheese_vover_side_small",
+		"3": "cheesus:block/glass_cheese_cover_side_small",
 		"4": "cheesus:block//glass_cheese_cover_side_big",
 		"particle": "minecraft:block/oak_planks"
 	},

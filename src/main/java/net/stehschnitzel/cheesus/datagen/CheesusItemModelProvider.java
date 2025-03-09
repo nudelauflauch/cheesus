@@ -10,8 +10,8 @@ import net.stehschnitzel.cheesus.Cheesus;
 import net.stehschnitzel.cheesus.init.BlockInit;
 import net.stehschnitzel.cheesus.init.ItemInit;
 
-public class CheesusItemModelGenerator extends ItemModelProvider {
-    public CheesusItemModelGenerator(PackOutput output, ExistingFileHelper existingFileHelper) {
+public class CheesusItemModelProvider extends ItemModelProvider {
+    public CheesusItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, Cheesus.MOD_ID, existingFileHelper);
     }
 

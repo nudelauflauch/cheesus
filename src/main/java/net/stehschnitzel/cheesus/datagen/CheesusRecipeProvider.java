@@ -7,8 +7,8 @@ import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
 import java.util.function.Consumer;
 
-public class CheesusRecipeGenerator extends RecipeProvider implements IConditionBuilder {
-    public CheesusRecipeGenerator(PackOutput pOutput) {
+public class CheesusRecipeProvider extends RecipeProvider implements IConditionBuilder {
+    public CheesusRecipeProvider(PackOutput pOutput) {
         super(pOutput);
     }
 

@@ -10,7 +10,7 @@ public class LootTableProvider {
 
     public static net.minecraft.data.loot.LootTableProvider create(PackOutput output) {
         return new net.minecraft.data.loot.LootTableProvider(output, Set.of(),
-                List.of(new net.minecraft.data.loot.LootTableProvider.SubProviderEntry(CheesusLootTables::new, LootContextParamSets.BLOCK)));
+                List.of(new net.minecraft.data.loot.LootTableProvider.SubProviderEntry(CheesusLootTableProvider::new, LootContextParamSets.BLOCK)));
     }
 
 }

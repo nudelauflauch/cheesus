@@ -13,8 +13,8 @@ import net.stehschnitzel.cheesus.Cheesus;
 import net.stehschnitzel.cheesus.common.blocks.BasicCheese;
 import net.stehschnitzel.cheesus.init.BlockInit;
 
-public class CheesusBlockStateGenerator extends BlockStateProvider {
-    public CheesusBlockStateGenerator(PackOutput output, ExistingFileHelper exFileHelper) {
+public class CheesusBlockStateProvider extends BlockStateProvider {
+    public CheesusBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, Cheesus.MOD_ID, exFileHelper);
     }
 

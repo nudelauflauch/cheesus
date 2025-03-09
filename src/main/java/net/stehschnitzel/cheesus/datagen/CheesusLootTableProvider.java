@@ -18,8 +18,8 @@ import net.stehschnitzel.cheesus.init.ItemInit;
 
 import java.util.Set;
 
-public class CheesusLootTables extends BlockLootSubProvider {
-    protected CheesusLootTables() {
+public class CheesusLootTableProvider extends BlockLootSubProvider {
+    protected CheesusLootTableProvider() {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags());
     }
 
@@ -55,6 +55,10 @@ public class CheesusLootTables extends BlockLootSubProvider {
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BasicCheese.BITES, 3));
 
         return LootTable.lootTable()
+                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .when(lootitemcondition0)
+                        .when(HAS_SILK_TOUCH)
+                        .add(LootItem.lootTableItem(pBlock)))
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(4.0F))
                         .when(lootitemcondition0)
                         .add(LootItem.lootTableItem(pItem)))  // Drops 4 pieces if uneaten
