@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "cheesus:white_mold_cheese"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "cheesus:white_mold_cheese_slice"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_altitude_cheese": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cheesus:altitude_cheese"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_altitude_cheese_slice": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cheesus:altitude_cheese_slice"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cheesus:altitude_cheese"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_altitude_cheese_slice",
+      "has_altitude_cheese",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cheesus:altitude_cheese"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -17,31 +17,33 @@ public class CheesusItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simpleItem(ItemInit.WHITE_MOLD_CHEESE_SLICE);
-//        simpleItem(ItemInit.REFINED_CHEESE_SLICE);
-        simpleItem(ItemInit.CAMEMBERT_SLICE);
-        simpleItem(ItemInit.CHEDDAR_SLICE);
+        simpleItem(BlockInit.CHEESE);
+        simpleItem(BlockInit.ALTITUDE_CHEESE);
+        simpleItem(BlockInit.BLUE_MOLD_CHEESE);
+        simpleItem(BlockInit.DIABOLICAL_CHEESE);
+        simpleItem(BlockInit.GREY_CHEESE);
+        simpleItem(BlockInit.WHITE_MOLD_CHEESE);
+        simpleItem(BlockInit.CHEESE_CAKE);
+
+        simpleItem(ItemInit.CHEESE_SLICE);
+        simpleItem(ItemInit.ALTITUDE_CHEESE_SLICE);
+        simpleItem(ItemInit.BLUE_MOLD_CHEESE_SLICE);
         simpleItem(ItemInit.DIABOLICAL_CHEESE_SLICE);
-        simpleItem(ItemInit.ALPINE_CHEESE_SLICE);
-        simpleItem(ItemInit.BLUE_CHEESE_SLICE);
-        simpleItem(ItemInit.HERB_CHEESE_SLICE);
+        simpleItem(ItemInit.GREY_CHEESE_SLICE);
+        simpleItem(ItemInit.WHITE_MOLD_CHEESE_SLICE);
+
         simpleItem(ItemInit.BREADED_CAMBERT);
+        simpleItem(ItemInit.CHEESE_FONDUE);
         simpleItem(ItemInit.CHEESE_BREAD);
         simpleItem(ItemInit.CHEESE_FROM_HELL);
+        simpleItem(ItemInit.GRAUKAS_KNEDL);
         simpleItem(ItemInit.GRAUKAS_SOUP);
-        simpleItem(ItemInit.SCOLLOPED_POTATO);
+        simpleItem(ItemInit.SCALLOPED_POTATO);
         simpleItem(ItemInit.SALMON_HERB_CHEESE);
-        simpleItem(ItemInit.TARTE_DE_SOLEIL_AU_CAMEMBER);
+        simpleItem(ItemInit.TARTE_SOLEIL_AU_CAMEMBERT);
         withExistingParent("cheese_cover", "cheesus:block/cheese_cover");
         withExistingParent("cheese_strainer", "cheesus:block/cheese_strainer_0");
-        simpleItem(BlockInit.WHITE_MOLD_CHEESE);
-//        simpleItem(BlockInit.REFINED_CHEESE);
-        simpleItem(BlockInit.CAMEMBERT);
-        simpleItem(BlockInit.CHEDDAR);
-        simpleItem(BlockInit.DIABOLICAL_CHEESE);
-        simpleItem(BlockInit.ALPINE_CHEESE);
-        simpleItem(BlockInit.BLUE_CHEESE);
-        simpleItem(BlockInit.HERB_CHEESE);
+
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<?> item) {

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "cheesus:diabolical_cheese_slice"
+    }
+  },
+  "pattern": [
+    "AA",
+    "AA"
+  ],
+  "result": {
+    "count": 2,
+    "item": "cheesus:diabolical_cheese"
+  },
+  "show_notification": true
+}

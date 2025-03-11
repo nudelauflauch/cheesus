@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "cheesus:altitude_cheese_slice"
+    }
+  },
+  "pattern": [
+    "AA",
+    "AA"
+  ],
+  "result": {
+    "count": 2,
+    "item": "cheesus:altitude_cheese"
+  },
+  "show_notification": true
+}

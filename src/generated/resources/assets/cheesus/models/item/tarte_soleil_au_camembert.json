@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cheesus:item/tarte_soleil_au_camembert"
+  }
+}

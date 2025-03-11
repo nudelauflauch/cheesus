@@ -1,5 +1,5 @@
 {
-  "parent": "cheesus:block/cheese_template_0",
+  "parent": "cheesus:block/small_cheese_0",
   "textures": {
     "texture": "cheesus:block/white_mold_cheese"
   }

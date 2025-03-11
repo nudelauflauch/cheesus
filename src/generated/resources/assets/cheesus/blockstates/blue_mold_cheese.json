@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "bites=0": {
+      "model": "cheesus:block/blue_mold_cheese_0"
+    },
+    "bites=1": {
+      "model": "cheesus:block/blue_mold_cheese_1"
+    },
+    "bites=2": {
+      "model": "cheesus:block/blue_mold_cheese_2"
+    },
+    "bites=3": {
+      "model": "cheesus:block/blue_mold_cheese_3"
+    }
+  }
+}

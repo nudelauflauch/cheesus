@@ -1,0 +1,6 @@
+{
+  "parent": "cheesus:block/normal_cheese_2",
+  "textures": {
+    "texture": "cheesus:block/altitude_cheese"
+  }
+}

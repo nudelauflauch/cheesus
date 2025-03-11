@@ -20,21 +20,24 @@ public class CheesusBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        cheeseBuilder(BlockInit.WHITE_MOLD_CHEESE);
-//        cheeseBuilder(BlockInit.REFINED_CHEESE);
-        cheeseBuilder(BlockInit.CAMEMBERT);
-        cheeseBuilder(BlockInit.CHEDDAR);
-        cheeseBuilder(BlockInit.DIABOLICAL_CHEESE);
-        cheeseBuilder(BlockInit.ALPINE_CHEESE);
-        cheeseBuilder(BlockInit.BLUE_CHEESE, "template_blue_cheese");
-        cheeseBuilder(BlockInit.HERB_CHEESE);
+        normalCheeseBuilder(BlockInit.CHEESE);
+        normalCheeseBuilder(BlockInit.ALTITUDE_CHEESE);
+        normalCheeseBuilder(BlockInit.BLUE_MOLD_CHEESE);
+        normalCheeseBuilder(BlockInit.DIABOLICAL_CHEESE);
+        smallCheeseBuilder(BlockInit.GREY_CHEESE);
+        smallCheeseBuilder(BlockInit.WHITE_MOLD_CHEESE);
+        smallCheeseBuilder(BlockInit.CHEESE_CAKE);
     }
 
-    private void cheeseBuilder(RegistryObject<? extends Block> block) {
-        cheeseBuilder(block, "cheese_template");
+    public void smallCheeseBuilder(RegistryObject<? extends Block> block) {
+        cheeseBuilder(block, "small_cheese");
     }
 
-    private void cheeseBuilder(RegistryObject<? extends Block> block, String template_name) {
+    public void normalCheeseBuilder(RegistryObject<? extends Block> block) {
+        cheeseBuilder(block, "normal_cheese");
+    }
+
+    public void cheeseBuilder(RegistryObject<? extends Block> block, String template_name) {
         String name = block.getId().getPath();
         ModelFile f0 = cheese(name, 0, template_name);
         ModelFile f1 = cheese(name, 1, template_name);

@@ -12,9 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BasicCheese extends Block {
@@ -22,37 +20,6 @@ public class BasicCheese extends Block {
 	public static final IntegerProperty BITES = IntegerProperty.create("bites",
 			0, 3);
 	public static final int MAX_BITES = 4;
-
-	public VoxelShape cheese0() {
-		VoxelShape shape = Shapes.empty();
-		shape = Shapes.join(shape,
-				Shapes.box(0.125, 0, 0.125, 0.875, 0.375, 0.875), BooleanOp.OR);
-
-		return shape;
-	}
-	public VoxelShape cheese1() {
-		VoxelShape shape = Shapes.empty();
-		shape = Shapes.join(shape,
-				Shapes.box(0.5, 0, 0.125, 0.875, 0.375, 0.875), BooleanOp.OR);
-		shape = Shapes.join(shape, Shapes.box(0.125, 0, 0.5, 0.5, 0.375, 0.875),
-				BooleanOp.OR);
-
-		return shape;
-	}
-	public VoxelShape cheese2() {
-		VoxelShape shape = Shapes.empty();
-		shape = Shapes.join(shape,
-				Shapes.box(0.5, 0, 0.125, 0.875, 0.375, 0.875), BooleanOp.OR);
-
-		return shape;
-	}
-	public VoxelShape cheese3() {
-		VoxelShape shape = Shapes.empty();
-		shape = Shapes.join(shape, Shapes.box(0.5, 0, 0.125, 0.875, 0.375, 0.5),
-				BooleanOp.OR);
-
-		return shape;
-	}
 
 	public BasicCheese(Properties pProperties) {
 		super(pProperties);
@@ -63,13 +30,13 @@ public class BasicCheese extends Block {
 			BlockPos pPos, CollisionContext pContext) {
 		switch (pState.getValue(BITES)) {
 			case 0 :
-				return cheese0();
+				return CheesusVoxels.cheese_0();
 			case 1 :
-				return cheese1();
+				return CheesusVoxels.cheese_1();
 			case 2 :
-				return cheese2();
+				return CheesusVoxels.cheese_2();
 		}
-		return cheese3();
+		return CheesusVoxels.cheese_3();
 	}
 
 	@Override
@@ -78,7 +45,7 @@ public class BasicCheese extends Block {
 		if (player.canEat(player.getFoodData().needsFood())) {
 			player.getFoodData().eat(2, 0.1F);
 
-			if (state.getValue(BITES) == 3) {
+			if (state.getValue(BITES) == MAX_BITES - 1) {
 				pLevel.removeBlock(pos, false);
 			} else {
 				pLevel.setBlockAndUpdate(pos, state.setValue(BITES, state.getValue(BITES) + 1));

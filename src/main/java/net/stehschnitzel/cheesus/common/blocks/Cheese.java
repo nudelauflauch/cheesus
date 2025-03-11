@@ -1,16 +1,22 @@
 package net.stehschnitzel.cheesus.common.blocks;
 
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.data.worldgen.DimensionTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
+import net.minecraft.world.level.dimension.DimensionType;
 import net.stehschnitzel.cheesus.init.BlockInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.registries.RegistryObject;
 
 public class Cheese extends BasicCheese {
 
@@ -19,41 +25,37 @@ public class Cheese extends BasicCheese {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level pLevel, BlockPos pos,
-			Player player, InteractionHand handIn, BlockHitResult hit) {
+	public InteractionResult use(BlockState state, Level pLevel, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 
-		if (state.getValue(BITES) == 0) {
-			Item item = player.getItemInHand(handIn).getItem();
-			RegistryObject<BasicCheese> newBlock = null;
+		if (state.getValue(BITES) == 0 && player.getMainHandItem().areShareTagsEqual(new ItemStack(Items.IRON_SWORD))) {
+			pLevel.setBlockAndUpdate(pos, BlockInit.BLUE_MOLD_CHEESE.get().defaultBlockState());
 
-			if (item == Items.BROWN_MUSHROOM) {
-				newBlock = BlockInit.WHITE_MOLD_CHEESE;
-
-			} else if (item == Items.HONEYCOMB) {
-				newBlock = BlockInit.REFINED_CHEESE;
-
-			} else if (item == Items.FLINT_AND_STEEL) {
-				newBlock = BlockInit.DIABOLICAL_CHEESE;
-
-			} else if (item == Items.POWDER_SNOW_BUCKET) {
-				newBlock = BlockInit.ALPINE_CHEESE;
-
-			} else if (item == Items.GRAY_DYE) {
-				newBlock = BlockInit.BLUE_CHEESE;
-
-			} else if (item == Items.KELP) {
-				newBlock = BlockInit.HERB_CHEESE;
-
-			}
-
-			if (newBlock != null) {
-				pLevel.setBlockAndUpdate(pos, newBlock.get().defaultBlockState());
-				player.getMainHandItem().shrink(1);
-
-				return InteractionResult.CONSUME;
-			}
+			return InteractionResult.sidedSuccess(pLevel.isClientSide());
 		}
 
 		return super.use(state, pLevel, pos, player, handIn, hit);
+	}
+
+	@Override
+	public boolean isRandomlyTicking(BlockState pState) {
+		return pState.getValue(BITES) == 0;
+	}
+
+	@Override
+	public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
+		if (pPos.getY() > 150 || pLevel.getRawBrightness(pPos, 0) < 5 || pLevel.dimensionTypeId() == BuiltinDimensionTypes.NETHER) {
+			pLevel.addParticle(ParticleTypes.FLAME, pPos.getX(), pPos.getY(), pPos.getZ(), 0.0D, 0.0D, 0.0D);
+		}
+	}
+
+	@Override
+	public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+		if (pPos.getY() > 150) {
+			pLevel.setBlockAndUpdate(pPos, BlockInit.ALTITUDE_CHEESE.get().defaultBlockState());
+		} else if (pLevel.getRawBrightness(pPos, 0) < 5) {
+			pLevel.setBlockAndUpdate(pPos, BlockInit.WHITE_MOLD_CHEESE.get().defaultBlockState());
+		} else if (pLevel.dimensionTypeId() == BuiltinDimensionTypes.NETHER) {
+			pLevel.setBlockAndUpdate(pPos, BlockInit.DIABOLICAL_CHEESE.get().defaultBlockState());
+		}
 	}
 }

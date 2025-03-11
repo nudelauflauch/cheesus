@@ -27,18 +27,27 @@ public class CheesusLootTableProvider extends BlockLootSubProvider {
     protected void generate() {
         dropSelf(BlockInit.CHEESE_COVER.get());
         dropSelf(BlockInit.CHEESE_STRAINER.get());
-        dropCheese(BlockInit.WHITE_MOLD_CHEESE.get(), ItemInit.WHITE_MOLD_CHEESE_SLICE.get());
-        dropCheese(BlockInit.REFINED_CHEESE.get(), ItemInit.REFINED_CHEESE_SLICE.get());
-        dropCheese(BlockInit.CAMEMBERT.get(), ItemInit.CAMEMBERT_SLICE.get());
-        dropCheese(BlockInit.CHEDDAR.get(), ItemInit.CHEDDAR_SLICE.get());
+        dropCheese(BlockInit.CHEESE.get(), ItemInit.CHEESE_SLICE.get());
+        dropCheese(BlockInit.ALTITUDE_CHEESE.get(), ItemInit.ALTITUDE_CHEESE_SLICE.get());
+        dropCheese(BlockInit.BLUE_MOLD_CHEESE.get(), ItemInit.BLUE_MOLD_CHEESE_SLICE.get());
         dropCheese(BlockInit.DIABOLICAL_CHEESE.get(), ItemInit.DIABOLICAL_CHEESE_SLICE.get());
-        dropCheese(BlockInit.ALPINE_CHEESE.get(), ItemInit.ALPINE_CHEESE_SLICE.get());
-        dropCheese(BlockInit.BLUE_CHEESE.get(), ItemInit.BLUE_CHEESE_SLICE.get());
-        dropCheese(BlockInit.HERB_CHEESE.get(), ItemInit.HERB_CHEESE_SLICE.get());
+        dropCheese(BlockInit.GREY_CHEESE.get(), ItemInit.GREY_CHEESE_SLICE.get());
+        dropCheese(BlockInit.WHITE_MOLD_CHEESE.get(), ItemInit.WHITE_MOLD_CHEESE_SLICE.get());
+        dropCheeseCake(BlockInit.CHEESE_CAKE.get());
     }
 
     protected void dropCheese(Block pBlock, Item pItem) {
         this.add(pBlock, createCheeseItemDispatchTable(pBlock, pItem));
+    }
+
+    protected void dropCheeseCake(Block pBlock) {
+        LootItemCondition.Builder lootitemcondition0 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BasicCheese.BITES, 0));
+
+        this.add(pBlock, LootTable.lootTable()
+                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .when(lootitemcondition0)
+                        .add(LootItem.lootTableItem(pBlock))));
     }
 
     protected LootTable.Builder createCheeseItemDispatchTable(Block pBlock, Item pItem) {
@@ -59,8 +68,9 @@ public class CheesusLootTableProvider extends BlockLootSubProvider {
                         .when(lootitemcondition0)
                         .when(HAS_SILK_TOUCH)
                         .add(LootItem.lootTableItem(pBlock)))
+
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(4.0F))
-                        .when(lootitemcondition0)
+                        .when(lootitemcondition0.and(HAS_NO_SILK_TOUCH))
                         .add(LootItem.lootTableItem(pItem)))  // Drops 4 pieces if uneaten
 
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(3.0F))

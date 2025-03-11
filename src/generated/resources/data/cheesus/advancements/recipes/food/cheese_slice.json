@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cheese": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cheesus:cheese"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_cheese_slice": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cheesus:cheese_slice"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cheesus:cheese_slice"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_cheese",
+      "has_cheese_slice",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cheesus:cheese_slice"
+    ]
+  },
+  "sends_telemetry_event": false
+}

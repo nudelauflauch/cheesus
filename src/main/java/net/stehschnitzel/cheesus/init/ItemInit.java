@@ -11,19 +11,15 @@ public class ItemInit {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Cheesus.MOD_ID);
 
 	// cheese_slices
-	public static final RegistryObject<Item> WHITE_MOLD_CHEESE_SLICE = ITEMS.register("white_mold_cheese_slice",
+	public static final RegistryObject<Item> CHEESE_SLICE = ITEMS.register("cheese_slice",
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(1).saturationMod(1.7f / 4).build())));
 
-	public static final RegistryObject<Item> REFINED_CHEESE_SLICE = ITEMS.register("refined_cheese_slice",
+	public static final RegistryObject<Item> ALTITUDE_CHEESE_SLICE = ITEMS.register("altitude_cheese_slice",
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(1).saturationMod(1.7f / 4).build())));
 
-	public static final RegistryObject<Item> CAMEMBERT_SLICE = ITEMS.register("camembert_slice",
-			() -> new Item(new Item.Properties()
-					.food(new FoodProperties.Builder().nutrition(1).saturationMod(1.7f / 4).build())));
-
-	public static final RegistryObject<Item> CHEDDAR_SLICE = ITEMS.register("cheddar_slice",
+	public static final RegistryObject<Item> BLUE_MOLD_CHEESE_SLICE = ITEMS.register("blue_mold_cheese_slice",
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(1).saturationMod(1.7f / 4).build())));
 
@@ -31,15 +27,12 @@ public class ItemInit {
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(1).saturationMod(1.7f / 4).build())));
 
-	public static final RegistryObject<Item> ALPINE_CHEESE_SLICE = ITEMS.register("alpine_cheese_slice",
+	public static final RegistryObject<Item> GREY_CHEESE_SLICE = ITEMS.register("grey_cheese_slice",
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(1).saturationMod(1.7f / 4).build())));
 
-	public static final RegistryObject<Item> BLUE_CHEESE_SLICE = ITEMS.register("blue_cheese_slice",
-			() -> new Item(new Item.Properties()
-					.food(new FoodProperties.Builder().nutrition(1).saturationMod(1.7f / 4).build())));
 
-	public static final RegistryObject<Item> HERB_CHEESE_SLICE = ITEMS.register("herb_cheese_slice",
+	public static final RegistryObject<Item> WHITE_MOLD_CHEESE_SLICE = ITEMS.register("white_mold_cheese_slice",
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(1).saturationMod(1.7f / 4).build())));
 
@@ -49,6 +42,10 @@ public class ItemInit {
 					.food(new FoodProperties.Builder().nutrition(5).saturationMod(0.9f).build())));
 
 	public static final RegistryObject<Item> CHEESE_BREAD = ITEMS.register("cheese_bread",
+			() -> new Item(new Item.Properties()
+					.food(new FoodProperties.Builder().nutrition(3).saturationMod(0.9f).build())));
+
+	public static final RegistryObject<Item> CHEESE_FONDUE = ITEMS.register("cheese_fondue",
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(3).saturationMod(0.9f).build())));
 
@@ -64,7 +61,7 @@ public class ItemInit {
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(5).saturationMod(0.8f).build()).stacksTo(16)));
 
-	public static final RegistryObject<Item> SCOLLOPED_POTATO = ITEMS.register("scollop_potato",
+	public static final RegistryObject<Item> SCALLOPED_POTATO = ITEMS.register("scalloped_potato",
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(4).saturationMod(0.9f).build())));
 
@@ -72,8 +69,8 @@ public class ItemInit {
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(4).saturationMod(0.8f).build())));
 
-	public static final RegistryObject<Item> TARTE_DE_SOLEIL_AU_CAMEMBER = ITEMS
-			.register("tarte_de_soleil_au_camembert", () -> new Item(new Item.Properties()
+	public static final RegistryObject<Item> TARTE_SOLEIL_AU_CAMEMBERT = ITEMS
+			.register("tarte_soleil_au_camembert", () -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(5).saturationMod(1.9f).build())));
 
 }

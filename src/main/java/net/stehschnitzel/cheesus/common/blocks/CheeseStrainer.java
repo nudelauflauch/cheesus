@@ -1,5 +1,10 @@
 package net.stehschnitzel.cheesus.common.blocks;
 
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 import net.stehschnitzel.cheesus.common.blocks.entities.CheeseStrainerBlockEntity;
 import net.stehschnitzel.cheesus.init.BlockEntityInit;
 import net.minecraft.core.BlockPos;
@@ -24,38 +29,12 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.stehschnitzel.cheesus.init.BlockInit;
 
-public class CheeseStrainer extends Block implements EntityBlock {
-
-	public VoxelShape makeShape() {
-		VoxelShape shape = Shapes.empty();
-		shape = Shapes.join(shape,
-				Shapes.box(0.0625, 0, 0.0625, 0.9375, 0.0625, 0.9375),
-				BooleanOp.OR);
-		shape = Shapes.join(shape,
-				Shapes.box(0.0625, 0.0625, 0.0625, 0.9375, 0.5, 0.125),
-				BooleanOp.OR);
-		shape = Shapes.join(shape,
-				Shapes.box(0.0625, 0.0625, 0.875, 0.9375, 0.5, 0.9375),
-				BooleanOp.OR);
-		shape = Shapes.join(shape,
-				Shapes.box(0.875, 0.0625, 0.125, 0.9375, 0.5, 0.875),
-				BooleanOp.OR);
-		shape = Shapes.join(shape,
-				Shapes.box(0.0625, 0.0625, 0.125, 0.125, 0.5, 0.875),
-				BooleanOp.OR);
-		shape = Shapes.join(shape,
-				Shapes.box(0.125, 0.0625, 0.125, 0.875, 0.46875, 0.875),
-				BooleanOp.OR);
-		shape = Shapes.join(shape,
-				Shapes.box(0.125, 0.0625, 0.125, 0.875, 0.4375, 0.875),
-				BooleanOp.OR);
-
-		return shape;
-	}
+public class CheeseStrainer extends Block {
 
 	public static final IntegerProperty LEVEL = IntegerProperty.create("level",
-			0, 2);
+			0, 6);
 
 	public CheeseStrainer(Properties pProperties) {
 		super(pProperties);
@@ -64,50 +43,72 @@ public class CheeseStrainer extends Block implements EntityBlock {
 	@Override
 	public VoxelShape getShape(BlockState pState, BlockGetter pLevel,
 			BlockPos pPos, CollisionContext pContext) {
-		return makeShape();
+		return CheesusVoxels.CheeseStrainer();
 	}
 
 	@Override
 	public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
 			Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
 		int level = pLevel.getBlockState(pPos).getValue(LEVEL);
-		ItemStack itemStack = pPlayer.getItemInHand(pHand);
-		if (!pLevel.isClientSide) {
-			if (level == 0 && itemStack.getItem() == Items.MILK_BUCKET) {
-				pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 1));
+		Item item = pPlayer.getItemInHand(pHand).getItem();
 
-				pPlayer.getItemInHand(pHand).shrink(1);
-				pPlayer.setItemInHand(pHand, new ItemStack(Items.BUCKET));
-			} else if (level == 1) {
-				pPlayer.setItemInHand(pHand, new ItemStack(Items.MILK_BUCKET));
-				pPlayer.getItemInHand(pHand).shrink(1);
-				
-				pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 0));
-			}
-			if (level == 2) {
-				ItemStack itemStack1 = null; // new ItemStack(BlockInit.CHEESE.get())
-				if (itemStack.isEmpty()) {
-					pPlayer.setItemInHand(pHand, itemStack1);
-				} else if (pPlayer.getInventory().add(itemStack1)) {
-					pPlayer.inventoryMenu.sendAllDataToRemote();
-				} else {
-					pPlayer.drop(itemStack1, false);
-				}
-				pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 0));
+		if (level < 3 && item == Items.MILK_BUCKET) {
+			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, level+1));
 
+			if (!pPlayer.isCreative()) {
+				pPlayer.getMainHandItem().shrink(1);
+				addItemOrDrop(Items.BUCKET, pPlayer);
 			}
+			return InteractionResult.sidedSuccess(pLevel.isClientSide());
+
+		} else if (level == 0 && item == BlockInit.CHEESE.get().asItem()) {
+			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 5));
+			if (!pPlayer.isCreative()) {
+				pPlayer.getItemInHand(pHand).shrink(1);
+			}
+
+			return InteractionResult.sidedSuccess(pLevel.isClientSide());
+
+		} else if (level == 4) {
+			addItemOrDrop(BlockInit.CHEESE.get(), pPlayer);
+			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 0));
+
+			return InteractionResult.sidedSuccess(pLevel.isClientSide());
+		} else if (level == 6) {
+			addItemOrDrop(BlockInit.GREY_CHEESE.get(), pPlayer);
+			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 0));
+
+			return InteractionResult.sidedSuccess(pLevel.isClientSide());
 		}
-		return InteractionResult.SUCCESS;
+
+		return InteractionResult.FAIL;
+	}
+
+	private void addItemOrDrop(ItemLike item, Player player) {
+		if (!player.addItem(new ItemStack(item))) {
+			player.drop(new ItemStack(item), false);
+		}
 	}
 
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel,
-			BlockState pState, BlockEntityType<T> pBlockEntityType) {
-		return pLevel.isClientSide
-				? null
-				: ($0, $1, $2,
-						blockEntity) -> ((CheeseStrainerBlockEntity) blockEntity)
-								.tick();
+	public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
+		if (isRandomlyTicking(pState)) {
+			pLevel.addParticle(ParticleTypes.FLAME, pPos.getX(), pPos.getY(), pPos.getZ(), 0.0D, 0.0D, 0.0D);
+		}
+	}
+
+	@Override
+	public boolean isRandomlyTicking(BlockState pState) {
+		return pState.getValue(LEVEL) == 3 || pState.getValue(LEVEL) == 5;
+	}
+
+	@Override
+	public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+		if (pState.getValue(LEVEL) == 3) {
+			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 4));
+		} else if (pState.getValue(LEVEL) == 5) {
+			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 6));
+		}
 	}
 
 	@Override
@@ -116,14 +117,7 @@ public class CheeseStrainer extends Block implements EntityBlock {
 	}
 
 	@Override
-	protected void createBlockStateDefinition(
-			Builder<Block, BlockState> pBuilder) {
+	protected void createBlockStateDefinition(Builder<Block, BlockState> pBuilder) {
 		pBuilder.add(LEVEL);
 	}
-
-	@Override
-	public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-		return BlockEntityInit.CHEESE_STRAINER.get().create(pPos, pState);
-	}
-
 }

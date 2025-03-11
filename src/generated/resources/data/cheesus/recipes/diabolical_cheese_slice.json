@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "cheesus:diabolical_cheese"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "cheesus:diabolical_cheese_slice"
+  }
+}

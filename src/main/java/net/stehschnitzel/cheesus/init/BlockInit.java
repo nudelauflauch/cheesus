@@ -1,12 +1,9 @@
 package net.stehschnitzel.cheesus.init;
 
-import net.stehschnitzel.cheesus.common.blocks.BasicCheese;
+import net.stehschnitzel.cheesus.common.blocks.*;
 import com.google.common.base.Supplier;
 
 import net.stehschnitzel.cheesus.Cheesus;
-import net.stehschnitzel.cheesus.common.blocks.BlueCheese;
-import net.stehschnitzel.cheesus.common.blocks.Cheese;
-import net.stehschnitzel.cheesus.common.blocks.CheeseStrainer;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -33,32 +30,27 @@ public class BlockInit {
 					BlockBehaviour.Properties.of()));
 
 	//cheese
-	public static final RegistryObject<BasicCheese> WHITE_MOLD_CHEESE = registerBlock(
-			"white_mold_cheese",
-			() -> new BasicCheese(BlockBehaviour.Properties.copy(Blocks.CAKE)));
-
-	public static final RegistryObject<BasicCheese> REFINED_CHEESE = registerBlock(
-			"refined_cheese",
-			() -> new BasicCheese(BlockBehaviour.Properties.copy(Blocks.CAKE)));
-
-	public static final RegistryObject<BasicCheese> CAMEMBERT = registerBlock("camembert", () -> new BasicCheese(
+	public static final RegistryObject<Cheese> CHEESE = registerBlock("cheese", () -> new Cheese(
 			BlockBehaviour.Properties.copy(Blocks.CAKE).strength(0.8f, 1.5f).sound(SoundType.FUNGUS)));
 
-	public static final RegistryObject<Cheese> CHEDDAR = registerBlock("cheddar", () -> new Cheese(
-			BlockBehaviour.Properties.copy(Blocks.CAKE).strength(0.8f, 1.5f).sound(SoundType.FUNGUS)));
+	public static final RegistryObject<BasicCheese> ALTITUDE_CHEESE = registerBlock("altitude_cheese", () -> new BasicCheese(
+			BlockBehaviour.Properties.copy(CHEESE.get())));
+
+	public static final RegistryObject<BasicCheese> BLUE_MOLD_CHEESE = registerBlock("blue_mold_cheese", () -> new BasicCheese(
+			BlockBehaviour.Properties.copy(CHEESE.get())));
 
 	public static final RegistryObject<BasicCheese> DIABOLICAL_CHEESE = registerBlock("diabolical_cheese",
 			() -> new BasicCheese(
-					BlockBehaviour.Properties.copy(Blocks.CAKE).strength(0.8f, 1.5f).sound(SoundType.FUNGUS)));
+					BlockBehaviour.Properties.copy(CHEESE.get())));
 
-	public static final RegistryObject<BasicCheese> ALPINE_CHEESE = registerBlock("alpine_cheese", () -> new BasicCheese(
-			BlockBehaviour.Properties.copy(Blocks.CAKE).strength(0.8f, 1.5f).sound(SoundType.FUNGUS)));
+	public static final RegistryObject<BasicCheese> GREY_CHEESE = registerBlock("grey_cheese", () -> new BlueCheese(
+			BlockBehaviour.Properties.copy(CHEESE.get())));
 
-	public static final RegistryObject<BasicCheese> BLUE_CHEESE = registerBlock("blue_cheese", () -> new BlueCheese(
-			BlockBehaviour.Properties.copy(Blocks.CAKE).strength(0.8f, 1.5f).sound(SoundType.FUNGUS)));
+	public static final RegistryObject<BasicCheese> WHITE_MOLD_CHEESE = registerBlock("white_mold_cheese", () -> new BlueCheese(
+			BlockBehaviour.Properties.copy(CHEESE.get())));
 
-	public static final RegistryObject<BasicCheese> HERB_CHEESE = registerBlock("herb_cheese", () -> new BasicCheese(
-			BlockBehaviour.Properties.copy(Blocks.CAKE).strength(0.8f, 1.5f).sound(SoundType.FUNGUS)));
+	public static final RegistryObject<Block> CHEESE_CAKE = registerBlock("cheese_cake", () -> new BasicCheese(
+			BlockBehaviour.Properties.copy(CHEESE.get())));
 
 	// Block
 	private static <T extends Block> RegistryObject<T> registerBlock(

@@ -1,0 +1,6 @@
+{
+  "parent": "cheesus:block/small_cheese_0",
+  "textures": {
+    "texture": "cheesus:block/cheese_cake"
+  }
+}
