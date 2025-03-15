@@ -2,17 +2,14 @@ package net.stehschnitzel.cheesus.datagen;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.stehschnitzel.cheesus.Cheesus;
 import net.stehschnitzel.cheesus.init.BlockInit;
-import net.stehschnitzel.cheesus.init.CheesusModTags;
+import net.stehschnitzel.cheesus.init.CheesusTags;
 import net.stehschnitzel.cheesus.init.ItemInit;
 
 import java.util.function.Consumer;
@@ -32,7 +29,7 @@ public class CheesusRecipeProvider extends RecipeProvider implements IConditionB
         cheeseRecipe(BlockInit.WHITE_MOLD_CHEESE.get(), ItemInit.WHITE_MOLD_CHEESE_SLICE.get(), pWriter);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, BlockInit.CHEESE_CAKE.get())
-                .define('E', CheesusModTags.Items.CHEESE)
+                .define('E', CheesusTags.Items.CHEESE)
                 .define('B', Items.SUGAR)
                 .define('C', Items.WHEAT)
                 .define('A', Items.EGG)
@@ -73,7 +70,7 @@ public class CheesusRecipeProvider extends RecipeProvider implements IConditionB
                 .unlockedBy(getHasName(BlockInit.CHEESE.get()), has(BlockInit.CHEESE.get()))
                 .save(pWriter);
 
-        cheeseCooking(Ingredient.of(CheesusModTags.Items.CHEESE), ItemInit.BAKED_CHEESE.get(), BlockInit.CHEESE.get(), pWriter);
+        cheeseCooking(Ingredient.of(CheesusTags.Items.CHEESE), ItemInit.BAKED_CHEESE.get(), BlockInit.CHEESE.get(), pWriter);
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(ItemInit.DIABOLICAL_CHEESE_SLICE.get()), RecipeCategory.FOOD, ItemInit.CHEESE_FROM_HELL.get(),0.35F, 200)
                 .unlockedBy(getHasName(ItemInit.DIABOLICAL_CHEESE_SLICE.get()), has(ItemInit.DIABOLICAL_CHEESE_SLICE.get()))
                 .save(pWriter);
@@ -106,7 +103,7 @@ public class CheesusRecipeProvider extends RecipeProvider implements IConditionB
     }
 
     public void cheeseRecipe(ItemLike cheeseItem, ItemLike cheesePieceItem, Consumer<FinishedRecipe> pWriter) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, cheeseItem, 2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, cheeseItem)
                 .pattern("AA")
                 .pattern("AA")
                 .define('A', cheesePieceItem)

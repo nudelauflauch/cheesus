@@ -8,7 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.stehschnitzel.cheesus.Cheesus;
 
-public class CheesusModTags {
+public class CheesusTags {
 
     public static class Blocks {
         private static TagKey<Block> createTag(String name) {

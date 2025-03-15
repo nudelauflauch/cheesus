@@ -11,8 +11,7 @@ public class CheeseStrainerBlockEntity extends BlockEntity {
 
 	private int timer = 0;
 
-	public CheeseStrainerBlockEntity(BlockPos pWorldPosition,
-			BlockState pBlockState) {
+	public CheeseStrainerBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
 		super(BlockEntityInit.CHEESE_STRAINER.get(), pWorldPosition,
 				pBlockState);
 	}

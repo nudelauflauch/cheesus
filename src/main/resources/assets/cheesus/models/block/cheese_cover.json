@@ -1,6 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "cheesus:block/cheese_cover",
 		"particle": "cheesus:block/cheese_cover"

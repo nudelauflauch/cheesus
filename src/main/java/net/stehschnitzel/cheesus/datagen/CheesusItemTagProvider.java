@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.stehschnitzel.cheesus.Cheesus;
 import net.stehschnitzel.cheesus.init.BlockInit;
-import net.stehschnitzel.cheesus.init.CheesusModTags;
+import net.stehschnitzel.cheesus.init.CheesusTags;
 import net.stehschnitzel.cheesus.init.ItemInit;
 
 import javax.annotation.Nullable;
@@ -21,14 +21,15 @@ public class CheesusItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        tag(CheesusModTags.Items.CHEESE)
+        tag(CheesusTags.Items.CHEESE)
+                .add(BlockInit.CHEESE.get().asItem())
                 .add(BlockInit.ALTITUDE_CHEESE.get().asItem())
                 .add(BlockInit.BLUE_MOLD_CHEESE.get().asItem())
                 .add(BlockInit.DIABOLICAL_CHEESE.get().asItem())
                 .add(BlockInit.GREY_CHEESE.get().asItem())
                 .add(BlockInit.WHITE_MOLD_CHEESE.get().asItem());
 
-        tag(CheesusModTags.Items.CHEESE_SLICE)
+        tag(CheesusTags.Items.CHEESE_SLICE)
                 .add(ItemInit.ALTITUDE_CHEESE_SLICE.get().asItem())
                 .add(ItemInit.BLUE_MOLD_CHEESE_SLICE.get().asItem())
                 .add(ItemInit.DIABOLICAL_CHEESE_SLICE.get().asItem())

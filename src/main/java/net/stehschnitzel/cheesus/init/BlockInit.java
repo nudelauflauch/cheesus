@@ -22,7 +22,7 @@ public class BlockInit {
 			.create(ForgeRegistries.BLOCKS, Cheesus.MOD_ID);
 
 	public static final RegistryObject<Block> CHEESE_COVER = registerBlock("cheese_cover",
-			() -> new CheeseStrainer(BlockBehaviour.Properties.copy(Blocks.GLASS)));
+			() -> new CheeseCover(BlockBehaviour.Properties.copy(Blocks.GLASS).noOcclusion()));
 
 	public static final RegistryObject<Block> CHEESE_STRAINER = registerBlock(
 			"cheese_strainer",
