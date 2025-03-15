@@ -2,9 +2,17 @@ package net.stehschnitzel.cheesus.datagen;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+import net.stehschnitzel.cheesus.Cheesus;
 import net.stehschnitzel.cheesus.init.BlockInit;
+import net.stehschnitzel.cheesus.init.CheesusModTags;
 import net.stehschnitzel.cheesus.init.ItemInit;
 
 import java.util.function.Consumer;
@@ -22,9 +30,82 @@ public class CheesusRecipeProvider extends RecipeProvider implements IConditionB
         cheeseRecipe(BlockInit.DIABOLICAL_CHEESE.get(), ItemInit.DIABOLICAL_CHEESE_SLICE.get(), pWriter);
         cheeseRecipe(BlockInit.GREY_CHEESE.get(), ItemInit.GREY_CHEESE_SLICE.get(), pWriter);
         cheeseRecipe(BlockInit.WHITE_MOLD_CHEESE.get(), ItemInit.WHITE_MOLD_CHEESE_SLICE.get(), pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, BlockInit.CHEESE_CAKE.get())
+                .define('E', CheesusModTags.Items.CHEESE)
+                .define('B', Items.SUGAR)
+                .define('C', Items.WHEAT)
+                .define('A', Items.EGG)
+                .pattern("AAA")
+                .pattern("BEB")
+                .pattern("CCC")
+                .unlockedBy("has_egg", has(Items.EGG)).save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ItemInit.CHEESE_SUN.get())
+                .define('E', ItemInit.WHITE_MOLD_CHEESE_SLICE.get())
+                .define('C', Items.WHEAT)
+                .pattern("CCC")
+                .pattern("CEC")
+                .pattern("CCC")
+                .unlockedBy("has_wheat", has(Items.WHEAT)).save(pWriter);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ItemInit.CHEESE_FONDUE.get(), 4)
+                        .requires(Items.BOWL)
+                        .requires(Items.BOWL)
+                        .requires(Items.BOWL)
+                        .requires(Items.BOWL)
+                        .requires(ItemInit.BAKED_CHEESE.get())
+                        .requires(Items.BREAD)
+                        .unlockedBy(getHasName(ItemInit.BAKED_CHEESE.get()), has(ItemInit.BAKED_CHEESE.get()))
+                .save(pWriter);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ItemInit.GRAUKAS_SOUP.get(), 4)
+                .requires(Items.BOWL)
+                .requires(ItemInit.GREY_CHEESE_SLICE.get())
+                .unlockedBy(getHasName(BlockInit.GREY_CHEESE.get()), has(BlockInit.GREY_CHEESE.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ItemInit.SCALLOPED_POTATO.get())
+                .define('C', ItemInit.CHEESE_SLICE.get())
+                .define('E', Items.BAKED_POTATO)
+                .pattern("C")
+                .pattern("E")
+                .unlockedBy(getHasName(BlockInit.CHEESE.get()), has(BlockInit.CHEESE.get()))
+                .save(pWriter);
+
+        cheeseCooking(Ingredient.of(CheesusModTags.Items.CHEESE), ItemInit.BAKED_CHEESE.get(), BlockInit.CHEESE.get(), pWriter);
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(ItemInit.DIABOLICAL_CHEESE_SLICE.get()), RecipeCategory.FOOD, ItemInit.CHEESE_FROM_HELL.get(),0.35F, 200)
+                .unlockedBy(getHasName(ItemInit.DIABOLICAL_CHEESE_SLICE.get()), has(ItemInit.DIABOLICAL_CHEESE_SLICE.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BlockInit.CHEESE_COVER.get())
+                .define('#', Items.GLASS)
+                .define('X', ItemTags.PLANKS)
+                .pattern("###")
+                .pattern("# #")
+                .pattern("XXX")
+                .unlockedBy(getHasName(BlockInit.CHEESE.get()), has(BlockInit.CHEESE.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BlockInit.CHEESE_STRAINER.get())
+                .define('X', Items.BRICKS)
+                .pattern("X X")
+                .pattern("X X")
+                .pattern("XXX")
+                .unlockedBy(getHasName(BlockInit.CHEESE.get()), has(BlockInit.CHEESE.get()))
+                .save(pWriter);
     }
 
-    private void cheeseRecipe(ItemLike cheeseItem, ItemLike cheesePieceItem, Consumer<FinishedRecipe> pWriter) {
+    private void cheeseCooking(Ingredient inputItem, ItemLike outputItem, ItemLike unlockedItem, Consumer<FinishedRecipe> pWriter) {
+        SimpleCookingRecipeBuilder.smelting(inputItem, RecipeCategory.FOOD, outputItem, 0.35F, 200).unlockedBy(getHasName(unlockedItem), has(unlockedItem))
+                .save(pWriter, Cheesus.MOD_ID + ":" + getItemName(outputItem) + "_from_smelting");
+        SimpleCookingRecipeBuilder.campfireCooking(inputItem, RecipeCategory.FOOD, outputItem, 0.35F, 600).unlockedBy(getHasName(unlockedItem), has(unlockedItem))
+                .save(pWriter, Cheesus.MOD_ID + ":" + getItemName(outputItem) + "_from_campfire_cooking");
+        SimpleCookingRecipeBuilder.smoking(inputItem, RecipeCategory.FOOD, outputItem, 0.35F, 100).unlockedBy(getHasName(unlockedItem), has(unlockedItem))
+                .save(pWriter, Cheesus.MOD_ID + ":" + getItemName(outputItem) + "_from_smoking");
+    }
+
+    public void cheeseRecipe(ItemLike cheeseItem, ItemLike cheesePieceItem, Consumer<FinishedRecipe> pWriter) {
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, cheeseItem, 2)
                 .pattern("AA")
                 .pattern("AA")

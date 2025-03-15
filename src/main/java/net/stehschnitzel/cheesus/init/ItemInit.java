@@ -37,13 +37,13 @@ public class ItemInit {
 					.food(new FoodProperties.Builder().nutrition(1).saturationMod(1.7f / 4).build())));
 
 	// things you can make with cheese
-	public static final RegistryObject<Item> BREADED_CAMBERT = ITEMS.register("breaded_camembert",
+	public static final RegistryObject<Item> BAKED_CHEESE = ITEMS.register("baked_cheese",
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(5).saturationMod(0.9f).build())));
 
-	public static final RegistryObject<Item> CHEESE_BREAD = ITEMS.register("cheese_bread",
-			() -> new Item(new Item.Properties()
-					.food(new FoodProperties.Builder().nutrition(3).saturationMod(0.9f).build())));
+//	public static final RegistryObject<Item> CHEESE_BREAD = ITEMS.register("cheese_bread",
+//			() -> new Item(new Item.Properties()
+//					.food(new FoodProperties.Builder().nutrition(3).saturationMod(0.9f).build())));
 
 	public static final RegistryObject<Item> CHEESE_FONDUE = ITEMS.register("cheese_fondue",
 			() -> new Item(new Item.Properties()
@@ -53,9 +53,9 @@ public class ItemInit {
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(3).saturationMod(1.7f).build())));
 
-	public static final RegistryObject<Item> GRAUKAS_KNEDL = ITEMS.register("graukas_knedl",
-			() -> new Item(new Item.Properties()
-					.food(new FoodProperties.Builder().nutrition(4).saturationMod(1.5f).build())));
+//	public static final RegistryObject<Item> GRAUKAS_KNEDL = ITEMS.register("graukas_knedl",
+//			() -> new Item(new Item.Properties()
+//					.food(new FoodProperties.Builder().nutrition(4).saturationMod(1.5f).build())));
 
 	public static final RegistryObject<Item> GRAUKAS_SOUP = ITEMS.register("graukas_soup",
 			() -> new Item(new Item.Properties()
@@ -65,12 +65,12 @@ public class ItemInit {
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(4).saturationMod(0.9f).build())));
 
-	public static final RegistryObject<Item> SALMON_HERB_CHEESE = ITEMS.register("salmon_herb_cheese",
-			() -> new Item(new Item.Properties()
-					.food(new FoodProperties.Builder().nutrition(4).saturationMod(0.8f).build())));
+//	public static final RegistryObject<Item> SALMON_HERB_CHEESE = ITEMS.register("salmon_herb_cheese",
+//			() -> new Item(new Item.Properties()
+//					.food(new FoodProperties.Builder().nutrition(4).saturationMod(0.8f).build())));
 
-	public static final RegistryObject<Item> TARTE_SOLEIL_AU_CAMEMBERT = ITEMS
-			.register("tarte_soleil_au_camembert", () -> new Item(new Item.Properties()
+	public static final RegistryObject<Item> CHEESE_SUN = ITEMS
+			.register("cheese_sun", () -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(5).saturationMod(1.9f).build())));
 
 }

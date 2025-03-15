@@ -1,8 +1,11 @@
 package net.stehschnitzel.cheesus.common.blocks;
 
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+
+import java.util.stream.Stream;
 
 public class CheesusVoxels {
 
@@ -38,30 +41,13 @@ public class CheesusVoxels {
     }
 
     public static VoxelShape CheeseStrainer() {
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape,
-                Shapes.box(0.0625, 0, 0.0625, 0.9375, 0.0625, 0.9375),
-                BooleanOp.OR);
-        shape = Shapes.join(shape,
-                Shapes.box(0.0625, 0.0625, 0.0625, 0.9375, 0.5, 0.125),
-                BooleanOp.OR);
-        shape = Shapes.join(shape,
-                Shapes.box(0.0625, 0.0625, 0.875, 0.9375, 0.5, 0.9375),
-                BooleanOp.OR);
-        shape = Shapes.join(shape,
-                Shapes.box(0.875, 0.0625, 0.125, 0.9375, 0.5, 0.875),
-                BooleanOp.OR);
-        shape = Shapes.join(shape,
-                Shapes.box(0.0625, 0.0625, 0.125, 0.125, 0.5, 0.875),
-                BooleanOp.OR);
-        shape = Shapes.join(shape,
-                Shapes.box(0.125, 0.0625, 0.125, 0.875, 0.46875, 0.875),
-                BooleanOp.OR);
-        shape = Shapes.join(shape,
-                Shapes.box(0.125, 0.0625, 0.125, 0.875, 0.4375, 0.875),
-                BooleanOp.OR);
-
-        return shape;
+        return Stream.of(
+                Block.box(13, 2, 1, 15, 16, 15),
+                Block.box(1, 0, 1, 15, 2, 15),
+                Block.box(3, 2, 1, 13, 16, 3),
+                Block.box(3, 2, 13, 13, 16, 15),
+                Block.box(1, 2, 1, 3, 16, 15)
+        ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     }
 
 }

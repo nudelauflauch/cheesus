@@ -17,15 +17,13 @@
 	"item.cheesus.grey_cheese_slice":"Grey Cheese Slice",
 	"item.cheesus.white_mold_cheese_slice":"White Mold Cheese Slice",
 	
-	"item.cheesus.breaded_camembert": "Breaded Camembert",
+	"item.cheesus.baked_cheese": "Baked Cheese",
 	"item.cheesus.cheese_bread": "Cheese Bread",
 	"item.cheesus.cheese_from_hell": "Cheese From Hell",
 	"item.cheesus.cheese_fondue": "Cheese Fondue",
-	"item.cheesus.graukas_knedl": "Graukas Knedl",
 	"item.cheesus.graukas_soup": "Graukas Soup",
-	"item.cheesus.scollop_potato": "Scollop Potato",
-	"item.cheesus.salmon_herb_cheese": "Salmon In Herb Cheese",
-	"item.cheesus.tarte_soleil_au_camembert": "Tarte Soleil Au Camembert",
+	"item.cheesus.scalloped_potato": "Scallop Potato",
+	"item.cheesus.cheese_sun": "Cheese Sun",
 	
 	"itemGroup.cheesus_tab":"Cheesus"
 }

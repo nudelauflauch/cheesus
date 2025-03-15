@@ -30,5 +30,6 @@ public class DataGenerators {
 
         BlockTagsProvider blockTagsProvider = new CheesusBlockTagProvider(packOutput, lookupProvider, existingFileHelper);
         generator.addProvider(event.includeServer(), blockTagsProvider);
+        generator.addProvider(event.includeServer(), new CheesusItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
     }
 }

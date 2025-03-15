@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:wheat"
+    },
+    "E": {
+      "item": "cheesus:white_mold_cheese_slice"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "CEC",
+    "CCC"
+  ],
+  "result": {
+    "item": "cheesus:cheese_sun"
+  },
+  "show_notification": true
+}
