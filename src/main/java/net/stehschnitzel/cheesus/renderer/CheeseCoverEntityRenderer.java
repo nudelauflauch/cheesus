@@ -45,11 +45,11 @@ public class CheeseCoverEntityRenderer implements BlockEntityRenderer<CheeseCove
                             pBlockEntity.getBlockPos()), pPackedOverlay);
 
         } else if (stack.getItem() instanceof BlockItem blockItem) {
-                pPoseStack.translate(0.25f, 0.15f, 0.25f);
-                pPoseStack.scale(0.5f, 0.5f, 0.5f);
-                blockRenderer.renderSingleBlock(blockItem.getBlock().defaultBlockState(),
-                        pPoseStack, pBufferSource, getLightLevel(pBlockEntity.getLevel(),
-                                pBlockEntity.getBlockPos()), pPackedOverlay);
+            pPoseStack.translate(0.25f, 0.15f, 0.25f);
+            pPoseStack.scale(0.5f, 0.5f, 0.5f);
+            blockRenderer.renderSingleBlock(blockItem.getBlock().defaultBlockState(),
+                    pPoseStack, pBufferSource, getLightLevel(pBlockEntity.getLevel(),
+                            pBlockEntity.getBlockPos()), pPackedOverlay);
 
         } else {
             pPoseStack.scale(0.6f, 0.6f, 0.6f);
