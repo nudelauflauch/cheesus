@@ -1,7 +1,11 @@
 package net.stehschnitzel.cheesus;
 
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.stehschnitzel.cheesus.init.CheesusItemTabInit;
 import net.stehschnitzel.cheesus.init.ItemInit;
+import net.stehschnitzel.cheesus.renderer.CheeseCoverEntityRenderer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,7 +32,7 @@ public class Cheesus {
 		bus.addListener(this::commonSetup);
 		MinecraftForge.EVENT_BUS.register(this);
 
-		 ItemInit.ITEMS.register(bus);
+		ItemInit.ITEMS.register(bus);
 		BlockInit.BLOCKS.register(bus);
 		BlockInit.BLOCK_ITEMS.register(bus);
 		BlockEntityInit.BLOCK_ENTITY.register(bus);
@@ -40,4 +44,15 @@ public class Cheesus {
 
 	private void commonSetup(final FMLCommonSetupEvent event) {
 	}
+
+	@Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+	public static class ClientModEvents {
+
+		@SubscribeEvent
+		public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
+			event.registerBlockEntityRenderer(BlockEntityInit.CHEESE_COVER.get(), CheeseCoverEntityRenderer::new);
+
+		}
+	}
+
 }

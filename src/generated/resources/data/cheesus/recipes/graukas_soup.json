@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "cheesus:grey_cheese_slice"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "cheesus:graukas_soup"
+  }
+}

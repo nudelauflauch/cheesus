@@ -55,14 +55,14 @@ public class CheesusItemTabInit {
 
 	private static void registerFood(CreativeModeTab.Output items) {
 		items.accept(BlockInit.CHEESE_CAKE.get());
-		items.accept(ItemInit.BREADED_CAMBERT.get());
+		items.accept(ItemInit.BAKED_CHEESE.get());
 		items.accept(ItemInit.CHEESE_FONDUE.get());
-		items.accept(ItemInit.CHEESE_BREAD.get());
+//		items.accept(ItemInit.CHEESE_BREAD.get());
 		items.accept(ItemInit.CHEESE_FROM_HELL.get());
-		items.accept(ItemInit.GRAUKAS_KNEDL.get());
+//		items.accept(ItemInit.GRAUKAS_KNEDL.get());
 		items.accept(ItemInit.GRAUKAS_SOUP.get());
 		items.accept(ItemInit.SCALLOPED_POTATO.get());
-		items.accept(ItemInit.SALMON_HERB_CHEESE.get());
-		items.accept(ItemInit.TARTE_SOLEIL_AU_CAMEMBERT.get());
+//		items.accept(ItemInit.SALMON_HERB_CHEESE.get());
+		items.accept(ItemInit.CHEESE_SUN.get());
 	}
 }

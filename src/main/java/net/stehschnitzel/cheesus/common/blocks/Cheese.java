@@ -1,14 +1,15 @@
 package net.stehschnitzel.cheesus.common.blocks;
 
+import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.data.worldgen.DimensionTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
-import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraftforge.common.Tags;
 import net.stehschnitzel.cheesus.init.BlockInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
@@ -27,9 +28,20 @@ public class Cheese extends BasicCheese {
 	@Override
 	public InteractionResult use(BlockState state, Level pLevel, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 
-		if (state.getValue(BITES) == 0 && player.getMainHandItem().areShareTagsEqual(new ItemStack(Items.IRON_SWORD))) {
+		if (state.getValue(BITES) == 0 && player.getMainHandItem().is(ItemTags.SWORDS)) {
 			pLevel.setBlockAndUpdate(pos, BlockInit.BLUE_MOLD_CHEESE.get().defaultBlockState());
 
+			double d0 = (double)pos.getX() + 0.5D;
+			double d1 = (double)pos.getY() + 0.5D;
+			double d2 = (double)pos.getZ() + 0.5D;
+
+			for (int i = 0; i < 20; i++) {
+				double r0 = pLevel.getRandom().nextDouble() * 0.6 - 0.3D;
+				double r1 = pLevel.getRandom().nextDouble() * 0.1;
+				double r2 = pLevel.getRandom().nextDouble() * 0.6 - 0.3D;
+				pLevel.addParticle(ParticleTypes.CRIT, d0 + r0, d1 + r1, d2 + r2,
+						0.0D, 0.0D, 0.0D);
+			}
 			return InteractionResult.sidedSuccess(pLevel.isClientSide());
 		}
 
@@ -43,8 +55,25 @@ public class Cheese extends BasicCheese {
 
 	@Override
 	public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
-		if (pPos.getY() > 150 || pLevel.getRawBrightness(pPos, 0) < 5 || pLevel.dimensionTypeId() == BuiltinDimensionTypes.NETHER) {
-			pLevel.addParticle(ParticleTypes.FLAME, pPos.getX(), pPos.getY(), pPos.getZ(), 0.0D, 0.0D, 0.0D);
+		double d0 = (double)pPos.getX() + 0.5D;
+		double d1 = (double)pPos.getY() + 0.5D;
+		double d2 = (double)pPos.getZ() + 0.5D;
+
+		double r0 = pRandom.nextDouble() * 0.6 - 0.3D;
+		double r1 = pRandom.nextDouble() * 0.1;
+		double r2 = pRandom.nextDouble() * 0.6 - 0.3D;
+
+		if (pPos.getY() > 150) {
+			pLevel.addParticle(
+					new BlockParticleOption(ParticleTypes.FALLING_DUST, Blocks.WHITE_CONCRETE.defaultBlockState()),
+					d0 + r0, d1 + r1, d2 + r2,
+					0.0D, 0.0D, 0.0D);
+		} else if (pLevel.getRawBrightness(pPos, 0) < 5) {
+			pLevel.addParticle(ParticleTypes.MYCELIUM, d0 + r0, d1 + r1, d2 + r2,
+					0.0D, 0.0D, 0.0D);
+		} else if (pLevel.dimensionTypeId() == BuiltinDimensionTypes.NETHER) {
+			pLevel.addParticle(ParticleTypes.FALLING_LAVA, d0 + r0, d1 + r1, d2 + r2,
+					0.0D, 0.0D, 0.0D);
 		}
 	}
 

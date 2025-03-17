@@ -9,8 +9,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import java.awt.*;
-
 public class BlueCheese extends BasicCheese{
     public BlueCheese(Properties pProperties) {
         super(pProperties);

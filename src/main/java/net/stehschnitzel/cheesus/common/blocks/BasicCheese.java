@@ -43,7 +43,7 @@ public class BasicCheese extends Block {
 	public InteractionResult use(BlockState state, Level pLevel, BlockPos pos,
 		Player player, InteractionHand handIn, BlockHitResult hit) {
 		if (player.canEat(player.getFoodData().needsFood())) {
-			player.getFoodData().eat(2, 0.1F);
+			player.getFoodData().eat(2, 2F);
 
 			if (state.getValue(BITES) == MAX_BITES - 1) {
 				pLevel.removeBlock(pos, false);

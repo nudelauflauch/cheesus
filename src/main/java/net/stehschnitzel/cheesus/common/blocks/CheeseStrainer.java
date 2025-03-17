@@ -1,10 +1,12 @@
 package net.stehschnitzel.cheesus.common.blocks;
 
+import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.stehschnitzel.cheesus.common.blocks.entities.CheeseStrainerBlockEntity;
 import net.stehschnitzel.cheesus.init.BlockEntityInit;
 import net.minecraft.core.BlockPos;
@@ -34,7 +36,7 @@ import net.stehschnitzel.cheesus.init.BlockInit;
 public class CheeseStrainer extends Block {
 
 	public static final IntegerProperty LEVEL = IntegerProperty.create("level",
-			0, 6);
+			0, 11);
 
 	public CheeseStrainer(Properties pProperties) {
 		super(pProperties);
@@ -69,6 +71,11 @@ public class CheeseStrainer extends Block {
 
 			return InteractionResult.sidedSuccess(pLevel.isClientSide());
 
+		} else if (level == 0 && item == Items.WATER_BUCKET) {
+			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 7));
+
+			return InteractionResult.sidedSuccess(pLevel.isClientSide());
+
 		} else if (level == 4) {
 			addItemOrDrop(BlockInit.CHEESE.get(), pPlayer);
 			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 0));
@@ -93,8 +100,22 @@ public class CheeseStrainer extends Block {
 	@Override
 	public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
 		if (isRandomlyTicking(pState)) {
-			pLevel.addParticle(ParticleTypes.FLAME, pPos.getX(), pPos.getY(), pPos.getZ(), 0.0D, 0.0D, 0.0D);
+			double d0 = (double)pPos.getX() + 0.5D;
+			double d1 = (double)pPos.getY() + 0.9D;
+			double d2 = (double)pPos.getZ() + 0.5D;
+
+			double r0 = pRandom.nextDouble() * 0.6 - 0.3D;
+			double r1 = pRandom.nextDouble() * 0.1;
+			double r2 = pRandom.nextDouble() * 0.6 - 0.3D;
+
+			pLevel.addParticle(ParticleTypes.MYCELIUM, d0 + r0, d1 + r1, d2 + r2,
+					0.0D, 2.0D, 0.0D);
 		}
+	}
+
+	@Override
+	public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+		System.out.println("tick");
 	}
 
 	@Override
