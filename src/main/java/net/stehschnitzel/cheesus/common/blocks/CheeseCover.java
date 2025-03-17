@@ -18,7 +18,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.stehschnitzel.cheesus.common.blocks.entities.CheeseCoverBlockEntity;
-import net.stehschnitzel.cheesus.init.CheesusTags;
 import org.jetbrains.annotations.Nullable;
 
 public class CheeseCover extends BaseEntityBlock {
