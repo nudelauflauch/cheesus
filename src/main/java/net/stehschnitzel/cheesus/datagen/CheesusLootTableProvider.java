@@ -51,38 +51,33 @@ public class CheesusLootTableProvider extends BlockLootSubProvider {
     }
 
     protected LootTable.Builder createCheeseItemDispatchTable(Block pBlock, Item pItem) {
-        LootItemCondition.Builder lootitemcondition0 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
+        LootItemCondition.Builder lootItemCondition0 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BasicCheese.BITES, 0));
 
-        LootItemCondition.Builder lootitemcondition1 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
+        LootItemCondition.Builder lootItemCondition1 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BasicCheese.BITES, 1));
 
-        LootItemCondition.Builder lootitemcondition2 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
+        LootItemCondition.Builder lootItemCondition2 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BasicCheese.BITES, 2));
 
-        LootItemCondition.Builder lootitemcondition3 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
+        LootItemCondition.Builder lootItemCondition3 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BasicCheese.BITES, 3));
 
         return LootTable.lootTable()
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .when(lootitemcondition0)
-                        .when(HAS_SILK_TOUCH)
+                        .when(lootItemCondition0)
                         .add(LootItem.lootTableItem(pBlock)))
 
-                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(4.0F))
-                        .when(lootitemcondition0.and(HAS_NO_SILK_TOUCH))
-                        .add(LootItem.lootTableItem(pItem)))  // Drops 4 pieces if uneaten
-
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(3.0F))
-                        .when(lootitemcondition1)
+                        .when(lootItemCondition1)
                         .add(LootItem.lootTableItem(pItem)))  // Drops 3 pieces if 1 bite taken
 
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F))
-                        .when(lootitemcondition2)
+                        .when(lootItemCondition2)
                         .add(LootItem.lootTableItem(pItem)))  // Drops 2 pieces if 2 bites taken
 
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .when(lootitemcondition3)
+                        .when(lootItemCondition3)
                         .add(LootItem.lootTableItem(pItem))); // Drops 1 piece if 3 bites taken
     }
 

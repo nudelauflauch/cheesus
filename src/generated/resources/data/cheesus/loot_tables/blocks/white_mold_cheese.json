@@ -10,19 +10,6 @@
           "properties": {
             "bites": "0"
           }
-        },
-        {
-          "condition": "minecraft:match_tool",
-          "predicate": {
-            "enchantments": [
-              {
-                "enchantment": "minecraft:silk_touch",
-                "levels": {
-                  "min": 1
-                }
-              }
-            ]
-          }
         }
       ],
       "entries": [
@@ -32,46 +19,6 @@
         }
       ],
       "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "condition": "minecraft:all_of",
-          "terms": [
-            {
-              "block": "cheesus:white_mold_cheese",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "bites": "0"
-              }
-            },
-            {
-              "condition": "minecraft:inverted",
-              "term": {
-                "condition": "minecraft:match_tool",
-                "predicate": {
-                  "enchantments": [
-                    {
-                      "enchantment": "minecraft:silk_touch",
-                      "levels": {
-                        "min": 1
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          ]
-        }
-      ],
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "cheesus:white_mold_cheese_slice"
-        }
-      ],
-      "rolls": 4.0
     },
     {
       "bonus_rolls": 0.0,
