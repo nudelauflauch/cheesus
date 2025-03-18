@@ -28,7 +28,7 @@ public class CheeseStrainerBlockEntity extends BlockEntity {
 			if (cheeseLevel > 6) {
 				this.timer++;
 			}
-			if (this.timer >= 200) {
+			if (this.timer >= 100) {
 				if (cheeseLevel == 11) {
 					this.getLevel().setBlockAndUpdate(this.getBlockPos(),
 							this.getBlockState().setValue(CheeseStrainer.LEVEL, 0));

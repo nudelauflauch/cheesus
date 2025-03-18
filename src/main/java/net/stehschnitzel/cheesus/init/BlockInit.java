@@ -43,13 +43,13 @@ public class BlockInit {
 			() -> new BasicCheese(
 					BlockBehaviour.Properties.copy(CHEESE.get())));
 
-	public static final RegistryObject<BasicCheese> GREY_CHEESE = registerBlock("grey_cheese", () -> new BlueCheese(
+	public static final RegistryObject<BasicCheese> GREY_CHEESE = registerBlock("grey_cheese", () -> new SmallCheese(
 			BlockBehaviour.Properties.copy(CHEESE.get())));
 
-	public static final RegistryObject<BasicCheese> WHITE_MOLD_CHEESE = registerBlock("white_mold_cheese", () -> new BlueCheese(
+	public static final RegistryObject<BasicCheese> WHITE_MOLD_CHEESE = registerBlock("white_mold_cheese", () -> new SmallCheese(
 			BlockBehaviour.Properties.copy(CHEESE.get())));
 
-	public static final RegistryObject<Block> CHEESE_CAKE = registerBlock("cheese_cake", () -> new BasicCheese(
+	public static final RegistryObject<Block> CHEESE_CAKE = registerBlock("cheese_cake", () -> new SmallCheese(
 			BlockBehaviour.Properties.copy(CHEESE.get())));
 
 	// Block

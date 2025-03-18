@@ -28,15 +28,7 @@ public class BasicCheese extends Block {
 	@Override
 	public VoxelShape getShape(BlockState pState, BlockGetter pLevel,
 			BlockPos pPos, CollisionContext pContext) {
-		switch (pState.getValue(BITES)) {
-			case 0 :
-				return CheesusVoxels.cheese_0();
-			case 1 :
-				return CheesusVoxels.cheese_1();
-			case 2 :
-				return CheesusVoxels.cheese_2();
-		}
-		return CheesusVoxels.cheese_3();
+		return CheesusVoxels.NORMAL_SHAPE_BY_BITE[pState.getValue(BITES)];
 	}
 
 	@Override

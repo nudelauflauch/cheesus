@@ -9,36 +9,34 @@ import java.util.stream.Stream;
 
 public class CheesusVoxels {
 
-    public static VoxelShape cheese_0 () {
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape,
-                Shapes.box(0.125, 0, 0.125, 0.875, 0.375, 0.875), BooleanOp.OR);
+    public static VoxelShape s_cheese_0 () {
+        return Block.box(2, 0, 2, 14, 4, 14);
+    }
+    public static VoxelShape s_cheese_1 () {
+        return Shapes.join(Block.box(2, 0, 2, 8, 4, 14), Block.box(8, 0, 8, 14, 4, 14), BooleanOp.OR);
+    }
+    public static VoxelShape s_cheese_2 () {
+        return Block.box(2, 0, 2, 8, 4, 14);
+    }
+    public static VoxelShape s_cheese_3 () {
+        return Block.box(2, 0, 8, 8, 4, 14);
+    }
 
-        return shape;
+    public static VoxelShape cheese_0 () {
+        return Block.box(2, 0, 2, 14, 6, 14);
     }
     public static VoxelShape cheese_1 () {
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape,
-                Shapes.box(0.5, 0, 0.125, 0.875, 0.375, 0.875), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.125, 0, 0.5, 0.5, 0.375, 0.875),
-                BooleanOp.OR);
-
-        return shape;
+        return Shapes.join(Block.box(2, 0, 2, 8, 6, 14), Block.box(8, 0, 8, 14, 6, 14), BooleanOp.OR);
     }
     public static VoxelShape cheese_2 () {
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape,
-                Shapes.box(0.5, 0, 0.125, 0.875, 0.375, 0.875), BooleanOp.OR);
-
-        return shape;
+        return Block.box(2, 0, 2, 8, 6, 14);
     }
     public static VoxelShape cheese_3 () {
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.5, 0, 0.125, 0.875, 0.375, 0.5),
-                BooleanOp.OR);
-
-        return shape;
+        return Block.box(2, 0, 8, 8, 6, 14);
     }
+
+    public static final VoxelShape[] NORMAL_SHAPE_BY_BITE = new VoxelShape[]{cheese_0(), cheese_1(), cheese_2(), cheese_3()};
+    public static final VoxelShape[] SMALL_SHAPE_BY_BITE = new VoxelShape[]{s_cheese_0(), s_cheese_1(), s_cheese_2(), s_cheese_3()};
 
     public static VoxelShape CheeseStrainer() {
         return Stream.of(
