@@ -5,7 +5,6 @@ import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -17,10 +16,8 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.data.ModelData;
 import net.stehschnitzel.cheesus.common.blocks.entities.CheeseCoverBlockEntity;
-import net.stehschnitzel.cheesus.init.BlockInit;
 import net.stehschnitzel.cheesus.init.CheesusTags;
 
 public class CheeseCoverEntityRenderer implements BlockEntityRenderer<CheeseCoverBlockEntity> {

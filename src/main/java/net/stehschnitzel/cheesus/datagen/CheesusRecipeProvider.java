@@ -41,9 +41,9 @@ public class CheesusRecipeProvider extends RecipeProvider implements IConditionB
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ItemInit.CHEESE_SUN.get())
                 .define('E', ItemInit.WHITE_MOLD_CHEESE_SLICE.get())
                 .define('C', Items.WHEAT)
-                .pattern("CCC")
+                .pattern("C C")
                 .pattern("CEC")
-                .pattern("CCC")
+                .pattern(" C ")
                 .unlockedBy("has_wheat", has(Items.WHEAT)).save(pWriter);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ItemInit.CHEESE_FONDUE.get(), 4)
@@ -71,7 +71,7 @@ public class CheesusRecipeProvider extends RecipeProvider implements IConditionB
                 .save(pWriter);
 
         cheeseCooking(Ingredient.of(CheesusTags.Items.CHEESE), ItemInit.BAKED_CHEESE.get(), BlockInit.CHEESE.get(), pWriter);
-        SimpleCookingRecipeBuilder.blasting(Ingredient.of(ItemInit.DIABOLICAL_CHEESE_SLICE.get()), RecipeCategory.FOOD, ItemInit.CHEESE_FROM_HELL.get(),0.35F, 200)
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(ItemInit.DIABOLICAL_CHEESE_SLICE.get()), RecipeCategory.FOOD, ItemInit.CHEESE_FROM_HELL.get(),0.35F, 300)
                 .unlockedBy(getHasName(ItemInit.DIABOLICAL_CHEESE_SLICE.get()), has(ItemInit.DIABOLICAL_CHEESE_SLICE.get()))
                 .save(pWriter);
 

@@ -63,7 +63,7 @@ public class CheeseCover extends BaseEntityBlock {
 
 			if (pPlayer.isCrouching()) {
 				cheeseCoverBlockEntity.increaseRotationDeg();
-			} else if (cheeseCoverBlockEntity.inventory.getStackInSlot(0).isEmpty()) {
+			} else if (cheeseCoverBlockEntity.inventory.getStackInSlot(0).isEmpty() && !stack.isEmpty()) {
 				cheeseCoverBlockEntity.inventory.insertItem(0, stack.copy(), false);
 				stack.shrink(1);
 				pLevel.playSound(pPlayer, pPos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1f, 2f);

@@ -5,12 +5,13 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -23,9 +24,16 @@ public class BasicCheese extends Block {
 	public static final IntegerProperty BITES = IntegerProperty.create("bites",
 			0, 3);
 	public static final int MAX_BITES = 4;
+	private final MobEffect effect;
 
 	public BasicCheese(Properties pProperties) {
 		super(pProperties);
+		this.effect = null;
+	}
+
+	public BasicCheese(Properties pProperties, MobEffect effect) {
+		super(pProperties);
+		this.effect = effect;
 	}
 
 	@Override
@@ -38,12 +46,16 @@ public class BasicCheese extends Block {
 	public InteractionResult use(BlockState state, Level pLevel, BlockPos pos,
 		Player player, InteractionHand handIn, BlockHitResult hit) {
 		if (player.canEat(player.getFoodData().needsFood())) {
-			player.getFoodData().eat(2, 2F);
+			player.getFoodData().eat(2, 3);
 
 			if (state.getValue(BITES) == MAX_BITES - 1) {
 				pLevel.removeBlock(pos, false);
 			} else {
 				pLevel.setBlockAndUpdate(pos, state.setValue(BITES, state.getValue(BITES) + 1));
+			}
+
+			if (this.effect != null) {
+				player.addEffect(new MobEffectInstance(this.effect, 200, 1));
 			}
 
 			pLevel.playLocalSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.SLIME_SQUISH, SoundSource.BLOCKS, 1.0F, 1.0F, false);

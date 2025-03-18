@@ -10,9 +10,9 @@
     }
   },
   "pattern": [
-    "CCC",
+    "C C",
     "CEC",
-    "CCC"
+    " C "
   ],
   "result": {
     "item": "cheesus:cheese_sun"

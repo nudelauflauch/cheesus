@@ -1,5 +1,6 @@
 package net.stehschnitzel.cheesus.init;
 
+import net.minecraft.world.effect.MobEffects;
 import net.stehschnitzel.cheesus.common.blocks.*;
 import com.google.common.base.Supplier;
 
@@ -34,20 +35,20 @@ public class BlockInit {
 			BlockBehaviour.Properties.copy(Blocks.CAKE).strength(0.8f, 1.5f).sound(SoundType.FUNGUS)));
 
 	public static final RegistryObject<BasicCheese> ALTITUDE_CHEESE = registerBlock("altitude_cheese", () -> new BasicCheese(
-			BlockBehaviour.Properties.copy(CHEESE.get())));
+			BlockBehaviour.Properties.copy(CHEESE.get()), MobEffects.DAMAGE_RESISTANCE));
 
 	public static final RegistryObject<BasicCheese> BLUE_MOLD_CHEESE = registerBlock("blue_mold_cheese", () -> new BasicCheese(
-			BlockBehaviour.Properties.copy(CHEESE.get())));
+			BlockBehaviour.Properties.copy(CHEESE.get()), MobEffects.SATURATION));
 
 	public static final RegistryObject<BasicCheese> DIABOLICAL_CHEESE = registerBlock("diabolical_cheese",
 			() -> new BasicCheese(
-					BlockBehaviour.Properties.copy(CHEESE.get())));
+					BlockBehaviour.Properties.copy(CHEESE.get()), MobEffects.FIRE_RESISTANCE));
 
 	public static final RegistryObject<BasicCheese> GREY_CHEESE = registerBlock("grey_cheese", () -> new SmallCheese(
-			BlockBehaviour.Properties.copy(CHEESE.get())));
+			BlockBehaviour.Properties.copy(CHEESE.get()), MobEffects.DAMAGE_BOOST));
 
 	public static final RegistryObject<BasicCheese> WHITE_MOLD_CHEESE = registerBlock("white_mold_cheese", () -> new SmallCheese(
-			BlockBehaviour.Properties.copy(CHEESE.get())));
+			BlockBehaviour.Properties.copy(CHEESE.get()), MobEffects.REGENERATION));
 
 	public static final RegistryObject<Block> CHEESE_CAKE = registerBlock("cheese_cake", () -> new SmallCheese(
 			BlockBehaviour.Properties.copy(CHEESE.get())));
