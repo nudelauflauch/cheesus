@@ -52,6 +52,8 @@ public class Cheese extends BasicCheese {
 
 	@Override
 	public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
+		if (pState.getValue(BITES) != 0) return;
+
 		double d0 = (double)pPos.getX() + 0.5D;
 		double d1 = (double)pPos.getY() + 0.5D;
 		double d2 = (double)pPos.getZ() + 0.5D;
@@ -76,10 +78,12 @@ public class Cheese extends BasicCheese {
 
 	@Override
 	public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-		if (pPos.getY() > 150) {
-			pLevel.setBlockAndUpdate(pPos, BlockInit.ALTITUDE_CHEESE.get().defaultBlockState());
-		} else if (pLevel.getRawBrightness(pPos, 0) < 5) {
-			pLevel.setBlockAndUpdate(pPos, BlockInit.WHITE_MOLD_CHEESE.get().defaultBlockState());
+		if (pLevel.dimensionTypeId() == BuiltinDimensionTypes.OVERWORLD) {
+			if (pPos.getY() > 150) {
+				pLevel.setBlockAndUpdate(pPos, BlockInit.ALTITUDE_CHEESE.get().defaultBlockState());
+			} else if (pLevel.getRawBrightness(pPos, 0) < 5) {
+				pLevel.setBlockAndUpdate(pPos, BlockInit.WHITE_MOLD_CHEESE.get().defaultBlockState());
+			}
 		} else if (pLevel.dimensionTypeId() == BuiltinDimensionTypes.NETHER) {
 			pLevel.setBlockAndUpdate(pPos, BlockInit.DIABOLICAL_CHEESE.get().defaultBlockState());
 		}
