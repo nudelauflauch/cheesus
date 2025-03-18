@@ -54,7 +54,6 @@ public class CheeseStrainerBlockEntity extends BlockEntity {
 	public void load(CompoundTag pTag) {
 		super.load(pTag);
 		this.timer = pTag.getInt("timer");
-
 	}
 
 	@Nullable

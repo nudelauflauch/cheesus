@@ -61,7 +61,9 @@ public class CheeseCover extends BaseEntityBlock {
 		if (pLevel.getBlockEntity(pPos) instanceof CheeseCoverBlockEntity cheeseCoverBlockEntity) {
 			ItemStack stack = pPlayer.getMainHandItem();
 
-			if (cheeseCoverBlockEntity.inventory.getStackInSlot(0).isEmpty()) {
+			if (pPlayer.isCrouching()) {
+				cheeseCoverBlockEntity.increaseRotationDeg();
+			} else if (cheeseCoverBlockEntity.inventory.getStackInSlot(0).isEmpty()) {
 				cheeseCoverBlockEntity.inventory.insertItem(0, stack.copy(), false);
 				stack.shrink(1);
 				pLevel.playSound(pPlayer, pPos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1f, 2f);
@@ -75,8 +77,9 @@ public class CheeseCover extends BaseEntityBlock {
 				cheeseCoverBlockEntity.clearContents();
 				pLevel.playSound(pPlayer, pPos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1f, 1f);
 			}
-		}
 
-		return InteractionResult.SUCCESS;
+			return InteractionResult.SUCCESS;
+		}
+		return InteractionResult.FAIL;
 	}
 }

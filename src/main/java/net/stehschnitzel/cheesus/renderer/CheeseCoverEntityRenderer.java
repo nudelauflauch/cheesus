@@ -5,6 +5,7 @@ import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -17,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.client.model.data.ModelData;
 import net.stehschnitzel.cheesus.common.blocks.entities.CheeseCoverBlockEntity;
 import net.stehschnitzel.cheesus.init.BlockInit;
 import net.stehschnitzel.cheesus.init.CheesusTags;
@@ -31,7 +33,7 @@ public class CheeseCoverEntityRenderer implements BlockEntityRenderer<CheeseCove
                        MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
 
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        ItemStack stack = pBlockEntity.inventory.getStackInSlot(0);
+        ItemStack stack = pBlockEntity.getInventory().getStackInSlot(0);
         BlockRenderDispatcher blockRenderer = Minecraft.getInstance().getBlockRenderer();
 
         pPoseStack.pushPose();
@@ -40,21 +42,27 @@ public class CheeseCoverEntityRenderer implements BlockEntityRenderer<CheeseCove
             pPoseStack.translate(0.1f, 0.15f, 0.1f);
             pPoseStack.scale(0.8f, 0.8f, 0.8f);
 
+            pPoseStack.rotateAround(Axis.YP.rotationDegrees((float) pBlockEntity.getRotationDeg()), 0.5F, 0.5F, 0.5F);
             blockRenderer.renderSingleBlock(blockItem.getBlock().defaultBlockState(),
                     pPoseStack, pBufferSource, getLightLevel(pBlockEntity.getLevel(),
                             pBlockEntity.getBlockPos()), pPackedOverlay);
 
         } else if (stack.getItem() instanceof BlockItem blockItem) {
+            pPoseStack.rotateAround(Axis.YP.rotationDegrees((float) pBlockEntity.getRotationDeg()), 0.5F, 0.5F, 0.5F);
+
             pPoseStack.translate(0.25f, 0.15f, 0.25f);
             pPoseStack.scale(0.5f, 0.5f, 0.5f);
+
             blockRenderer.renderSingleBlock(blockItem.getBlock().defaultBlockState(),
                     pPoseStack, pBufferSource, getLightLevel(pBlockEntity.getLevel(),
-                            pBlockEntity.getBlockPos()), pPackedOverlay);
+                            pBlockEntity.getBlockPos()), pPackedOverlay, ModelData.EMPTY, null);
 
         } else {
             pPoseStack.scale(0.6f, 0.6f, 0.6f);
             pPoseStack.translate(0.8f, 0.3f, 0.8f);
             pPoseStack.mulPose(Axis.XN.rotationDegrees((float) -90));
+
+            pPoseStack.mulPose(Axis.ZN.rotationDegrees((float) pBlockEntity.getRotationDeg()));
             itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, getLightLevel(pBlockEntity.getLevel(),
                     pBlockEntity.getBlockPos()), OverlayTexture.NO_OVERLAY, pPoseStack, pBufferSource, pBlockEntity.getLevel(), 1);
         }
