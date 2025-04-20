@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:husbandry/plant_seed",
+  "criteria": {
+    "has_cheese": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cheesus:cheese"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.husbandry.cheese_root.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "cheesus:cheese"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.husbandry.cheese_root.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_cheese"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

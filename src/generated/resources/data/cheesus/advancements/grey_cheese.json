@@ -1,0 +1,51 @@
+{
+  "parent": "cheesus:cheese_root",
+  "criteria": {
+    "cheese_click": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "cheesus:cheese_strainer"
+                ]
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "cheesus:cheese"
+              ]
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:item_used_on_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.husbandry.grey_cheese.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "cheesus:grey_cheese"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.husbandry.grey_cheese.title"
+    }
+  },
+  "requirements": [
+    [
+      "cheese_click"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
