@@ -10,7 +10,7 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import net.stehschnitzel.cheesus.Cheesus;
-import net.stehschnitzel.cheesus.common.blocks.BasicCheese;
+import net.stehschnitzel.cheesus.common.blocks.EatableCheese;
 import net.stehschnitzel.cheesus.init.BlockInit;
 
 public class CheesusBlockStateProvider extends BlockStateProvider {
@@ -45,7 +45,7 @@ public class CheesusBlockStateProvider extends BlockStateProvider {
         ModelFile f3 = cheese(name, 3, template_name);
 
         getVariantBuilder(block.get()).forAllStatesExcept(state -> {
-            int bit = state.getValue(BasicCheese.BITES);
+            int bit = state.getValue(EatableCheese.BITES);
             ModelFile model;
 
             switch (bit) {
@@ -61,11 +61,11 @@ public class CheesusBlockStateProvider extends BlockStateProvider {
     }
 
     public ModelBuilder cheese(String name, int cnt, String template_name) {
-        ResourceLocation cheese_texture = ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID, "block/" + name);
-        ResourceLocation cheese_particle = ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID, "item/" + name);
+        ResourceLocation cheese_texture = ResourceLocation.tryBuild(Cheesus.MOD_ID, "block/" + name);
+        ResourceLocation cheese_particle = ResourceLocation.tryBuild(Cheesus.MOD_ID, "item/" + name);
 
         ModelBuilder model =  models().withExistingParent(name + "_" + cnt,
-                        ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID, "block/" + template_name + "_" + cnt))
+                        ResourceLocation.tryBuild(Cheesus.MOD_ID, "block/" + template_name + "_" + cnt))
                 .texture("texture", cheese_texture)
                 .texture("particle", cheese_particle);
         return model;

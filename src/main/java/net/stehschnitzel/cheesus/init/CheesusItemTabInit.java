@@ -37,13 +37,13 @@ public class CheesusItemTabInit {
 		 registerFood(items);
 
 
-		 registerDispensables();
+		 registerDispensable();
 	}
 
 
 	//TODO has to be registered here because if i would register it normaly CHEESE would be none
 	// because it gets called to early so idk how to fix it and make it look good
-	public static void registerDispensables() {
+	public static void registerDispensable() {
 		DispenserBlock.registerBehavior(Items.MILK_BUCKET, CheeseStrainer.DISPENSE_ITEM_BEHAVIOR);
 		DispenserBlock.registerBehavior(Items.WATER_BUCKET, CheeseStrainer.DISPENSE_ITEM_BEHAVIOR);
 		DispenserBlock.registerBehavior(BlockInit.CHEESE.get(), CheeseStrainer.DISPENSE_ITEM_BEHAVIOR);

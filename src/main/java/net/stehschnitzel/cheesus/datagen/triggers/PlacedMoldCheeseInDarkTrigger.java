@@ -11,7 +11,7 @@ import net.stehschnitzel.cheesus.init.BlockInit;
 
 public class PlacedMoldCheeseInDarkTrigger extends SimpleCriterionTrigger<PlacedMoldCheeseInDarkTrigger.TriggerInstance> {
 
-    public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID,"placed_mold_cheese_dark");
+    public static final ResourceLocation ID = ResourceLocation.tryBuild(Cheesus.MOD_ID,"placed_mold_cheese_dark");
 
     @Override
     public ResourceLocation getId() {

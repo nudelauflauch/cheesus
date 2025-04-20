@@ -81,6 +81,6 @@ public class CheesusAdvancmentProvider implements ForgeAdvancementProvider.Advan
                         true, true, false))
                 .parent(cheesus_root)
                 .addCriterion("cheese_click", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.GREY_CHEESE.get())                        )
-                .save(consumer, ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID, "grey_cheese"), existingFileHelper);
+                .save(consumer, ResourceLocation.tryBuild(Cheesus.MOD_ID, "grey_cheese"), existingFileHelper);
     }
 }

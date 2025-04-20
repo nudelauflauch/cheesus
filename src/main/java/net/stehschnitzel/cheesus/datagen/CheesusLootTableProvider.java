@@ -12,7 +12,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePrope
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraftforge.registries.RegistryObject;
-import net.stehschnitzel.cheesus.common.blocks.BasicCheese;
+import net.stehschnitzel.cheesus.common.blocks.EatableCheese;
 import net.stehschnitzel.cheesus.init.BlockInit;
 import net.stehschnitzel.cheesus.init.ItemInit;
 
@@ -42,7 +42,7 @@ public class CheesusLootTableProvider extends BlockLootSubProvider {
 
     protected void dropCheeseCake(Block pBlock) {
         LootItemCondition.Builder lootitemcondition0 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BasicCheese.BITES, 0));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(EatableCheese.BITES, 0));
 
         this.add(pBlock, LootTable.lootTable()
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
@@ -52,16 +52,16 @@ public class CheesusLootTableProvider extends BlockLootSubProvider {
 
     protected LootTable.Builder createCheeseItemDispatchTable(Block pBlock, Item pItem) {
         LootItemCondition.Builder lootItemCondition0 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BasicCheese.BITES, 0));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(EatableCheese.BITES, 0));
 
         LootItemCondition.Builder lootItemCondition1 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BasicCheese.BITES, 1));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(EatableCheese.BITES, 1));
 
         LootItemCondition.Builder lootItemCondition2 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BasicCheese.BITES, 2));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(EatableCheese.BITES, 2));
 
         LootItemCondition.Builder lootItemCondition3 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BasicCheese.BITES, 3));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(EatableCheese.BITES, 3));
 
         return LootTable.lootTable()
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))

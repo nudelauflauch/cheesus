@@ -13,7 +13,7 @@ import net.stehschnitzel.cheesus.init.BlockInit;
 
 public class PlacedDiabolicalCheeseInNetherTrigger extends SimpleCriterionTrigger<PlacedDiabolicalCheeseInNetherTrigger.TriggerInstance> {
 
-    public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID,"placed_diabolical_cheese_nether");
+    public static final ResourceLocation ID = ResourceLocation.tryBuild(Cheesus.MOD_ID,"placed_diabolical_cheese_nether");
 
     @Override
     public ResourceLocation getId() {

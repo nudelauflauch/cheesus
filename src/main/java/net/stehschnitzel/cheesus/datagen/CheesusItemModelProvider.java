@@ -48,7 +48,7 @@ public class CheesusItemModelProvider extends ItemModelProvider {
 
     private ItemModelBuilder simpleItem(RegistryObject<?> item) {
         return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(Cheesus.MOD_ID,"item/" + item.getId().getPath()));
+                ResourceLocation.tryParse("item/generated")).texture("layer0",
+                ResourceLocation.tryBuild(Cheesus.MOD_ID,"item/" + item.getId().getPath()));
     }
 }

@@ -12,7 +12,7 @@ import net.stehschnitzel.cheesus.init.BlockInit;
 
 public class RightClickedBlueMoldCheeseTrigger extends SimpleCriterionTrigger<RightClickedBlueMoldCheeseTrigger.TriggerInstance> {
 
-    public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID,"right_clicked_blue_mold_cheese");
+    public static final ResourceLocation ID = ResourceLocation.tryBuild(Cheesus.MOD_ID,"right_clicked_blue_mold_cheese");
 
     @Override
     public ResourceLocation getId() {

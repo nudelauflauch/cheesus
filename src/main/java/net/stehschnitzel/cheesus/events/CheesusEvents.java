@@ -11,10 +11,10 @@ import net.stehschnitzel.cheesus.Cheesus;
 import net.stehschnitzel.cheesus.datagen.triggers.PlacedMoldCheeseInDarkTrigger;
 import net.stehschnitzel.cheesus.init.CheesusCriteriaInit;
 
-@Mod.EventBusSubscriber(modid = Cheesus.MOD_ID)
+//@Mod.EventBusSubscriber(modid = Cheesus.MOD_ID)
 public class CheesusEvents {
 
-    @SubscribeEvent
+//    @SubscribeEvent
     public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
             BlockState state = event.getPlacedBlock();
@@ -27,7 +27,7 @@ public class CheesusEvents {
     }
 
 
-    @SubscribeEvent
+//    @SubscribeEvent
     public static void onBlockRightClicked(PlayerInteractEvent.RightClickBlock event) {
         if (event.getEntity() instanceof ServerPlayer player) {
             CheesusCriteriaInit.RIGHT_CLICKED_BLUE_MOLD_CHEESE.trigger(player, event.getLevel().getBlockState(event.getPos()));

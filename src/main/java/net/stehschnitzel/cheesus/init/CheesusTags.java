@@ -12,7 +12,7 @@ public class CheesusTags {
 
     public static class Blocks {
         private static TagKey<Block> createTag(String name) {
-            return BlockTags.create(new ResourceLocation(Cheesus.MOD_ID, name));
+            return BlockTags.create(ResourceLocation.tryBuild(Cheesus.MOD_ID, name));
         }
     }
 
@@ -21,7 +21,7 @@ public class CheesusTags {
         public static final TagKey<Item> CHEESE_SLICE = createTag("cheese_slice");
 
         private static TagKey<Item> createTag(String name) {
-            return ItemTags.create(new ResourceLocation(Cheesus.MOD_ID, name));
+            return ItemTags.create(ResourceLocation.tryBuild(Cheesus.MOD_ID, name));
         }
     }
 

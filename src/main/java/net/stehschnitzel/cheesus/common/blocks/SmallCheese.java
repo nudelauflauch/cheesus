@@ -2,13 +2,12 @@ package net.stehschnitzel.cheesus.common.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class SmallCheese extends BasicCheese{
+public class SmallCheese extends EatableCheese {
 
     public SmallCheese(Properties pProperties) {
         super(pProperties);

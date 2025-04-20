@@ -47,7 +47,7 @@ public class CheeseStrainer extends BaseEntityBlock {
 					source.getLevel().setBlockAndUpdate(blockpos, state.setValue(LEVEL, 7));
 
 					return new ItemStack(Items.BUCKET);
-				} else if (stack.getItem() == Items.MILK_BUCKET && state.getValue(LEVEL) < 3) {
+				} else if (stack.getItem() == Items.MILK_BUCKET && state.getValue(LEVEL) < 4) {
 					source.getLevel().setBlockAndUpdate(blockpos, state.setValue(LEVEL, state.getValue(LEVEL) + 1));
 
 					return new ItemStack(Items.BUCKET);

@@ -11,7 +11,7 @@ import net.stehschnitzel.cheesus.init.BlockInit;
 
 public class PlacedAltitudeCheeseTrigger extends SimpleCriterionTrigger<PlacedAltitudeCheeseTrigger.TriggerInstance> {
 
-    public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID,"placed_altitude_cheese");
+    public static final ResourceLocation ID = ResourceLocation.tryBuild(Cheesus.MOD_ID,"placed_altitude_cheese");
 
     @Override
     public ResourceLocation getId() {
