@@ -26,8 +26,8 @@ public class BlockInit {
 			.create(ForgeRegistries.BLOCKS, Cheesus.MOD_ID);
 
 	//cheese
-	public static final RegistryObject<Cheese> CHEESE = registerBlockWItem("cheese", () -> new Cheese(
-			BlockBehaviour.Properties.copy(Blocks.CAKE).strength(0.8f, 1.5f).sound(SoundType.FUNGUS)));
+	public static final RegistryObject<Cheese> CHEESE = registerBlock("cheese", () -> new Cheese(
+			BlockBehaviour.Properties.copy(Blocks.CAKE).strength(0.8f, 1.5f).sound(SoundType.CORAL_BLOCK)));
 
 	public static final RegistryObject<BasicCheese> ALTITUDE_CHEESE = registerBlockWItem("altitude_cheese", () -> new BasicCheese(
 			BlockBehaviour.Properties.copy(CHEESE.get()), MobEffects.DAMAGE_RESISTANCE));

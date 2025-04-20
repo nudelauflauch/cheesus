@@ -22,8 +22,26 @@
 	"item.cheesus.cheese_from_hell": "Cheese From Hell",
 	"item.cheesus.cheese_fondue": "Cheese Fondue",
 	"item.cheesus.graukas_soup": "Graukas Soup",
-	"item.cheesus.scalloped_potato": "Scallop Potato",
+	"item.cheesus.scalloped_potato": "Scalloped Potato",
 	"item.cheesus.cheese_sun": "Cheese Sun",
 	
-	"itemGroup.cheesus_tab":"Cheesus"
+	"itemGroup.cheesus_tab":"Cheesus",
+
+	"advancements.husbandry.cheese_root.title": "Acquire cheese",
+	"advancements.husbandry.cheese_root.description": "Obtain your ever first cheese by curdling milk in a cheese strainer",
+
+	"advancements.husbandry.white_moldy.title": "Moldy White",
+	"advancements.husbandry.white_moldy.description": "Leave a wheel of cheese to rest in the dark",
+
+	"advancements.husbandry.blue_moldy.title": "Moldy Blue",
+	"advancements.husbandry.blue_moldy.description": "Tab a sword into a cheese so that fine mould starts to grow there",
+
+	"advancements.husbandry.diabolical_cheese.title": "Oh Hell-naw!",
+	"advancements.husbandry.diabolical_cheese.description": "Get a cheese into the hottest of all worlds",
+
+	"advancements.husbandry.altitude_cheese.title": "With Peak Taste",
+	"advancements.husbandry.altitude_cheese.description": "Let a wheel of cheese absorb the fresh mountain air",
+
+	"advancements.husbandry.grey_cheese.title": "Double strained",
+	"advancements.husbandry.grey_cheese.description": "Strain cheese in the cheese strainer"
 }

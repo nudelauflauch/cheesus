@@ -1,0 +1,38 @@
+{
+  "parent": "cheesus:cheese_root",
+  "criteria": {
+    "placed_diabolical_cheese_nether": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cheesus:diabolical_cheese"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.husbandry.diabolical_cheese.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "cheesus:diabolical_cheese"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.husbandry.diabolical_cheese.title"
+    }
+  },
+  "requirements": [
+    [
+      "placed_diabolical_cheese_nether"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

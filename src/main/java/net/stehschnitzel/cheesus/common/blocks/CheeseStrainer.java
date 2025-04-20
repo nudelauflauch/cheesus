@@ -139,11 +139,6 @@ public class CheeseStrainer extends BaseEntityBlock {
 	}
 
 	@Override
-	public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-		System.out.println("tick");
-	}
-
-	@Override
 	public boolean isRandomlyTicking(BlockState pState) {
 		return pState.getValue(LEVEL) == 3 || pState.getValue(LEVEL) == 5;
 	}

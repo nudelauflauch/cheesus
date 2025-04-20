@@ -1,6 +1,7 @@
 {
   "parent": "cheesus:block/normal_cheese_3",
   "textures": {
+    "particle": "cheesus:item/cheese",
     "texture": "cheesus:block/cheese"
   }
 }

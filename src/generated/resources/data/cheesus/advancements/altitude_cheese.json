@@ -1,0 +1,38 @@
+{
+  "parent": "cheesus:cheese_root",
+  "criteria": {
+    "placed_altitude_cheese_nether": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cheesus:altitude_cheese"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.husbandry.altitude_cheese.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "cheesus:altitude_cheese"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.husbandry.altitude_cheese.title"
+    }
+  },
+  "requirements": [
+    [
+      "placed_altitude_cheese_nether"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -7,16 +7,11 @@ import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.RegisterEvent;
-import net.stehschnitzel.cheesus.common.blocks.CheeseStrainer;
-import net.stehschnitzel.cheesus.init.CheesusItemTabInit;
-import net.stehschnitzel.cheesus.init.ItemInit;
+import net.stehschnitzel.cheesus.init.*;
 import net.stehschnitzel.cheesus.renderer.CheeseCoverEntityRenderer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import net.stehschnitzel.cheesus.init.BlockEntityInit;
-import net.stehschnitzel.cheesus.init.BlockInit;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -35,11 +30,13 @@ public class Cheesus {
 		bus.addListener(this::setup);
 		bus.addListener(this::commonSetup);
 		MinecraftForge.EVENT_BUS.register(this);
-
+    
 		ItemInit.register(bus);
 		BlockInit.register(bus);
 		BlockEntityInit.register(bus);
 		CheesusItemTabInit.register(bus);
+		CheesusCriteriaInit.register(bus);
+    
 	}
 
 	private void setup(final FMLClientSetupEvent event) {
@@ -57,5 +54,7 @@ public class Cheesus {
 
 		}
 	}
+
+
 
 }

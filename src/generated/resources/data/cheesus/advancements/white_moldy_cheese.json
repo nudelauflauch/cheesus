@@ -1,0 +1,38 @@
+{
+  "parent": "cheesus:cheese_root",
+  "criteria": {
+    "placed_mold_cheese_dark": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cheesus:white_mold_cheese"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.husbandry.white_moldy.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "cheesus:white_mold_cheese"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.husbandry.white_moldy.title"
+    }
+  },
+  "requirements": [
+    [
+      "placed_mold_cheese_dark"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
