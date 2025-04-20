@@ -1,7 +1,9 @@
 package net.stehschnitzel.cheesus;
 
 import com.mojang.logging.LogUtils;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.stehschnitzel.cheesus.init.*;
 import net.stehschnitzel.cheesus.renderer.CheeseCoverEntityRenderer;
 
@@ -19,10 +21,10 @@ public class Cheesus {
 	public static final String MOD_ID = "cheesus";
 	public static final Logger LOGGER = LogUtils.getLogger();
 
-	public Cheesus() {
-		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-//		bus.addListener(this::setup);
-//		bus.addListener(this::commonSetup);
+	public Cheesus(FMLJavaModLoadingContext ctx) {
+		IEventBus bus = ctx.getModEventBus();
+		bus.addListener(this::setup);
+		bus.addListener(this::commonSetup);
 		MinecraftForge.EVENT_BUS.register(this);
 
 		BlockInit.register(bus);
@@ -39,10 +41,10 @@ public class Cheesus {
 	private void commonSetup(final FMLCommonSetupEvent event) {
 	}
 
-//	@Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+	@Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 	public static class ClientModEvents {
 
-//		@SubscribeEvent
+		@SubscribeEvent
 		public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
 			event.registerBlockEntityRenderer(BlockEntityInit.CHEESE_COVER.get(), CheeseCoverEntityRenderer::new);
 

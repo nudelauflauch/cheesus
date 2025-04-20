@@ -44,7 +44,6 @@ public class CheeseCoverBlockEntity extends BlockEntity {
 
     public void increaseRotationDeg() {
         this.rotationDeg = this.rotationDeg > 359 ? 45 : this.rotationDeg + 45;
-        System.out.println(rotationDeg);
     }
 
     public int getRotationDeg() {

@@ -24,7 +24,6 @@ public class PlacedAltitudeCheeseTrigger extends SimpleCriterionTrigger<PlacedAl
     }
 
     public void trigger(ServerPlayer player, BlockState state, BlockPos pos) {
-        System.out.println(pos.getY());
         if (state.is(BlockInit.CHEESE.get()) && pos.getY() > 150) {
             this.trigger(player, instance -> true);
         }
