@@ -1,9 +1,12 @@
 package net.stehschnitzel.cheesus.common.blocks;
 
+import net.minecraft.core.BlockSource;
+import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
+import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
 import net.stehschnitzel.cheesus.common.blocks.entities.CheeseStrainerBlockEntity;
@@ -12,8 +15,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -33,10 +34,38 @@ public class CheeseStrainer extends BaseEntityBlock {
 
 	public static final IntegerProperty LEVEL = IntegerProperty.create("level",
 			0, 11);
+	public static final DispenseItemBehavior DISPENSE_ITEM_BEHAVIOR = new DefaultDispenseItemBehavior() {
+		private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
+
+		protected ItemStack execute(BlockSource source, ItemStack stack) {
+			BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+			ServerLevel level = source.getLevel();
+			BlockState state = level.getBlockState(blockpos);
+
+			if (level.getBlockState(blockpos).is(BlockInit.CHEESE_STRAINER.get())) {
+				if (stack.getItem() == Items.WATER_BUCKET && state.getValue(LEVEL) == 0) {
+					source.getLevel().setBlockAndUpdate(blockpos, state.setValue(LEVEL, 7));
+
+					return new ItemStack(Items.BUCKET);
+				} else if (stack.getItem() == Items.MILK_BUCKET && state.getValue(LEVEL) < 3) {
+					source.getLevel().setBlockAndUpdate(blockpos, state.setValue(LEVEL, state.getValue(LEVEL) + 1));
+
+					return new ItemStack(Items.BUCKET);
+				} else if (stack.getItem() == BlockInit.CHEESE.get().asItem() && state.getValue(LEVEL) == 0) {
+					source.getLevel().setBlockAndUpdate(blockpos, state.setValue(LEVEL, 5));
+
+					return ItemStack.EMPTY;
+				}
+			}
+			return defaultDispenseItemBehavior.dispense(source,stack);
+		}
+	};
 
 	public CheeseStrainer(Properties pProperties) {
 		super(pProperties);
 	}
+
+
 
 	@Override
 	public VoxelShape getShape(BlockState pState, BlockGetter pLevel,

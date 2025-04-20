@@ -2,15 +2,22 @@ package net.stehschnitzel.cheesus.init;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.BlockItem;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.stehschnitzel.cheesus.Cheesus;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.stehschnitzel.cheesus.common.items.CheeseCoverItem;
 
 public class ItemInit {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Cheesus.MOD_ID);
+
+	//Cheese cover
+	public static final RegistryObject<BlockItem> CHEESE_COVER = BlockInit.BLOCK_ITEMS.register("cheese_cover",
+			() -> new CheeseCoverItem(BlockInit.CHEESE_COVER.get(), new Item.Properties()));
 
 	// cheese_slices
 	public static final RegistryObject<Item> CHEESE_SLICE = ITEMS.register("cheese_slice",
@@ -89,5 +96,9 @@ public class ItemInit {
 	public static final RegistryObject<Item> CHEESE_SUN = ITEMS
 			.register("cheese_sun", () -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(7).saturationMod(0.9f).build())));
+
+	public static void register(IEventBus bus) {
+		ITEMS.register(bus);
+	}
 
 }

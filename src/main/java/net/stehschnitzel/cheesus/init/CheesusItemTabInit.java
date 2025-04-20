@@ -4,9 +4,13 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.stehschnitzel.cheesus.Cheesus;
+import net.stehschnitzel.cheesus.common.blocks.CheeseStrainer;
 
 public class CheesusItemTabInit {
 
@@ -22,12 +26,27 @@ public class CheesusItemTabInit {
 					.build()
 	);
 
+	public static void register(IEventBus bus) {
+		TABS.register(bus);
+	}
+
 	public static void fillItemList(CreativeModeTab.Output items) {
 		 registerTools(items);
 		 registerCheese(items);
 		 registerCheesePieces(items);
 		 registerFood(items);
-		 items.accept(BlockInit.WHITE_MOLD_CHEESE.get());
+
+
+		 registerDispensables();
+	}
+
+
+	//TODO has to be registered here because if i would register it normaly CHEESE would be none
+	// because it gets called to early so idk how to fix it and make it look good
+	public static void registerDispensables() {
+		DispenserBlock.registerBehavior(Items.MILK_BUCKET, CheeseStrainer.DISPENSE_ITEM_BEHAVIOR);
+		DispenserBlock.registerBehavior(Items.WATER_BUCKET, CheeseStrainer.DISPENSE_ITEM_BEHAVIOR);
+		DispenserBlock.registerBehavior(BlockInit.CHEESE.get(), CheeseStrainer.DISPENSE_ITEM_BEHAVIOR);
 	}
 
 	private static void registerCheese(CreativeModeTab.Output items) {
@@ -49,8 +68,8 @@ public class CheesusItemTabInit {
 	}
 
 	private static void registerTools(CreativeModeTab.Output items) {
-		items.accept(BlockInit.CHEESE_COVER.get());
 		items.accept(BlockInit.CHEESE_STRAINER.get());
+		items.accept(ItemInit.CHEESE_COVER.get());
 	}
 
 	private static void registerFood(CreativeModeTab.Output items) {

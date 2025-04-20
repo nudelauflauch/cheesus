@@ -1,5 +1,9 @@
 package net.stehschnitzel.cheesus;
 
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,20 +25,18 @@ public class Cheesus {
 	public static final String MOD_ID = "cheesus";
 	public static final Logger LOGGER = LogManager.getLogger();
 
-	IEventBus forgeBus = MinecraftForge.EVENT_BUS;
-
 	public Cheesus() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		bus.addListener(this::setup);
 		bus.addListener(this::commonSetup);
 		MinecraftForge.EVENT_BUS.register(this);
-
-		ItemInit.ITEMS.register(bus);
-		BlockInit.BLOCKS.register(bus);
-		BlockInit.BLOCK_ITEMS.register(bus);
-		BlockEntityInit.BLOCK_ENTITY.register(bus);
-		CheesusItemTabInit.TABS.register(bus);
+    
+		ItemInit.register(bus);
+		BlockInit.register(bus);
+		BlockEntityInit.register(bus);
+		CheesusItemTabInit.register(bus);
 		CheesusCriteriaInit.register(bus);
+    
 	}
 
 	private void setup(final FMLClientSetupEvent event) {
