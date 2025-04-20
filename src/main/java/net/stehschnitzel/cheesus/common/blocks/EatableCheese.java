@@ -53,7 +53,7 @@ public class EatableCheese extends Block {
 			}
 
 			if (this.effect != null) {
-				player.addEffect(new MobEffectInstance(this.effect, 200, 1));
+				player.addEffect(new MobEffectInstance(this.effect, 200, 0));
 			}
 
 			return InteractionResult.sidedSuccess(pLevel.isClientSide);

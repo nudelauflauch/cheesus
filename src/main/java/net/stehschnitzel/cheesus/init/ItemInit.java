@@ -28,32 +28,32 @@ public class ItemInit {
 	public static final RegistryObject<Item> ALTITUDE_CHEESE_SLICE = ITEMS.register("altitude_cheese_slice",
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(3).saturationMod(1.0F)
-							.effect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 1), 1)
+							.effect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 0), 1)
 							.build())));
 
 	public static final RegistryObject<Item> BLUE_MOLD_CHEESE_SLICE = ITEMS.register("blue_mold_cheese_slice",
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(3).saturationMod(1.0F)
-							.effect(new MobEffectInstance(MobEffects.SATURATION, 200, 1), 1)
+							.effect(new MobEffectInstance(MobEffects.SATURATION, 200, 0), 1)
 							.build())));
 
 	public static final RegistryObject<Item> DIABOLICAL_CHEESE_SLICE = ITEMS.register("diabolical_cheese_slice",
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(3).saturationMod(1.0F)
-							.effect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 1), 1)
+							.effect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0), 1)
 							.build())));
 
 	public static final RegistryObject<Item> GREY_CHEESE_SLICE = ITEMS.register("grey_cheese_slice",
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(3).saturationMod(1.0F)
-							.effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200, 1), 1)
+							.effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200, 0), 1)
 							.build())));
 
 
 	public static final RegistryObject<Item> WHITE_MOLD_CHEESE_SLICE = ITEMS.register("white_mold_cheese_slice",
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(3).saturationMod(1.0F)
-							.effect(new MobEffectInstance(MobEffects.REGENERATION, 200, 1), 1)
+							.effect(new MobEffectInstance(MobEffects.REGENERATION, 200, 0), 1)
 							.build())));
 
 	// things you can make with cheese
@@ -72,7 +72,7 @@ public class ItemInit {
 	public static final RegistryObject<Item> CHEESE_FROM_HELL = ITEMS.register("cheese_from_hell",
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(5).saturationMod(0.7f)
-							.effect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600, 1), 1)
+							.effect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600, 0), 1)
 							.build())));
 
 //	public static final RegistryObject<Item> GRAUKAS_KNEDL = ITEMS.register("graukas_knedl",
@@ -82,7 +82,7 @@ public class ItemInit {
 	public static final RegistryObject<Item> GRAUKAS_SOUP = ITEMS.register("graukas_soup",
 			() -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(9).saturationMod(0.8f)
-							.effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 400, 1), 1)
+							.effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 400, 0), 1)
 							.build()).stacksTo(16)));
 
 	public static final RegistryObject<Item> SCALLOPED_POTATO = ITEMS.register("scalloped_potato",
