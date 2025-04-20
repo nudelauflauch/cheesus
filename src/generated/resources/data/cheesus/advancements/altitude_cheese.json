@@ -2,8 +2,16 @@
   "parent": "cheesus:cheese_root",
   "criteria": {
     "placed_altitude_cheese_nether": {
-      "conditions": {},
-      "trigger": "cheesus:placed_altitude_cheese"
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cheesus:altitude_cheese"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
     }
   },
   "display": {

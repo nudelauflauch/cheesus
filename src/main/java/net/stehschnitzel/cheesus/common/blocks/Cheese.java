@@ -3,6 +3,8 @@ package net.stehschnitzel.cheesus.common.blocks;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Blocks;
@@ -39,6 +41,7 @@ public class Cheese extends BasicCheese {
 				pLevel.addParticle(ParticleTypes.CRIT, d0 + r0, d1 + r1, d2 + r2,
 						0.0D, 0.0D, 0.0D);
 			}
+			pLevel.playLocalSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.SLIME_SQUISH, SoundSource.BLOCKS, 1.0F, 1.0F, false);
 			return InteractionResult.sidedSuccess(pLevel.isClientSide());
 		}
 
@@ -62,14 +65,16 @@ public class Cheese extends BasicCheese {
 		double r1 = pRandom.nextDouble() * 0.1;
 		double r2 = pRandom.nextDouble() * 0.6 - 0.3D;
 
-		if (pPos.getY() > 150) {
-			pLevel.addParticle(
-					new BlockParticleOption(ParticleTypes.FALLING_DUST, Blocks.WHITE_CONCRETE.defaultBlockState()),
-					d0 + r0, d1 + r1, d2 + r2,
-					0.0D, 0.0D, 0.0D);
-		} else if (pLevel.getRawBrightness(pPos, 0) < 5) {
-			pLevel.addParticle(ParticleTypes.MYCELIUM, d0 + r0, d1 + r1, d2 + r2,
-					0.0D, 0.0D, 0.0D);
+		if (pLevel.dimensionTypeId() == BuiltinDimensionTypes.OVERWORLD) {
+			if (pPos.getY() > 150) {
+				pLevel.addParticle(
+						new BlockParticleOption(ParticleTypes.FALLING_DUST, Blocks.WHITE_CONCRETE.defaultBlockState()),
+						d0 + r0, d1 + r1, d2 + r2,
+						0.0D, 0.0D, 0.0D);
+			} else if (pLevel.getRawBrightness(pPos, 0) < 5) {
+				pLevel.addParticle(ParticleTypes.MYCELIUM, d0 + r0, d1 + r1, d2 + r2,
+						0.0D, 0.0D, 0.0D);
+			}
 		} else if (pLevel.dimensionTypeId() == BuiltinDimensionTypes.NETHER) {
 			pLevel.addParticle(ParticleTypes.FALLING_LAVA, d0 + r0, d1 + r1, d2 + r2,
 					0.0D, 0.0D, 0.0D);

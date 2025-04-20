@@ -3,28 +3,15 @@
   "criteria": {
     "cheese_click": {
       "conditions": {
-        "location": [
+        "items": [
           {
-            "condition": "minecraft:location_check",
-            "predicate": {
-              "block": {
-                "blocks": [
-                  "cheesus:cheese_strainer"
-                ]
-              }
-            }
-          },
-          {
-            "condition": "minecraft:match_tool",
-            "predicate": {
-              "items": [
-                "cheesus:cheese"
-              ]
-            }
+            "items": [
+              "cheesus:grey_cheese"
+            ]
           }
         ]
       },
-      "trigger": "minecraft:item_used_on_block"
+      "trigger": "minecraft:inventory_changed"
     }
   },
   "display": {

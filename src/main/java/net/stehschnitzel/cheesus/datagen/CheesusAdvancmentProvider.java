@@ -6,7 +6,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.ForgeAdvancementProvider;
 import net.stehschnitzel.cheesus.Cheesus;
@@ -15,7 +14,6 @@ import net.stehschnitzel.cheesus.datagen.triggers.PlacedDiabolicalCheeseInNether
 import net.stehschnitzel.cheesus.datagen.triggers.PlacedMoldCheeseInDarkTrigger;
 import net.stehschnitzel.cheesus.datagen.triggers.RightClickedBlueMoldCheeseTrigger;
 import net.stehschnitzel.cheesus.init.BlockInit;
-import net.stehschnitzel.cheesus.init.ItemInit;
 
 import java.util.function.Consumer;
 
@@ -26,7 +24,7 @@ public class CheesusAdvancmentProvider implements ForgeAdvancementProvider.Advan
                 .display(new DisplayInfo(new ItemStack(BlockInit.CHEESE.get()),
                         Component.translatable("advancements.husbandry.cheese_root.title"),
                         Component.translatable("advancements.husbandry.cheese_root.description"),
-                        null, FrameType.TASK,
+                        null, FrameType.GOAL,
                         true, true, false))
                 .parent(ResourceLocation.parse("husbandry/plant_seed"))
                 .addCriterion("has_cheese", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.CHEESE.get()))
@@ -40,7 +38,7 @@ public class CheesusAdvancmentProvider implements ForgeAdvancementProvider.Advan
                         true, true, false))
                 .parent(cheesus_root)
                 .requirements(RequirementsStrategy.AND)
-                .addCriterion("placed_mold_cheese_dark", PlacedMoldCheeseInDarkTrigger.TriggerInstance.placedMoldCheeseInDark())
+                .addCriterion("placed_mold_cheese_dark", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.WHITE_MOLD_CHEESE.get()))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID, "white_moldy_cheese"), existingFileHelper);
 
         Advancement blue_moldy_cheese = Advancement.Builder.advancement()
@@ -50,7 +48,7 @@ public class CheesusAdvancmentProvider implements ForgeAdvancementProvider.Advan
                         null, FrameType.TASK,
                         true, true, false))
                 .parent(cheesus_root)
-                .addCriterion("sword_click", RightClickedBlueMoldCheeseTrigger.TriggerInstance.rightClickedBlueMoldCheese())
+                .addCriterion("sword_click", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.BLUE_MOLD_CHEESE.get()))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID, "blue_white_cheese"), existingFileHelper);
 
         Advancement diabolical_cheese = Advancement.Builder.advancement()
@@ -61,7 +59,7 @@ public class CheesusAdvancmentProvider implements ForgeAdvancementProvider.Advan
                         true, true, false))
                 .parent(cheesus_root)
                 .requirements(RequirementsStrategy.AND)
-                .addCriterion("placed_diabolical_cheese_nether", PlacedDiabolicalCheeseInNetherTrigger.TriggerInstance.placedDiabolicalCheeseInNether())
+                .addCriterion("placed_diabolical_cheese_nether", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.DIABOLICAL_CHEESE.get()))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID, "diabolical_cheese"), existingFileHelper);
 
         Advancement altitude_cheese = Advancement.Builder.advancement()
@@ -72,7 +70,7 @@ public class CheesusAdvancmentProvider implements ForgeAdvancementProvider.Advan
                         true, true, false))
                 .parent(cheesus_root)
                 .requirements(RequirementsStrategy.AND)
-                .addCriterion("placed_altitude_cheese_nether", PlacedAltitudeCheeseTrigger.TriggerInstance.placedAltitudeCheese())
+                .addCriterion("placed_altitude_cheese_nether", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.ALTITUDE_CHEESE.get()))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID, "altitude_cheese"), existingFileHelper);
 
         Advancement grey_cheese = Advancement.Builder.advancement()
@@ -82,11 +80,7 @@ public class CheesusAdvancmentProvider implements ForgeAdvancementProvider.Advan
                         null, FrameType.TASK,
                         true, true, false))
                 .parent(cheesus_root)
-                .addCriterion(
-                        "cheese_click", ItemUsedOnLocationTrigger.TriggerInstance.itemUsedOnBlock(
-                                LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(BlockInit.CHEESE_STRAINER.get()).build()),
-                                ItemPredicate.Builder.item().of(BlockInit.CHEESE.get())
-                        )
-                ).save(consumer, ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID, "grey_cheese"), existingFileHelper);
+                .addCriterion("cheese_click", InventoryChangeTrigger.TriggerInstance.hasItems(BlockInit.GREY_CHEESE.get())                        )
+                .save(consumer, ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID, "grey_cheese"), existingFileHelper);
     }
 }

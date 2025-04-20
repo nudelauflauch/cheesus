@@ -58,7 +58,6 @@ public class BasicCheese extends Block {
 				player.addEffect(new MobEffectInstance(this.effect, 200, 1));
 			}
 
-			pLevel.playLocalSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.SLIME_SQUISH, SoundSource.BLOCKS, 1.0F, 1.0F, false);
 			return InteractionResult.sidedSuccess(pLevel.isClientSide);
 		}
 		return InteractionResult.FAIL;

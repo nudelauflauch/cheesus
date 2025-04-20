@@ -19,7 +19,7 @@
     "description": {
       "translate": "advancements.husbandry.cheese_root.description"
     },
-    "frame": "task",
+    "frame": "goal",
     "hidden": false,
     "icon": {
       "item": "cheesus:cheese"

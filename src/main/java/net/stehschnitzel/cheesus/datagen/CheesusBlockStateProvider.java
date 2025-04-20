@@ -61,11 +61,13 @@ public class CheesusBlockStateProvider extends BlockStateProvider {
     }
 
     public ModelBuilder cheese(String name, int cnt, String template_name) {
-        ResourceLocation cheese_texture = new ResourceLocation(Cheesus.MOD_ID, "block/" + name);
+        ResourceLocation cheese_texture = ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID, "block/" + name);
+        ResourceLocation cheese_particle = ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID, "item/" + name);
 
         ModelBuilder model =  models().withExistingParent(name + "_" + cnt,
-                        new ResourceLocation(Cheesus.MOD_ID, "block/" + template_name + "_" + cnt))
-                .texture("texture", cheese_texture);
+                        ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID, "block/" + template_name + "_" + cnt))
+                .texture("texture", cheese_texture)
+                .texture("particle", cheese_particle);
         return model;
     }
 }

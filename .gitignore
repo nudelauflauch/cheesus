@@ -5,3 +5,4 @@ bin/
 run/
 .settings/
 .vscode/
+run-data/

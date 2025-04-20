@@ -2,8 +2,16 @@
   "parent": "cheesus:cheese_root",
   "criteria": {
     "placed_mold_cheese_dark": {
-      "conditions": {},
-      "trigger": "cheesus:placed_mold_cheese_dark"
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cheesus:white_mold_cheese"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
     }
   },
   "display": {

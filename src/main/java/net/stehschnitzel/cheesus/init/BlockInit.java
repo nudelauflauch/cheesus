@@ -32,7 +32,7 @@ public class BlockInit {
 
 	//cheese
 	public static final RegistryObject<Cheese> CHEESE = registerBlock("cheese", () -> new Cheese(
-			BlockBehaviour.Properties.copy(Blocks.CAKE).strength(0.8f, 1.5f).sound(SoundType.FUNGUS)));
+			BlockBehaviour.Properties.copy(Blocks.CAKE).strength(0.8f, 1.5f).sound(SoundType.CORAL_BLOCK)));
 
 	public static final RegistryObject<BasicCheese> ALTITUDE_CHEESE = registerBlock("altitude_cheese", () -> new BasicCheese(
 			BlockBehaviour.Properties.copy(CHEESE.get()), MobEffects.DAMAGE_RESISTANCE));
