@@ -28,23 +28,23 @@ public class BlockInit {
 			BlockBehaviour.Properties.of().strength(0.8f, 1.5f).sound(SoundType.CORAL_BLOCK)));
 
 	public static final RegistryObject<EatableCheese> ALTITUDE_CHEESE = registerBlockWItem("altitude_cheese", () -> new EatableCheese(
-			BlockBehaviour.Properties.copy(Blocks.CAKE), MobEffects.DAMAGE_RESISTANCE));
+			BlockBehaviour.Properties.copy(CHEESE.get()), MobEffects.DAMAGE_RESISTANCE));
 
 	public static final RegistryObject<EatableCheese> BLUE_MOLD_CHEESE = registerBlockWItem("blue_mold_cheese", () -> new EatableCheese(
-			BlockBehaviour.Properties.copy(Blocks.CAKE), MobEffects.SATURATION));
+			BlockBehaviour.Properties.copy(CHEESE.get()), MobEffects.SATURATION));
 
 	public static final RegistryObject<EatableCheese> DIABOLICAL_CHEESE = registerBlockWItem("diabolical_cheese",
 			() -> new EatableCheese(
-					BlockBehaviour.Properties.copy(Blocks.CAKE), MobEffects.FIRE_RESISTANCE));
+					BlockBehaviour.Properties.copy(CHEESE.get()), MobEffects.FIRE_RESISTANCE));
 
 	public static final RegistryObject<EatableCheese> GREY_CHEESE = registerBlockWItem("grey_cheese", () -> new SmallCheese(
-			BlockBehaviour.Properties.copy(Blocks.CAKE), MobEffects.DAMAGE_BOOST));
+			BlockBehaviour.Properties.copy(CHEESE.get()), MobEffects.DAMAGE_BOOST));
 
 	public static final RegistryObject<EatableCheese> WHITE_MOLD_CHEESE = registerBlockWItem("white_mold_cheese", () -> new SmallCheese(
-			BlockBehaviour.Properties.copy(Blocks.CAKE), MobEffects.REGENERATION));
+			BlockBehaviour.Properties.copy(CHEESE.get()), MobEffects.REGENERATION));
 
 	public static final RegistryObject<Block> CHEESE_CAKE = registerBlockWItem("cheese_cake", () -> new SmallCheese(
-			BlockBehaviour.Properties.copy(Blocks.CAKE)));
+			BlockBehaviour.Properties.copy(CHEESE.get())));
 
 	public static final RegistryObject<Block> CHEESE_COVER = registerBlock("cheese_cover",
 			() -> new CheeseCover(BlockBehaviour.Properties.copy(Blocks.GLASS).noOcclusion()));
