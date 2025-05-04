@@ -3,15 +3,67 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
       "entries": [
         {
           "type": "minecraft:item",
           "name": "cheesus:cheese_strainer"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "cheesus:cheese_strainer",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "level": "4"
+              }
+            }
+          ],
+          "name": "cheesus:cheese"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "cheesus:cheese_strainer",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "level": "5"
+              }
+            }
+          ],
+          "name": "cheesus:cheese"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "cheesus:cheese_strainer",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "level": "6"
+              }
+            }
+          ],
+          "name": "cheesus:grey_cheese"
         }
       ],
       "rolls": 1.0

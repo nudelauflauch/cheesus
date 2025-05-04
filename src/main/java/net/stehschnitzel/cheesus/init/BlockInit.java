@@ -51,8 +51,7 @@ public class BlockInit {
 
 	//tools
 	public static final RegistryObject<Block> CHEESE_STRAINER = registerBlockWItem(
-			"cheese_strainer",
-			() -> new CheeseStrainer(BlockBehaviour.Properties.of()));
+			"cheese_strainer", () -> new CheeseStrainer(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
 	// Block
 	private static <T extends Block> RegistryObject<T> registerBlockWItem(String name, Supplier<T> block) {

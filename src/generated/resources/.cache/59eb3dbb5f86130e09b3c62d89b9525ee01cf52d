@@ -1,10 +1,10 @@
-// 1.20.1	2025-04-20T22:22:11.8328896	Loot Tables
+// 1.20.1	2025-05-04T19:08:29.6960114	Loot Tables
 cedd96aeba0e8cb285f7685c637db887ff5eb76f data/cheesus/loot_tables/blocks/altitude_cheese.json
 31dcd2de5b54298fe710db09ec6324b48e5196a0 data/cheesus/loot_tables/blocks/blue_mold_cheese.json
 d4ab59447beec08b0d7063c8fd01802fb22283b9 data/cheesus/loot_tables/blocks/cheese.json
 5fa310f7124e69f69880ea4cf0986c76fdee350d data/cheesus/loot_tables/blocks/cheese_cake.json
 8118904b5abfd319a5648a0fc57d1c83d8948397 data/cheesus/loot_tables/blocks/cheese_cover.json
-fb0ae3d5f2f598c8f8b9353b79c45825ffb5482e data/cheesus/loot_tables/blocks/cheese_strainer.json
+2b6f02db54611cbaedc5c2c7a3679a9b9904aa68 data/cheesus/loot_tables/blocks/cheese_strainer.json
 387d779a934aadb7c991babcca82e4d6a5187a65 data/cheesus/loot_tables/blocks/diabolical_cheese.json
 d5417f9d411d718a1a18f152012bebbd932f21da data/cheesus/loot_tables/blocks/grey_cheese.json
 f2382a5b1505ce6a3813f69973dc55d355df4282 data/cheesus/loot_tables/blocks/white_mold_cheese.json
