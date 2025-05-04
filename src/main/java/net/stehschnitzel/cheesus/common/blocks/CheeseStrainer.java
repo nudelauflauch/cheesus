@@ -8,9 +8,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.PushReaction;
 import net.stehschnitzel.cheesus.common.blocks.entities.CheeseStrainerBlockEntity;
 import net.stehschnitzel.cheesus.init.BlockEntityInit;
@@ -37,12 +35,27 @@ public class CheeseStrainer extends BaseEntityBlock {
 
 	public static final IntegerProperty LEVEL = IntegerProperty.create("level",
 			0, 11);
-	public static final DispenseItemBehavior DISPENSE_ITEM_BEHAVIOR = new DefaultDispenseItemBehavior() {
+
+	public static final DispenseItemBehavior DISPENSE_CHEESE_STRAINER_BEHAVIOR = new DefaultDispenseItemBehavior() {
 		private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
 		protected ItemStack execute(BlockSource source, ItemStack stack) {
-			BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+			if (stack.getItem() != BlockInit.CHEESE_STRAINER.get().asItem()) return defaultDispenseItemBehavior.dispense(source, stack);
+
 			ServerLevel level = source.getLevel();
+			BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+
+			level.setBlockAndUpdate(blockpos, BlockInit.CHEESE_STRAINER.get().defaultBlockState());
+			return ItemStack.EMPTY;
+		}
+	};
+
+	public static final DispenseItemBehavior DISPENSE_INTO_CHEESE_STRAINER_BEHAVIOR = new DefaultDispenseItemBehavior() {
+		private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
+
+		protected ItemStack execute(BlockSource source, ItemStack stack) {
+			ServerLevel level = source.getLevel();
+			BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
 			BlockState state = level.getBlockState(blockpos);
 
 			if (level.getBlockState(blockpos).is(BlockInit.CHEESE_STRAINER.get())) {
