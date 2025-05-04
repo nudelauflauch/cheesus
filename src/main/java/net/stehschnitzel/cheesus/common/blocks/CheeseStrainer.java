@@ -8,7 +8,10 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.PushReaction;
 import net.stehschnitzel.cheesus.common.blocks.entities.CheeseStrainerBlockEntity;
 import net.stehschnitzel.cheesus.init.BlockEntityInit;
 import net.minecraft.core.BlockPos;
@@ -65,7 +68,26 @@ public class CheeseStrainer extends BaseEntityBlock {
 		super(pProperties);
 	}
 
+	@Override
+	public boolean hasAnalogOutputSignal(BlockState pState) {
+		return true;
+	}
 
+	@Override
+	public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
+        return switch (pState.getValue(LEVEL)) {
+            case 1, 5 -> 1;
+            case 2, 3 -> pState.getValue(LEVEL);
+            case 4, 6 -> 4;
+            case 7, 8, 9, 10, 11 -> 15 - (pState.getValue(LEVEL) - 7) * 3;
+            default -> 0;
+        };
+	}
+
+	@Override
+	public @Nullable PushReaction getPistonPushReaction(BlockState state) {
+		return PushReaction.DESTROY;
+	}
 
 	@Override
 	public VoxelShape getShape(BlockState pState, BlockGetter pLevel,
@@ -96,7 +118,7 @@ public class CheeseStrainer extends BaseEntityBlock {
 
 			return InteractionResult.sidedSuccess(pLevel.isClientSide());
 
-		} else if (level == 0 && item == Items.WATER_BUCKET) {
+		} else if ((level == 0 || level >= 7) && item == Items.WATER_BUCKET) {
 			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 7));
 
 			return InteractionResult.sidedSuccess(pLevel.isClientSide());
