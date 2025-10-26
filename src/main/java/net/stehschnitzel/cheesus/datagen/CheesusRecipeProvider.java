@@ -2,7 +2,9 @@ package net.stehschnitzel.cheesus.datagen;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
@@ -11,6 +13,10 @@ import net.stehschnitzel.cheesus.Cheesus;
 import net.stehschnitzel.cheesus.init.BlockInit;
 import net.stehschnitzel.cheesus.init.CheesusTags;
 import net.stehschnitzel.cheesus.init.ItemInit;
+import vectorwing.farmersdelight.client.recipebook.CookingPotRecipeBookTab;
+import vectorwing.farmersdelight.common.registry.ModItems;
+import vectorwing.farmersdelight.common.tag.ForgeTags;
+import vectorwing.farmersdelight.data.builder.CookingPotRecipeBuilder;
 
 import java.util.function.Consumer;
 
@@ -91,6 +97,34 @@ public class CheesusRecipeProvider extends RecipeProvider implements IConditionB
                 .pattern("XXX")
                 .unlockedBy(getHasName(BlockInit.CHEESE.get()), has(BlockInit.CHEESE.get()))
                 .save(pWriter);
+
+        //farmers delight
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ItemInit.GOURMET_CHEESE.get(), 4)
+                .requires(Items.SWEET_BERRIES)
+                .requires(BlockInit.WHITE_MOLD_CHEESE.get())
+                .requires(ModItems.TOMATO_SAUCE.get())
+                .unlockedBy(getHasName(BlockInit.WHITE_MOLD_CHEESE.get()), has(BlockInit.WHITE_MOLD_CHEESE.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ItemInit.LASAGNE.get())
+                .define('C', CheesusTags.Items.CHEESE)
+                .define('T', ModItems.TOMATO_SAUCE.get())
+                .define('B', ForgeTags.COOKED_BEEF)
+                .define('P', ModItems.RAW_PASTA.get())
+                .pattern(" CC")
+                .pattern(" TB")
+                .pattern(" PP")
+                .unlockedBy(getHasName(BlockInit.CHEESE.get()), has(BlockInit.CHEESE.get()))
+                .save(pWriter);
+
+        CookingPotRecipeBuilder.cookingPotRecipe(ItemInit.SAVOURY_PASTA.get(), 1, 200, 1.0F)
+                .addIngredient(ModItems.TOMATO.get())
+                .addIngredient(ModItems.RAW_PASTA.get())
+                .addIngredient(ItemInit.BLUE_MOLD_CHEESE_SLICE.get())
+                .addIngredient(CheesusTags.Items.CHEESE_SLICE)
+                .unlockedBy(getHasName(ItemInit.BLUE_MOLD_CHEESE_SLICE.get()), has(ItemInit.BLUE_MOLD_CHEESE_SLICE.get()))
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(pWriter, ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID, "savoury_pasta"));
     }
 
     private void cheeseCooking(Ingredient inputItem, ItemLike outputItem, ItemLike unlockedItem, Consumer<FinishedRecipe> pWriter) {

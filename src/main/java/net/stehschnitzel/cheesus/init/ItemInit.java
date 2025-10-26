@@ -97,6 +97,19 @@ public class ItemInit {
 			.register("cheese_sun", () -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(7).saturationMod(0.9f).build())));
 
+	//farmers delight items
+	public static final RegistryObject<Item> SAVOURY_PASTA = ITEMS
+			.register("savoury_pasta", () -> new Item(new Item.Properties()
+					.food(new FoodProperties.Builder().nutrition(12).saturationMod(2f).build())));
+
+	public static final RegistryObject<Item> GOURMET_CHEESE = ITEMS
+			.register("gourmet_cheese", () -> new Item(new Item.Properties()
+					.food(new FoodProperties.Builder().nutrition(14).saturationMod(1.5f).build())));
+
+	public static final RegistryObject<Item> LASAGNE = ITEMS
+			.register("lasagne", () -> new Item(new Item.Properties()
+					.food(new FoodProperties.Builder().nutrition(14).saturationMod(2.2f).build())));
+
 	public static void register(IEventBus bus) {
 		ITEMS.register(bus);
 	}

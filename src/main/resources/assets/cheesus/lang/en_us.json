@@ -24,7 +24,11 @@
 	"item.cheesus.graukas_soup": "Graukas Soup",
 	"item.cheesus.scalloped_potato": "Scalloped Potato",
 	"item.cheesus.cheese_sun": "Cheese Sun",
-	
+
+	"item.cheesus.savoury_pasta": "Savoury Pasta",
+	"item.cheesus.gourmet_cheese": "Gourmet Cheese",
+	"item.cheesus.lasagne": "Lasagne",
+
 	"itemGroup.cheesus_tab":"Cheesus",
 
 	"advancements.husbandry.cheese_root.title": "Acquire cheese",

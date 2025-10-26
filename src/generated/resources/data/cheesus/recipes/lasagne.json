@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "forge:cooked_beef"
+    },
+    "C": {
+      "tag": "cheesus:cheese"
+    },
+    "P": {
+      "item": "farmersdelight:raw_pasta"
+    },
+    "T": {
+      "item": "farmersdelight:tomato_sauce"
+    }
+  },
+  "pattern": [
+    " CC",
+    " TB",
+    " PP"
+  ],
+  "result": {
+    "item": "cheesus:lasagne"
+  },
+  "show_notification": true
+}

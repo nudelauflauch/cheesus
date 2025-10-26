@@ -84,5 +84,8 @@ public class CheesusItemTabInit {
 		items.accept(ItemInit.SCALLOPED_POTATO.get());
 //		items.accept(ItemInit.SALMON_HERB_CHEESE.get());
 		items.accept(ItemInit.CHEESE_SUN.get());
+		items.accept(ItemInit.SAVOURY_PASTA.get());
+		items.accept(ItemInit.GOURMET_CHEESE.get());
+		items.accept(ItemInit.LASAGNE.get());
 	}
 }

@@ -1,4 +1,4 @@
-// 1.20.1	2025-04-20T22:22:11.8328896	Recipes
+// 1.20.1	2025-10-26T13:12:42.4838064	Recipes
 0f0b17a52f19881c66bd24e10427f8baa289bf35 data/cheesus/advancements/recipes/food/altitude_cheese.json
 4cd02fef2d7303a4a2bc5a75c0d9c19a66a467f6 data/cheesus/advancements/recipes/food/altitude_cheese_slice.json
 6d0751cba6a3033e43176423edf795b0fa928f87 data/cheesus/advancements/recipes/food/baked_cheese_from_campfire_cooking.json
@@ -14,6 +14,7 @@ ad6d95a36d77412b32399e6c65f8a0e60392daa4 data/cheesus/advancements/recipes/food/
 64929eec776bb7377fa1e2c37f6d564e82a1abd8 data/cheesus/advancements/recipes/food/cheese_sun.json
 a9b4c6eb6da4b7b1f51f523793c18413300e6070 data/cheesus/advancements/recipes/food/diabolical_cheese.json
 17e5d6aa5f343da6fbeb590ec8b2411abb386f05 data/cheesus/advancements/recipes/food/diabolical_cheese_slice.json
+77e7d010977147cee9ef76a767cc1284da74a62a data/cheesus/advancements/recipes/food/gourmet_cheese.json
 f943815084bfcb0dc545a77621fe0b741ceb488c data/cheesus/advancements/recipes/food/graukas_soup.json
 5f967d4a546dc60de095c46995adb03311cd5e9f data/cheesus/advancements/recipes/food/grey_cheese.json
 caa4f7bc49c72d0a1cd338fbf6d282f1ce5ed264 data/cheesus/advancements/recipes/food/grey_cheese_slice.json
@@ -22,6 +23,8 @@ caa4f7bc49c72d0a1cd338fbf6d282f1ce5ed264 data/cheesus/advancements/recipes/food/
 73cacde78b7348341a7053c4c66c0186460759b0 data/cheesus/advancements/recipes/food/white_mold_cheese_slice.json
 5db1ab092c776c225dfa8e3b1443eaf61cefbd1f data/cheesus/advancements/recipes/misc/cheese_cover.json
 839ca20e00e2e85d2bcfa8bd63d892ce6ea6bd21 data/cheesus/advancements/recipes/misc/cheese_strainer.json
+77867d9722d3a0fb2bf240f850bc8df776422603 data/cheesus/advancements/recipes/misc/lasagne.json
+bfd1de68cfd28fe7cf0f10fbdd8c6bba94c3126c data/cheesus/advancements/recipes/savoury_pasta.json
 134879588b64ed67208462229769d194fec25102 data/cheesus/recipes/altitude_cheese.json
 443af1178555ef1de3b3dee947443d14dbd6bbbe data/cheesus/recipes/altitude_cheese_slice.json
 4a3278a3cce53cb74a085b102991ddb81ebfc6ba data/cheesus/recipes/baked_cheese_from_campfire_cooking.json
@@ -39,9 +42,12 @@ dc7fd0733adb47a5f4f259e4316777e4886d2ed3 data/cheesus/recipes/cheese_from_hell.j
 49059482760483e98b90cbcb7b4742d232036c16 data/cheesus/recipes/cheese_sun.json
 6a093edd4f534b9ec92bf21100be229a5e5e3f64 data/cheesus/recipes/diabolical_cheese.json
 28b9b8398f755cf8c9276b05256ff6231c155c55 data/cheesus/recipes/diabolical_cheese_slice.json
+97a5d54e7a5ce5dd022221b59e46861fbb74d7ba data/cheesus/recipes/gourmet_cheese.json
 b41c990aacf3274a222908445d8aeaf24e6f884f data/cheesus/recipes/graukas_soup.json
 1b612a9f71a356edd92989027c8f867bc89a0a7c data/cheesus/recipes/grey_cheese.json
 e9b3869d60ed657b17cff67533386df3b663e6da data/cheesus/recipes/grey_cheese_slice.json
+179aa3aed139c0703c2095f31d10697b251a86af data/cheesus/recipes/lasagne.json
+a65474cf8a74d1b6f391ea4505b75e4123db8d2b data/cheesus/recipes/savoury_pasta.json
 22cd34862372a985846a4328044defebe6884fb3 data/cheesus/recipes/scalloped_potato.json
 075f0816b1da13cc5f892419268ca83f855e690e data/cheesus/recipes/white_mold_cheese.json
 fab9432313fd381f2ccfcbd469cc2fda50601b7a data/cheesus/recipes/white_mold_cheese_slice.json
