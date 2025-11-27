@@ -12,7 +12,7 @@
 
 	"item.cheesus.cheese_slice":"Cheese Slice",
 	"item.cheesus.altitude_cheese_slice":"Altitude Cheese Slice",
-	"item.cheesus.blue_mold_cheese_slice":"Blue_mold Cheese Slice",
+	"item.cheesus.blue_mold_cheese_slice":"Blue Mold Cheese Slice",
 	"item.cheesus.diabolical_cheese_slice":"Diabolical Cheese Slice",
 	"item.cheesus.grey_cheese_slice":"Grey Cheese Slice",
 	"item.cheesus.white_mold_cheese_slice":"White Mold Cheese Slice",
@@ -24,10 +24,11 @@
 	"item.cheesus.graukas_soup": "Graukas Soup",
 	"item.cheesus.scalloped_potato": "Scalloped Potato",
 	"item.cheesus.cheese_sun": "Cheese Sun",
+	"item.cheesus.scrambled_eggs": "Scrambled Eggs",
 
 	"item.cheesus.savoury_pasta": "Savoury Pasta",
 	"item.cheesus.gourmet_cheese": "Gourmet Cheese",
-	"item.cheesus.lasagne": "Lasagne",
+	"item.cheesus.lasagna": "Lasagna",
 
 	"itemGroup.cheesus_tab":"Cheesus",
 

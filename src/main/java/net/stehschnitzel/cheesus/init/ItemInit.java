@@ -3,6 +3,7 @@ package net.stehschnitzel.cheesus.init;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.BowlFoodItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.stehschnitzel.cheesus.Cheesus;
 import net.minecraft.world.food.FoodProperties;
@@ -59,7 +60,7 @@ public class ItemInit {
 	// things you can make with cheese
 	public static final RegistryObject<Item> BAKED_CHEESE = ITEMS.register("baked_cheese",
 			() -> new Item(new Item.Properties()
-					.food(new FoodProperties.Builder().nutrition(12).saturationMod(1f).build())));
+					.food(new FoodProperties.Builder().nutrition(12).saturationMod(0.5f).build())));
 
 //	public static final RegistryObject<Item> CHEESE_BREAD = ITEMS.register("cheese_bread",
 //			() -> new Item(new Item.Properties()
@@ -80,7 +81,7 @@ public class ItemInit {
 //					.food(new FoodProperties.Builder().nutrition(4).saturationMod(1.5f).build())));
 
 	public static final RegistryObject<Item> GRAUKAS_SOUP = ITEMS.register("graukas_soup",
-			() -> new Item(new Item.Properties()
+			() -> new BowlFoodItem(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(9).saturationMod(0.8f)
 							.effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 400, 0), 1)
 							.build()).stacksTo(16)));
@@ -97,18 +98,22 @@ public class ItemInit {
 			.register("cheese_sun", () -> new Item(new Item.Properties()
 					.food(new FoodProperties.Builder().nutrition(7).saturationMod(0.9f).build())));
 
+    public static final RegistryObject<Item> SCRAMBLED_EGGS = ITEMS
+            .register("scrambled_eggs", () -> new Item(new Item.Properties()
+                    .food(new FoodProperties.Builder().nutrition(6).saturationMod(0.2f).build())));
+
 	//farmers delight items
 	public static final RegistryObject<Item> SAVOURY_PASTA = ITEMS
-			.register("savoury_pasta", () -> new Item(new Item.Properties()
-					.food(new FoodProperties.Builder().nutrition(12).saturationMod(2f).build())));
+			.register("savoury_pasta", () -> new BowlFoodItem(new Item.Properties()
+					.food(new FoodProperties.Builder().nutrition(12).saturationMod(0.7f).build())));
 
 	public static final RegistryObject<Item> GOURMET_CHEESE = ITEMS
 			.register("gourmet_cheese", () -> new Item(new Item.Properties()
-					.food(new FoodProperties.Builder().nutrition(14).saturationMod(1.5f).build())));
+					.food(new FoodProperties.Builder().nutrition(14).saturationMod(0.3f).build())));
 
-	public static final RegistryObject<Item> LASAGNE = ITEMS
-			.register("lasagne", () -> new Item(new Item.Properties()
-					.food(new FoodProperties.Builder().nutrition(14).saturationMod(2.2f).build())));
+	public static final RegistryObject<Item> LASAGNA = ITEMS
+			.register("lasagna", () -> new Item(new Item.Properties()
+					.food(new FoodProperties.Builder().nutrition(14).saturationMod(0.5f).build())));
 
 	public static void register(IEventBus bus) {
 		ITEMS.register(bus);

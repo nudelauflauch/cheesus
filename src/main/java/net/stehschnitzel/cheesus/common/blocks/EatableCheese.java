@@ -1,21 +1,30 @@
 package net.stehschnitzel.cheesus.common.blocks;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockSource;
+import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
+import net.minecraft.core.dispenser.DispenseItemBehavior;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
 public class EatableCheese extends Block {
 
@@ -34,7 +43,26 @@ public class EatableCheese extends Block {
 		this.effect = effect;
 	}
 
-	@Override
+    public static final DispenseItemBehavior DISPENSE_CHEESE_BEHAVIOR = new DefaultDispenseItemBehavior() {
+        private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
+
+        protected ItemStack execute(BlockSource source, ItemStack stack) {
+            if (!(stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof EatableCheese)) return defaultDispenseItemBehavior.dispense(source, stack);
+
+            ServerLevel level = source.getLevel();
+            BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+
+            level.setBlockAndUpdate(blockpos, blockItem.getBlock().defaultBlockState());
+            return ItemStack.EMPTY;
+        }
+    };
+
+    @Override
+    public @Nullable PushReaction getPistonPushReaction(BlockState state) {
+        return PushReaction.DESTROY;
+    }
+
+    @Override
 	public VoxelShape getShape(BlockState pState, BlockGetter pLevel,
 			BlockPos pPos, CollisionContext pContext) {
 		return CheesusVoxels.NORMAL_SHAPE_BY_BITE[pState.getValue(BITES)];

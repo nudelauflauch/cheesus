@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.stehschnitzel.cheesus.Cheesus;
 import net.stehschnitzel.cheesus.init.BlockInit;
 
-public class PlacedAltitudeCheeseTrigger extends SimpleCriterionTrigger<PlacedAltitudeCheeseTrigger.TriggerInstance> {
+public class PlacedAltitudeCheeseInBigHeightsTrigger extends SimpleCriterionTrigger<PlacedAltitudeCheeseInBigHeightsTrigger.TriggerInstance> {
 
     public static final ResourceLocation ID = ResourceLocation.tryBuild(Cheesus.MOD_ID,"placed_altitude_cheese");
 
@@ -24,7 +24,7 @@ public class PlacedAltitudeCheeseTrigger extends SimpleCriterionTrigger<PlacedAl
     }
 
     public void trigger(ServerPlayer player, BlockState state, BlockPos pos) {
-        if (state.is(BlockInit.CHEESE.get()) && pos.getY() > 150) {
+        if (state.is(BlockInit.CHEESE.get()) && pos.getY() > 128) {
             this.trigger(player, instance -> true);
         }
     }

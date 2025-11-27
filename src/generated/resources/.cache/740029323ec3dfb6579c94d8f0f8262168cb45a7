@@ -1,4 +1,4 @@
-// 1.20.1	2025-03-15T12:46:53.2768893	Item Models: cheesus
+// 1.20.1	2025-11-27T16:58:11.6841846	Item Models: cheesus
 c5b92adf2bffcd985b57ae8e4df0b4f003ad8465 assets/cheesus/models/item/altitude_cheese.json
 2fd41a535d45634404f73b7486e98acf25755a9d assets/cheesus/models/item/altitude_cheese_slice.json
 7f22264a2d02735eafba9e53058f590bd13ec521 assets/cheesus/models/item/baked_cheese.json
@@ -14,9 +14,13 @@ ee2a987e5f184dde151a5f638954f5783964301c assets/cheesus/models/item/cheese_strai
 f1f8a0f9bffebe1a9f34a5e705cbd7ff64406b6b assets/cheesus/models/item/cheese_sun.json
 dde68f984125a195fcf75a5b38d74ad9023d32ff assets/cheesus/models/item/diabolical_cheese.json
 9ef112d526e2ea21f07c3f4d339e5055b7f329cb assets/cheesus/models/item/diabolical_cheese_slice.json
+456f8b6113331749a70b7f630de6f9e38802c9be assets/cheesus/models/item/gourmet_cheese.json
 83d57335f8c39c7508bdae8bfff58235daa9ce93 assets/cheesus/models/item/graukas_soup.json
 0c19f675d7c0d1467f743482070ea19f139468fe assets/cheesus/models/item/grey_cheese.json
 90a21b8bc5cd136cb07904dcf0b4a115984314b9 assets/cheesus/models/item/grey_cheese_slice.json
+299fbc9942efb4e106535f0caf2b639ca857e526 assets/cheesus/models/item/lasagna.json
+83145bb64772bbae3de2f13646ed8479b04d9574 assets/cheesus/models/item/savoury_pasta.json
 ee445ee3f3c8ce6574be11928db7958329cd1bfd assets/cheesus/models/item/scalloped_potato.json
+f8fc7e9bb1fcdd4726a97098e6dfd868d67fa8a5 assets/cheesus/models/item/scrambled_eggs.json
 21ee81192188035af3197921f3830d0445ddb27e assets/cheesus/models/item/white_mold_cheese.json
 ef66daab7939ecf4992af8dfad81f843ef7d3264 assets/cheesus/models/item/white_mold_cheese_slice.json

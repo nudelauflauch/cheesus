@@ -9,10 +9,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.ForgeAdvancementProvider;
 import net.stehschnitzel.cheesus.Cheesus;
-import net.stehschnitzel.cheesus.datagen.triggers.PlacedAltitudeCheeseTrigger;
-import net.stehschnitzel.cheesus.datagen.triggers.PlacedDiabolicalCheeseInNetherTrigger;
-import net.stehschnitzel.cheesus.datagen.triggers.PlacedMoldCheeseInDarkTrigger;
-import net.stehschnitzel.cheesus.datagen.triggers.RightClickedBlueMoldCheeseTrigger;
 import net.stehschnitzel.cheesus.init.BlockInit;
 
 import java.util.function.Consumer;

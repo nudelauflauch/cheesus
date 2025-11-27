@@ -41,6 +41,10 @@ public class CheesusItemModelProvider extends ItemModelProvider {
         simpleItem(ItemInit.SCALLOPED_POTATO);
 //        simpleItem(ItemInit.SALMON_HERB_CHEESE);
         simpleItem(ItemInit.CHEESE_SUN);
+        simpleItem(ItemInit.SCRAMBLED_EGGS);
+        simpleItem(ItemInit.SAVOURY_PASTA);
+        simpleItem(ItemInit.GOURMET_CHEESE);
+        simpleItem(ItemInit.LASAGNA);
         withExistingParent("cheese_cover", "cheesus:block/cheese_cover");
         withExistingParent("cheese_strainer", "cheesus:block/cheese_strainer_0");
 

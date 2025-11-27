@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "cheesus:lasagne"
+        "recipe": "cheesus:lasagna"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "cheesus:lasagne"
+      "cheesus:lasagna"
     ]
   },
   "sends_telemetry_event": false

@@ -3,13 +3,17 @@
   "category": "misc",
   "ingredients": [
     {
+      "item": "minecraft:egg"
+    },
+    {
       "item": "minecraft:bowl"
     },
     {
-      "item": "cheesus:grey_cheese_slice"
+      "tag": "cheesus:cheese_slice"
     }
   ],
   "result": {
-    "item": "cheesus:graukas_soup"
+    "count": 4,
+    "item": "cheesus:scrambled_eggs"
   }
 }

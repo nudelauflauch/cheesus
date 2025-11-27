@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "cheesus:altitude_cheese"
+    }
+  ],
+  "result": [
+    {
+      "count": 4,
+      "item": "cheesus:altitude_cheese_slice"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/knives"
+  }
+}

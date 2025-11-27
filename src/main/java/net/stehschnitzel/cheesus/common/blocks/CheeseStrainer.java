@@ -54,11 +54,12 @@ public class CheeseStrainer extends BaseEntityBlock {
 		private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
 		protected ItemStack execute(BlockSource source, ItemStack stack) {
-			ServerLevel level = source.getLevel();
-			BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
-			BlockState state = level.getBlockState(blockpos);
+            ServerLevel level = source.getLevel();
+            BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
 
 			if (level.getBlockState(blockpos).is(BlockInit.CHEESE_STRAINER.get())) {
+                BlockState state = level.getBlockState(blockpos);
+
 				if (stack.getItem() == Items.WATER_BUCKET && state.getValue(LEVEL) == 0) {
 					source.getLevel().setBlockAndUpdate(blockpos, state.setValue(LEVEL, 7));
 
@@ -159,17 +160,29 @@ public class CheeseStrainer extends BaseEntityBlock {
 
 	@Override
 	public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
-		if (isRandomlyTicking(pState)) {
-			double d0 = (double)pPos.getX() + 0.5D;
-			double d1 = (double)pPos.getY() + 0.9D;
-			double d2 = (double)pPos.getZ() + 0.5D;
+        if (pState.getValue(LEVEL) >= 7) {
+            double d0 = (double) pPos.getX() + 0.5D;
+            double d1 = (double) pPos.getY() + 0.9D - (pState.getValue(LEVEL) - 7) * 0.2;
+            double d2 = (double) pPos.getZ() + 0.5D;
 
-			double r0 = pRandom.nextDouble() * 0.6 - 0.3D;
-			double r1 = pRandom.nextDouble() * 0.1;
-			double r2 = pRandom.nextDouble() * 0.6 - 0.3D;
+            double r0 = pRandom.nextDouble() * 0.6 - 0.3D;
+            double r1 = pRandom.nextDouble() * 0.1;
+            double r2 = pRandom.nextDouble() * 0.6 - 0.3D;
 
-			pLevel.addParticle(ParticleTypes.MYCELIUM, d0 + r0, d1 + r1, d2 + r2,
-					0.0D, 2.0D, 0.0D);
+            pLevel.addParticle(ParticleTypes.FALLING_DRIPSTONE_WATER, d0 + r0, d1 + r1, d2 + r2,
+                    0.0D, 2.0D, 0.0D);
+        }
+        if (isRandomlyTicking(pState)) {
+            double d0 = (double) pPos.getX() + 0.5D;
+            double d1 = (double) pPos.getY() + 0.9D;
+            double d2 = (double) pPos.getZ() + 0.5D;
+
+            double r0 = pRandom.nextDouble() * 0.6 - 0.3D;
+            double r1 = pRandom.nextDouble() * 0.1;
+            double r2 = pRandom.nextDouble() * 0.6 - 0.3D;
+            pLevel.addParticle(ParticleTypes.MYCELIUM, d0 + r0, d1 + r1, d2 + r2,
+                    0.0D, 2.0D, 0.0D);
+
 		}
 	}
 

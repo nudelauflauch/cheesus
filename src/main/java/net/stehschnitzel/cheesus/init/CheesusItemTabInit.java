@@ -11,6 +11,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.stehschnitzel.cheesus.Cheesus;
 import net.stehschnitzel.cheesus.common.blocks.CheeseStrainer;
+import net.stehschnitzel.cheesus.common.blocks.EatableCheese;
 
 public class CheesusItemTabInit {
 
@@ -48,6 +49,13 @@ public class CheesusItemTabInit {
 		DispenserBlock.registerBehavior(Items.MILK_BUCKET, CheeseStrainer.DISPENSE_INTO_CHEESE_STRAINER_BEHAVIOR);
 		DispenserBlock.registerBehavior(Items.WATER_BUCKET, CheeseStrainer.DISPENSE_INTO_CHEESE_STRAINER_BEHAVIOR);
 		DispenserBlock.registerBehavior(BlockInit.CHEESE.get(), CheeseStrainer.DISPENSE_INTO_CHEESE_STRAINER_BEHAVIOR);
+		DispenserBlock.registerBehavior(BlockInit.CHEESE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
+		DispenserBlock.registerBehavior(BlockInit.ALTITUDE_CHEESE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
+		DispenserBlock.registerBehavior(BlockInit.BLUE_MOLD_CHEESE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
+		DispenserBlock.registerBehavior(BlockInit.DIABOLICAL_CHEESE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
+		DispenserBlock.registerBehavior(BlockInit.GREY_CHEESE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
+		DispenserBlock.registerBehavior(BlockInit.WHITE_MOLD_CHEESE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
+		DispenserBlock.registerBehavior(BlockInit.CHEESE_CAKE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
 	}
 
 	private static void registerCheese(CreativeModeTab.Output items) {
@@ -84,8 +92,9 @@ public class CheesusItemTabInit {
 		items.accept(ItemInit.SCALLOPED_POTATO.get());
 //		items.accept(ItemInit.SALMON_HERB_CHEESE.get());
 		items.accept(ItemInit.CHEESE_SUN.get());
+		items.accept(ItemInit.SCRAMBLED_EGGS.get());
 		items.accept(ItemInit.SAVOURY_PASTA.get());
 		items.accept(ItemInit.GOURMET_CHEESE.get());
-		items.accept(ItemInit.LASAGNE.get());
+		items.accept(ItemInit.LASAGNA.get());
 	}
 }

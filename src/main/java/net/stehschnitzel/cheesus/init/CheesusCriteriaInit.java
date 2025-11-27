@@ -2,7 +2,7 @@ package net.stehschnitzel.cheesus.init;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.stehschnitzel.cheesus.datagen.triggers.PlacedAltitudeCheeseTrigger;
+import net.stehschnitzel.cheesus.datagen.triggers.PlacedAltitudeCheeseInBigHeightsTrigger;
 import net.stehschnitzel.cheesus.datagen.triggers.PlacedDiabolicalCheeseInNetherTrigger;
 import net.stehschnitzel.cheesus.datagen.triggers.PlacedMoldCheeseInDarkTrigger;
 import net.stehschnitzel.cheesus.datagen.triggers.RightClickedBlueMoldCheeseTrigger;
@@ -16,8 +16,8 @@ public class CheesusCriteriaInit {
             new PlacedDiabolicalCheeseInNetherTrigger()
     );
 
-    public static final PlacedAltitudeCheeseTrigger PLACED_ALTITUDE_CHEESE = CriteriaTriggers.register(
-            new PlacedAltitudeCheeseTrigger()
+    public static final PlacedAltitudeCheeseInBigHeightsTrigger PLACED_ALTITUDE_CHEESE = CriteriaTriggers.register(
+            new PlacedAltitudeCheeseInBigHeightsTrigger()
     );
 
     public static final RightClickedBlueMoldCheeseTrigger RIGHT_CLICKED_BLUE_MOLD_CHEESE = CriteriaTriggers.register(

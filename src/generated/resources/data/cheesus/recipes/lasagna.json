@@ -6,7 +6,7 @@
       "tag": "forge:cooked_beef"
     },
     "C": {
-      "tag": "cheesus:cheese"
+      "tag": "cheesus:cheese_slice"
     },
     "P": {
       "item": "farmersdelight:raw_pasta"
@@ -21,7 +21,7 @@
     " PP"
   ],
   "result": {
-    "item": "cheesus:lasagne"
+    "item": "cheesus:lasagna"
   },
   "show_notification": true
 }
