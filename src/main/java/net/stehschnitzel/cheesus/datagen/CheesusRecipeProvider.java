@@ -178,5 +178,4 @@ public class CheesusRecipeProvider extends RecipeProvider implements IConditionB
 
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(cheeseItem), Ingredient.of(ForgeTags.TOOLS_KNIVES), cheesePieceItem, 4).build(pWriter);
     }
-
 }
