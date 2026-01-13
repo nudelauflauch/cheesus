@@ -1,4 +1,4 @@
-// 1.20.1	2025-11-27T19:57:38.0042768	Recipes
+// 1.20.1	2026-01-13T13:15:25.6608028	Recipes
 0f0b17a52f19881c66bd24e10427f8baa289bf35 data/cheesus/advancements/recipes/food/altitude_cheese.json
 4cd02fef2d7303a4a2bc5a75c0d9c19a66a467f6 data/cheesus/advancements/recipes/food/altitude_cheese_slice.json
 6d0751cba6a3033e43176423edf795b0fa928f87 data/cheesus/advancements/recipes/food/baked_cheese_from_campfire_cooking.json
@@ -59,3 +59,9 @@ e9b3869d60ed657b17cff67533386df3b663e6da data/cheesus/recipes/grey_cheese_slice.
 90a6b65853fe81b1de2f9c9da57cd49af9379cda data/cheesus/recipes/scrambled_eggs.json
 075f0816b1da13cc5f892419268ca83f855e690e data/cheesus/recipes/white_mold_cheese.json
 fab9432313fd381f2ccfcbd469cc2fda50601b7a data/cheesus/recipes/white_mold_cheese_slice.json
+635aa4d8464ee83be8e850741e6b16c918ddd132 data/farmersdelight/recipes/cutting/altitude_cheese.json
+7b7b665932f848f5fad0307d32eae1ba1dc2285c data/farmersdelight/recipes/cutting/blue_mold_cheese.json
+b45a51f427ac0f23ea9387ab8a345d2761582f4b data/farmersdelight/recipes/cutting/cheese.json
+35391f5659c6cf523b845cd0e5021c584e968ef9 data/farmersdelight/recipes/cutting/diabolical_cheese.json
+1dc278bc01dfa681f29c7271e690cf1e17148669 data/farmersdelight/recipes/cutting/grey_cheese.json
+14d58b371a228a64ac29802e8d598264a5ad1d4b data/farmersdelight/recipes/cutting/white_mold_cheese.json

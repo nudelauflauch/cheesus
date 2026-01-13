@@ -7,6 +7,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.levelgen.structure.structures.ShipwreckPieces;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.stehschnitzel.cheesus.Cheesus;
 import net.stehschnitzel.cheesus.init.BlockInit;
@@ -174,6 +175,8 @@ public class CheesusRecipeProvider extends RecipeProvider implements IConditionB
                 .unlockedBy(getHasName(cheeseItem), has(cheeseItem))
                 .unlockedBy(getHasName(cheesePieceItem), has(cheesePieceItem))
                 .save(pWriter);
+
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(cheeseItem), Ingredient.of(ForgeTags.TOOLS_KNIVES), cheesePieceItem, 4).build(pWriter);
     }
 
 }
