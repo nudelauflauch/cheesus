@@ -1,5 +1,7 @@
 package net.stehschnitzel.cheesus.common.blocks;
 
+import com.sammy.minersdelight.setup.MDItems;
+import com.teamabnormals.caverns_and_chasms.core.registry.CCItems;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
@@ -30,6 +32,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.stehschnitzel.cheesus.init.BlockInit;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Arrays;
 
 public class CheeseStrainer extends BaseEntityBlock {
 
@@ -113,18 +117,39 @@ public class CheeseStrainer extends BaseEntityBlock {
 	public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
 			Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
 		int level = pLevel.getBlockState(pPos).getValue(LEVEL);
-		Item item = pPlayer.getItemInHand(pHand).getItem();
+        ItemStack stack = pPlayer.getItemInHand(pHand);
+		Item item = stack.getItem();
+        Item[] milk_items = {Items.MILK_BUCKET, MDItems.MILK_CUP.get(), CCItems.GOLDEN_MILK_BUCKET.get()};
 
-		if (level < 3 && item == Items.MILK_BUCKET) {
-			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, level+1));
+		if (level < 3 && Arrays.stream(milk_items).toList().contains(item)) {
+            if (!pPlayer.isCreative()) {
+                if (item.equals(CCItems.GOLDEN_MILK_BUCKET.get())) {
+                    int milk_level = stack.getOrCreateTag().getInt("FluidLevel");
+                        for (int i = milk_level; i>0; i--) {
+                            level++;
+                            milk_level--;
+                        }
+                        pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, level+1));
+                        stack.getOrCreateTag().putInt("FluidLevel", milk_level);
 
-			if (!pPlayer.isCreative()) {
-				pPlayer.getMainHandItem().shrink(1);
-				addItemOrDrop(Items.BUCKET, pPlayer);
-			}
-			return InteractionResult.sidedSuccess(pLevel.isClientSide());
+                        if (milk_level == 0) {
+                            stack.shrink(1);
+                            addItemOrDrop(CCItems.GOLDEN_BUCKET.get(), pPlayer);
+                        }
+                        System.out.println(milk_level);
 
-		} else if (level == 0 && item == BlockInit.CHEESE.get().asItem()) {
+                } else if (item.equals(MDItems.MILK_CUP.get())) {
+                    pPlayer.getMainHandItem().shrink(1);
+                    addItemOrDrop(MDItems.COPPER_CUP, pPlayer);
+                    pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, level + 1));
+                } else {
+                    pPlayer.getMainHandItem().shrink(1);
+                    addItemOrDrop(Items.BUCKET, pPlayer);
+                    pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, level + 1));
+                }
+            }
+            return InteractionResult.sidedSuccess(pLevel.isClientSide());
+        } else if (level == 0 && item == BlockInit.CHEESE.get().asItem()) {
 			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 5));
 			if (!pPlayer.isCreative()) {
 				pPlayer.getItemInHand(pHand).shrink(1);
@@ -160,18 +185,36 @@ public class CheeseStrainer extends BaseEntityBlock {
 
 	@Override
 	public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
+        //for water dripping down on the sides
         if (pState.getValue(LEVEL) >= 7) {
-            double d0 = (double) pPos.getX() + 0.5D;
+            double d0 = (double) pPos.getX() + 0.1D;
             double d1 = (double) pPos.getY() + 0.9D - (pState.getValue(LEVEL) - 7) * 0.2;
-            double d2 = (double) pPos.getZ() + 0.5D;
+            double d2 = (double) pPos.getZ() + 0.1D;
 
-            double r0 = pRandom.nextDouble() * 0.6 - 0.3D;
-            double r1 = pRandom.nextDouble() * 0.1;
-            double r2 = pRandom.nextDouble() * 0.6 - 0.3D;
+            double r0 = 0.8D;
+            double r1 = 0.1;
+            double r2 = 0.8D;
 
-            pLevel.addParticle(ParticleTypes.FALLING_DRIPSTONE_WATER, d0 + r0, d1 + r1, d2 + r2,
+            //south
+            pLevel.addParticle(ParticleTypes.FALLING_DRIPSTONE_WATER,
+                    pPos.getX(), d1 + pRandom.nextDouble() * r1, d2 + pRandom.nextDouble() * r2,
                     0.0D, 2.0D, 0.0D);
+            //west
+            pLevel.addParticle(ParticleTypes.FALLING_DRIPSTONE_WATER,
+                    d0 + pRandom.nextDouble() * r0, d1 + pRandom.nextDouble() * r1, pPos.getZ(),
+                    0.0D, 2.0D, 0.0D);
+            //north
+            pLevel.addParticle(ParticleTypes.FALLING_DRIPSTONE_WATER,
+                    pPos.getX() + 1, d1 + pRandom.nextDouble() * r1, d2 + pRandom.nextDouble() * r2,
+                    0.0D, 2.0D, 0.0D);
+            //east
+            pLevel.addParticle(ParticleTypes.FALLING_DRIPSTONE_WATER,
+                    d0 + pRandom.nextDouble() * r0, d1 + pRandom.nextDouble() * r1, pPos.getZ() + 1,
+                    0.0D, 2.0D, 0.0D);
+
         }
+
+        //for when it is making a new cheese
         if (isRandomlyTicking(pState)) {
             double d0 = (double) pPos.getX() + 0.5D;
             double d1 = (double) pPos.getY() + 0.9D;

@@ -90,6 +90,11 @@ dependencies {
 
     runtimeOnly fg.deobf("squeek.appleskin:appleskin-forge:mc1.20.1-2.5.1")
     implementation fg.deobf("curse.maven:farmers-delight-398521:6917255")
+
+    implementation fg.deobf("curse.maven:caverns-and-chasms-438005:6040957")
+    implementation fg.deobf("curse.maven:blueprint-382216:6408581")
+
+    implementation fg.deobf("curse.maven:miners-delight-689630:5038950")
 }
 
 tasks.named('processResources', ProcessResources).configure {

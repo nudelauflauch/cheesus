@@ -16,6 +16,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -26,6 +27,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+//this is the basic cheese class that all the cheese use
 public class EatableCheese extends Block {
 
 	public static final IntegerProperty BITES = IntegerProperty.create("bites",
@@ -47,10 +49,12 @@ public class EatableCheese extends Block {
         private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
         protected ItemStack execute(BlockSource source, ItemStack stack) {
-            if (!(stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof EatableCheese)) return defaultDispenseItemBehavior.dispense(source, stack);
-
             ServerLevel level = source.getLevel();
             BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+            if (!(level.getBlockState(blockpos).getBlock() == Blocks.AIR &&
+                    stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof EatableCheese)) {
+                return defaultDispenseItemBehavior.dispense(source, stack);
+            }
 
             level.setBlockAndUpdate(blockpos, blockItem.getBlock().defaultBlockState());
             return ItemStack.EMPTY;

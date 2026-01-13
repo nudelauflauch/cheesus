@@ -99,7 +99,7 @@ public class ItemInit {
 					.food(new FoodProperties.Builder().nutrition(7).saturationMod(0.9f).build())));
 
     public static final RegistryObject<Item> SCRAMBLED_EGGS = ITEMS
-            .register("scrambled_eggs", () -> new Item(new Item.Properties()
+            .register("scrambled_eggs", () -> new BowlFoodItem(new Item.Properties()
                     .food(new FoodProperties.Builder().nutrition(6).saturationMod(0.2f).build())));
 
 	//farmers delight items

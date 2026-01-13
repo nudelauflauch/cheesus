@@ -66,7 +66,7 @@ public class CheesusRecipeProvider extends RecipeProvider implements IConditionB
                 .pattern(" C ")
                 .unlockedBy("has_wheat", has(Items.WHEAT)).save(pWriter);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ItemInit.SCRAMBLED_EGGS.get(), 4)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ItemInit.SCRAMBLED_EGGS.get())
                 .requires(Items.EGG)
                 .requires(Items.BOWL)
                 .requires(CheesusTags.Items.CHEESE_SLICE)

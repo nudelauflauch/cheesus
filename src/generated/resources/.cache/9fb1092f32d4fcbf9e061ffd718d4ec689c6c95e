@@ -1,4 +1,4 @@
-// 1.20.1	2025-11-27T17:11:41.7874724	Recipes
+// 1.20.1	2025-11-27T19:57:38.0042768	Recipes
 0f0b17a52f19881c66bd24e10427f8baa289bf35 data/cheesus/advancements/recipes/food/altitude_cheese.json
 4cd02fef2d7303a4a2bc5a75c0d9c19a66a467f6 data/cheesus/advancements/recipes/food/altitude_cheese_slice.json
 6d0751cba6a3033e43176423edf795b0fa928f87 data/cheesus/advancements/recipes/food/baked_cheese_from_campfire_cooking.json
@@ -56,6 +56,6 @@ e9b3869d60ed657b17cff67533386df3b663e6da data/cheesus/recipes/grey_cheese_slice.
 953b95aa2e7344fb2eb1e2073d1475455e4f3e65 data/cheesus/recipes/lasagna.json
 5f1edb1ad55daca8d50c03e797b30b2f01f45565 data/cheesus/recipes/savoury_pasta.json
 22cd34862372a985846a4328044defebe6884fb3 data/cheesus/recipes/scalloped_potato.json
-65f938d5f85f635b09d6bf7bbf370db51b31dfb0 data/cheesus/recipes/scrambled_eggs.json
+90a6b65853fe81b1de2f9c9da57cd49af9379cda data/cheesus/recipes/scrambled_eggs.json
 075f0816b1da13cc5f892419268ca83f855e690e data/cheesus/recipes/white_mold_cheese.json
 fab9432313fd381f2ccfcbd469cc2fda50601b7a data/cheesus/recipes/white_mold_cheese_slice.json
