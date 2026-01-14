@@ -23,7 +23,7 @@ public class CheesusItemModelProvider extends ItemModelProvider {
         simpleItem(BlockInit.DIABOLICAL_CHEESE);
         simpleItem(BlockInit.GREY_CHEESE);
         simpleItem(BlockInit.WHITE_MOLD_CHEESE);
-        simpleItem(BlockInit.CHEESE_CAKE);
+        simpleItem(BlockInit.CHEESECAKE);
 
         simpleItem(ItemInit.CHEESE_SLICE);
         simpleItem(ItemInit.ALTITUDE_CHEESE_SLICE);
@@ -31,6 +31,7 @@ public class CheesusItemModelProvider extends ItemModelProvider {
         simpleItem(ItemInit.DIABOLICAL_CHEESE_SLICE);
         simpleItem(ItemInit.GREY_CHEESE_SLICE);
         simpleItem(ItemInit.WHITE_MOLD_CHEESE_SLICE);
+        simpleItem(ItemInit.CHEESECAKE_SLICE);
 
         simpleItem(ItemInit.BAKED_CHEESE);
         simpleItem(ItemInit.CHEESE_FONDUE);

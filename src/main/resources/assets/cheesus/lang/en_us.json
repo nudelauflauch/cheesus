@@ -8,7 +8,7 @@
 	"block.cheesus.diabolical_cheese":"Diabolical Cheese",
 	"block.cheesus.grey_cheese":"Grey Cheese",
 	"block.cheesus.white_mold_cheese":"White Mold Cheese",
-	"block.cheesus.cheese_cake":"Cheese Cake",
+	"block.cheesus.cheesecake":"Cheesecake",
 
 	"item.cheesus.cheese_slice":"Cheese Slice",
 	"item.cheesus.altitude_cheese_slice":"Altitude Cheese Slice",
@@ -16,7 +16,8 @@
 	"item.cheesus.diabolical_cheese_slice":"Diabolical Cheese Slice",
 	"item.cheesus.grey_cheese_slice":"Grey Cheese Slice",
 	"item.cheesus.white_mold_cheese_slice":"White Mold Cheese Slice",
-	
+	"item.cheesus.cheesecake_slice":"Cheesecake Slice",
+
 	"item.cheesus.baked_cheese": "Baked Cheese",
 	"item.cheesus.cheese_bread": "Cheese Bread",
 	"item.cheesus.cheese_from_hell": "Cheese From Hell",

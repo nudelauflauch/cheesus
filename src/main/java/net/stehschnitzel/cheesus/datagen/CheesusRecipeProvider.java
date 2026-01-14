@@ -7,7 +7,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.levelgen.structure.structures.ShipwreckPieces;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.stehschnitzel.cheesus.Cheesus;
 import net.stehschnitzel.cheesus.init.BlockInit;
@@ -34,6 +33,7 @@ public class CheesusRecipeProvider extends RecipeProvider implements IConditionB
         cheeseRecipe(BlockInit.DIABOLICAL_CHEESE.get(), ItemInit.DIABOLICAL_CHEESE_SLICE.get(), pWriter);
         cheeseRecipe(BlockInit.GREY_CHEESE.get(), ItemInit.GREY_CHEESE_SLICE.get(), pWriter);
         cheeseRecipe(BlockInit.WHITE_MOLD_CHEESE.get(), ItemInit.WHITE_MOLD_CHEESE_SLICE.get(), pWriter);
+        cheeseRecipe(BlockInit.CHEESECAKE.get(), ItemInit.CHEESECAKE_SLICE.get(), pWriter);
 
         //with farmers delight
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(BlockInit.CHEESE.get().asItem()), Ingredient.of(ForgeTags.TOOLS_KNIVES), ItemInit.CHEESE_SLICE.get(), 4)
@@ -49,7 +49,7 @@ public class CheesusRecipeProvider extends RecipeProvider implements IConditionB
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(BlockInit.WHITE_MOLD_CHEESE.get().asItem()), Ingredient.of(ForgeTags.TOOLS_KNIVES), ItemInit.WHITE_MOLD_CHEESE_SLICE.get(), 4)
                 .build(pWriter, ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID, "farmers_white_mold_cheese_slice"));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, BlockInit.CHEESE_CAKE.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, BlockInit.CHEESECAKE.get())
                 .define('E', CheesusTags.Items.CHEESE)
                 .define('B', Items.SUGAR)
                 .define('C', Items.WHEAT)
@@ -168,7 +168,7 @@ public class CheesusRecipeProvider extends RecipeProvider implements IConditionB
                 .define('A', cheesePieceItem)
                 .unlockedBy(getHasName(cheesePieceItem), has(cheesePieceItem))
                 .unlockedBy(getHasName(cheeseItem), has(cheeseItem))
-                .save(pWriter);
+                .save(pWriter, Cheesus.MOD_ID + ":" + getItemName(cheeseItem) + "_from_slice");
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, cheesePieceItem, 4)
                 .requires(cheeseItem)
@@ -176,6 +176,7 @@ public class CheesusRecipeProvider extends RecipeProvider implements IConditionB
                 .unlockedBy(getHasName(cheesePieceItem), has(cheesePieceItem))
                 .save(pWriter);
 
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(cheeseItem), Ingredient.of(ForgeTags.TOOLS_KNIVES), cheesePieceItem, 4).build(pWriter);
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(cheeseItem), Ingredient.of(ForgeTags.TOOLS_KNIVES), cheesePieceItem, 4)
+                .build(pWriter, ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID, getItemName(cheeseItem) + "_cutting_board"));
     }
 }

@@ -1,11 +1,12 @@
-// 1.20.1	2025-11-27T16:58:11.6841846	Item Models: cheesus
+// 1.20.1	2026-01-14T09:58:16.1924214	Item Models: cheesus
 c5b92adf2bffcd985b57ae8e4df0b4f003ad8465 assets/cheesus/models/item/altitude_cheese.json
 2fd41a535d45634404f73b7486e98acf25755a9d assets/cheesus/models/item/altitude_cheese_slice.json
 7f22264a2d02735eafba9e53058f590bd13ec521 assets/cheesus/models/item/baked_cheese.json
 f108fbfa2897671ba83b2513b1ae3540bcd6319e assets/cheesus/models/item/blue_mold_cheese.json
 5d0228e8279a14d8597c02c00a7304ec673394be assets/cheesus/models/item/blue_mold_cheese_slice.json
 f07c9a49b931b23ee890dd8e90e710d60f412f48 assets/cheesus/models/item/cheese.json
-0c6313cf732681a6000f7dd7965f9955732da8d1 assets/cheesus/models/item/cheese_cake.json
+5ce24e64e484876ca72f1c1e359e04d091af9fbf assets/cheesus/models/item/cheesecake.json
+884a5af29670dd9a6fd8becb81d5355af3ad62de assets/cheesus/models/item/cheesecake_slice.json
 1a2892a706389ca4c33a4e4548894f778b4c8830 assets/cheesus/models/item/cheese_cover.json
 6d41c39f0e7fe34e88e4eb3cc91f5629f7627b89 assets/cheesus/models/item/cheese_fondue.json
 1bb21a5953a210fcc598458b74d3a448b6d4595c assets/cheesus/models/item/cheese_from_hell.json

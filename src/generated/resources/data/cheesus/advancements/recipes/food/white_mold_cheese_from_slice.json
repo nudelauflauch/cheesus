@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "cheesus:white_mold_cheese"
+        "recipe": "cheesus:white_mold_cheese_from_slice"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -41,7 +41,7 @@
   ],
   "rewards": {
     "recipes": [
-      "cheesus:white_mold_cheese"
+      "cheesus:white_mold_cheese_from_slice"
     ]
   },
   "sends_telemetry_event": false

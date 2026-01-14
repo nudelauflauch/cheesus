@@ -47,7 +47,6 @@ public class Cheesus {
 		@SubscribeEvent
 		public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
 			event.registerBlockEntityRenderer(BlockEntityInit.CHEESE_COVER.get(), CheeseCoverEntityRenderer::new);
-
 		}
 	}
 }

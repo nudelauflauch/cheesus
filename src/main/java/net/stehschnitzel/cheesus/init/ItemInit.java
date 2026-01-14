@@ -57,6 +57,11 @@ public class ItemInit {
 							.effect(new MobEffectInstance(MobEffects.REGENERATION, 200, 0), 1)
 							.build())));
 
+    public static final RegistryObject<Item> CHEESECAKE_SLICE = ITEMS.register("cheesecake_slice",
+            () -> new Item(new Item.Properties()
+                    .food(new FoodProperties.Builder().nutrition(3).saturationMod(1.0F)
+                            .build())));
+
 	// things you can make with cheese
 	public static final RegistryObject<Item> BAKED_CHEESE = ITEMS.register("baked_cheese",
 			() -> new Item(new Item.Properties()

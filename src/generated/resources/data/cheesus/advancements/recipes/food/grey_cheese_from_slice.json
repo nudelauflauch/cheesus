@@ -1,12 +1,24 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_egg": {
+    "has_grey_cheese": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:egg"
+              "cheesus:grey_cheese"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_grey_cheese_slice": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cheesus:grey_cheese_slice"
             ]
           }
         ]
@@ -15,20 +27,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "cheesus:cheese_cake"
+        "recipe": "cheesus:grey_cheese_from_slice"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_egg",
+      "has_grey_cheese_slice",
+      "has_grey_cheese",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "cheesus:cheese_cake"
+      "cheesus:grey_cheese_from_slice"
     ]
   },
   "sends_telemetry_event": false

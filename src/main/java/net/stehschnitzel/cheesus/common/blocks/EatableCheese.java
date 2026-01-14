@@ -5,6 +5,9 @@ import net.minecraft.core.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffect;
@@ -88,6 +91,7 @@ public class EatableCheese extends Block {
 				player.addEffect(new MobEffectInstance(this.effect, 200, 0));
 			}
 
+            pLevel.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.GENERIC_EAT, SoundSource.BLOCKS, 1.0F, 1.0F, false);
 			return InteractionResult.sidedSuccess(pLevel.isClientSide);
 		}
 		return InteractionResult.FAIL;

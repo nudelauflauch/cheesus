@@ -3,7 +3,6 @@ package net.stehschnitzel.cheesus.datagen;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -35,7 +34,7 @@ public class CheesusLootTableProvider extends BlockLootSubProvider {
         dropCheese(BlockInit.DIABOLICAL_CHEESE.get(), ItemInit.DIABOLICAL_CHEESE_SLICE.get());
         dropCheese(BlockInit.GREY_CHEESE.get(), ItemInit.GREY_CHEESE_SLICE.get());
         dropCheese(BlockInit.WHITE_MOLD_CHEESE.get(), ItemInit.WHITE_MOLD_CHEESE_SLICE.get());
-        dropCheeseCake(BlockInit.CHEESE_CAKE.get());
+        dropCheese(BlockInit.CHEESECAKE.get(), ItemInit.CHEESECAKE_SLICE.get());
     }
 
     protected void dropCheese(Block pBlock, Item pItem) {

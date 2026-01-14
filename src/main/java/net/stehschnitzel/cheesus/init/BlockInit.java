@@ -43,7 +43,7 @@ public class BlockInit {
 	public static final RegistryObject<EatableCheese> WHITE_MOLD_CHEESE = registerBlockWItem("white_mold_cheese", () -> new SmallCheese(
 			BlockBehaviour.Properties.copy(CHEESE.get()), MobEffects.REGENERATION));
 
-	public static final RegistryObject<Block> CHEESE_CAKE = registerBlockWItem("cheese_cake", () -> new SmallCheese(
+	public static final RegistryObject<Block> CHEESECAKE = registerBlockWItem("cheesecake", () -> new SmallCheese(
 			BlockBehaviour.Properties.copy(CHEESE.get())));
 
 	public static final RegistryObject<Block> CHEESE_COVER = registerBlock("cheese_cover",

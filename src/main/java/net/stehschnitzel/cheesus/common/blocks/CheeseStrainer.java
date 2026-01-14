@@ -32,6 +32,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.stehschnitzel.cheesus.init.BlockInit;
 import org.jetbrains.annotations.Nullable;
+import vectorwing.farmersdelight.common.tag.ForgeTags;
 
 import java.util.Arrays;
 
@@ -119,36 +120,50 @@ public class CheeseStrainer extends BaseEntityBlock {
 		int level = pLevel.getBlockState(pPos).getValue(LEVEL);
         ItemStack stack = pPlayer.getItemInHand(pHand);
 		Item item = stack.getItem();
-        Item[] milk_items = {Items.MILK_BUCKET, MDItems.MILK_CUP.get(), CCItems.GOLDEN_MILK_BUCKET.get()};
 
-		if (level < 3 && Arrays.stream(milk_items).toList().contains(item)) {
-            if (!pPlayer.isCreative()) {
-                if (item.equals(CCItems.GOLDEN_MILK_BUCKET.get())) {
-                    int milk_level = stack.getOrCreateTag().getInt("FluidLevel");
-                        for (int i = milk_level; i>0; i--) {
-                            level++;
-                            milk_level--;
-                        }
-                        pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, level+1));
+        //add milk to the strainer from milk buckets, golden milk buckets and milk cup
+        //has to be #contains milk otherwise it doesnt work when the mods arent loaded
+		if (level < 3 && stack.getDescriptionId().contains("milk")) {
+            if (stack.getDescriptionId().contains("golden_milk_bucket")) {
+                int milk_level = stack.getOrCreateTag().getInt("FluidLevel");
+                for (int i = milk_level; i > -1; i--) {
+                    level++;
+                    milk_level--;
+                    if (level > 2) break;
+                }
+                pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, level));
+                if (!pPlayer.isCreative()) {
+                    if (milk_level <= -1) {
+                        stack.shrink(1);
+                        addItemOrDrop(CCItems.GOLDEN_BUCKET.get(), pPlayer);
+                    } else {
                         stack.getOrCreateTag().putInt("FluidLevel", milk_level);
+                    }
+                }
 
-                        if (milk_level == 0) {
-                            stack.shrink(1);
-                            addItemOrDrop(CCItems.GOLDEN_BUCKET.get(), pPlayer);
-                        }
-                        System.out.println(milk_level);
-
-                } else if (item.equals(MDItems.MILK_CUP.get())) {
+            } else if (stack.getDescriptionId().contains("milk_cup")) {
+                if (!pPlayer.isCreative()) {
                     pPlayer.getMainHandItem().shrink(1);
                     addItemOrDrop(MDItems.COPPER_CUP, pPlayer);
-                    pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, level + 1));
-                } else {
+                }
+                pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, level + 1));
+//
+            } else if (item.equals(Items.MILK_BUCKET)) {
+                if (!pPlayer.isCreative()) {
                     pPlayer.getMainHandItem().shrink(1);
                     addItemOrDrop(Items.BUCKET, pPlayer);
-                    pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, level + 1));
                 }
+                pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, level + 1));
             }
+
             return InteractionResult.sidedSuccess(pLevel.isClientSide());
+
+            //get milk out of the strainer again
+        } else if (0 < level && level < 3 && stack.is(Items.BUCKET)) {
+            stack.shrink(1);
+            addItemOrDrop(Items.MILK_BUCKET, pPlayer);
+            pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, pLevel.getBlockState(pPos).getValue(LEVEL)-1));
+
         } else if (level == 0 && item == BlockInit.CHEESE.get().asItem()) {
 			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 5));
 			if (!pPlayer.isCreative()) {

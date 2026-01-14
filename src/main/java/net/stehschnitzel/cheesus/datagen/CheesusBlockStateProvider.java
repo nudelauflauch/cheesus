@@ -26,7 +26,7 @@ public class CheesusBlockStateProvider extends BlockStateProvider {
         normalCheeseBuilder(BlockInit.DIABOLICAL_CHEESE);
         smallCheeseBuilder(BlockInit.GREY_CHEESE);
         smallCheeseBuilder(BlockInit.WHITE_MOLD_CHEESE);
-        smallCheeseBuilder(BlockInit.CHEESE_CAKE);
+        smallCheeseBuilder(BlockInit.CHEESECAKE);
     }
 
     public void smallCheeseBuilder(RegistryObject<? extends Block> block) {
