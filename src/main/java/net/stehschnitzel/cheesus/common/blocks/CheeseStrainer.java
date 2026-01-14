@@ -7,6 +7,8 @@ import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
@@ -131,7 +133,6 @@ public class CheeseStrainer extends BaseEntityBlock {
                     milk_level--;
                     if (level > 2) break;
                 }
-                pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, level));
                 if (!pPlayer.isCreative()) {
                     if (milk_level <= -1) {
                         stack.shrink(1);
@@ -146,45 +147,55 @@ public class CheeseStrainer extends BaseEntityBlock {
                     pPlayer.getMainHandItem().shrink(1);
                     addItemOrDrop(MDItems.COPPER_CUP, pPlayer);
                 }
-                pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, level + 1));
-//
+                level++;
             } else if (item.equals(Items.MILK_BUCKET)) {
                 if (!pPlayer.isCreative()) {
                     pPlayer.getMainHandItem().shrink(1);
                     addItemOrDrop(Items.BUCKET, pPlayer);
                 }
-                pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, level + 1));
+                level++;
             }
-
+            pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, level));
+            pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.VILLAGER_WORK_LEATHERWORKER, SoundSource.BLOCKS, 1F, 1.0F, false);
             return InteractionResult.sidedSuccess(pLevel.isClientSide());
 
             //get milk out of the strainer again
-        } else if (0 < level && level < 3 && stack.is(Items.BUCKET)) {
+        } else if (0 < level && level <= 3 && stack.is(Items.BUCKET)) {
             stack.shrink(1);
             addItemOrDrop(Items.MILK_BUCKET, pPlayer);
             pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, pLevel.getBlockState(pPos).getValue(LEVEL)-1));
+
+            pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 0.8F, 1.0F, false);
 
         } else if (level == 0 && item == BlockInit.CHEESE.get().asItem()) {
 			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 5));
 			if (!pPlayer.isCreative()) {
 				pPlayer.getItemInHand(pHand).shrink(1);
 			}
+            pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.CORAL_BLOCK_PLACE, SoundSource.BLOCKS, 0.8F, 1.0F, false);
 
 			return InteractionResult.sidedSuccess(pLevel.isClientSide());
 
 		} else if ((level == 0 || level >= 7) && item == Items.WATER_BUCKET) {
-			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 7));
+            if (!pPlayer.isCreative()) {
+                stack.shrink(1);
+                addItemOrDrop(Items.BUCKET, pPlayer);
+            }
+            pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 7));
 
+            pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.VILLAGER_WORK_LEATHERWORKER, SoundSource.BLOCKS, 1F, 1.0F, false);
 			return InteractionResult.sidedSuccess(pLevel.isClientSide());
 
 		} else if (level == 4) {
 			addItemOrDrop(BlockInit.CHEESE.get(), pPlayer);
 			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 0));
+            pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.3F, 1.0F, false);
 
 			return InteractionResult.sidedSuccess(pLevel.isClientSide());
 		} else if (level == 6) {
 			addItemOrDrop(BlockInit.GREY_CHEESE.get(), pPlayer);
 			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 0));
+            pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.3F, 1.0F, false);
 
 			return InteractionResult.sidedSuccess(pLevel.isClientSide());
 		}
