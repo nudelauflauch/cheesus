@@ -6,18 +6,19 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.DispenserBlock;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import net.stehschnitzel.cheesus.Cheesus;
 import net.stehschnitzel.cheesus.common.blocks.CheeseStrainer;
 import net.stehschnitzel.cheesus.common.blocks.EatableCheese;
+
+import java.util.function.Supplier;
 
 public class CheesusItemTabInit {
 
 	public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Cheesus.MOD_ID);
 
-	public static final RegistryObject<CreativeModeTab> CHEESUS_TAB = TABS.register("cheesus_tab",
+	public static final Supplier<CreativeModeTab> CHEESUS_TAB = TABS.register("cheesus_tab",
 			() -> CreativeModeTab.builder()
 					.title(Component.translatable("itemGroup.cheesus_tab"))
 					.icon(() -> new ItemStack(BlockInit.CHEESE.get()))

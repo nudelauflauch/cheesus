@@ -1,18 +1,18 @@
 package net.stehschnitzel.cheesus;
 
 import com.mojang.logging.LogUtils;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.common.NeoForge;
 import net.stehschnitzel.cheesus.init.*;
 import net.stehschnitzel.cheesus.renderer.CheeseCoverEntityRenderer;
 
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
 @Mod(Cheesus.MOD_ID)
@@ -21,11 +21,10 @@ public class Cheesus {
 	public static final String MOD_ID = "cheesus";
 	public static final Logger LOGGER = LogUtils.getLogger();
 
-	public Cheesus(FMLJavaModLoadingContext ctx) {
-		IEventBus bus = ctx.getModEventBus();
+	public Cheesus(IEventBus bus, ModContainer modContainer) {
 		bus.addListener(this::setup);
 		bus.addListener(this::commonSetup);
-		MinecraftForge.EVENT_BUS.register(this);
+		NeoForge.EVENT_BUS.register(this);
 
 		BlockInit.register(bus);
 		ItemInit.register(bus);
@@ -41,7 +40,7 @@ public class Cheesus {
 	private void commonSetup(final FMLCommonSetupEvent event) {
 	}
 
-	@Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+	@Mod(value = MOD_ID, dist = Dist.CLIENT)
 	public static class ClientModEvents {
 
 		@SubscribeEvent

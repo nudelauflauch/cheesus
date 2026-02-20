@@ -1,26 +1,18 @@
 package net.stehschnitzel.cheesus.datagen;
 
-import com.sammy.minersdelight.setup.MDItems;
-import com.teamabnormals.caverns_and_chasms.core.registry.CCItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ItemTagsProvider;
 import net.stehschnitzel.cheesus.Cheesus;
 import net.stehschnitzel.cheesus.init.BlockInit;
 import net.stehschnitzel.cheesus.init.CheesusTags;
 import net.stehschnitzel.cheesus.init.ItemInit;
-import vectorwing.farmersdelight.common.tag.ForgeTags;
 
-import javax.annotation.Nullable;
 import java.util.concurrent.CompletableFuture;
 
 public class CheesusItemTagProvider extends ItemTagsProvider {
-    public CheesusItemTagProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> completableFuture,
-                                  CompletableFuture<TagLookup<Block>> lookupCompletableFuture, @Nullable ExistingFileHelper existingFileHelper) {
-        super(packOutput, completableFuture, lookupCompletableFuture, Cheesus.MOD_ID, existingFileHelper);
+    public CheesusItemTagProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> completableFuture) {
+        super(packOutput, completableFuture, Cheesus.MOD_ID);
     }
 
     @Override

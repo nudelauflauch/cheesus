@@ -1,27 +1,20 @@
 package net.stehschnitzel.cheesus.datagen.triggers;
 
-import com.google.gson.JsonObject;
-import net.minecraft.advancements.critereon.*;
-import net.minecraft.resources.ResourceLocation;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.advancements.Criterion;
+import net.minecraft.advancements.criterion.ContextAwarePredicate;
+import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.advancements.criterion.SimpleCriterionTrigger;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.state.BlockState;
-import net.stehschnitzel.cheesus.Cheesus;
 import net.stehschnitzel.cheesus.init.BlockInit;
+import net.stehschnitzel.cheesus.init.CheesusCriteriaInit;
+
+import java.util.Optional;
 
 public class RightClickedBlueMoldCheeseTrigger extends SimpleCriterionTrigger<RightClickedBlueMoldCheeseTrigger.TriggerInstance> {
-
-    public static final ResourceLocation ID = ResourceLocation.tryBuild(Cheesus.MOD_ID,"right_clicked_blue_mold_cheese");
-
-    @Override
-    public ResourceLocation getId() {
-        return ID;
-    }
-
-    @Override
-    protected TriggerInstance createInstance(JsonObject json, ContextAwarePredicate playerPredicate, DeserializationContext context) {
-        return new TriggerInstance(playerPredicate);
-    }
 
     public void trigger(ServerPlayer player, BlockState state) {
         if (state.is(BlockInit.CHEESE.get()) && player.getItemInHand(player.getUsedItemHand()).is(ItemTags.SWORDS)) {
@@ -29,18 +22,25 @@ public class RightClickedBlueMoldCheeseTrigger extends SimpleCriterionTrigger<Ri
         }
     }
 
-    public static class TriggerInstance extends AbstractCriterionTriggerInstance {
-        public TriggerInstance(ContextAwarePredicate playerPredicate) {
-            super(ID, playerPredicate);
-        }
+    @Override
+    public Codec<RightClickedBlueMoldCheeseTrigger.TriggerInstance> codec() {
+        return RightClickedBlueMoldCheeseTrigger.TriggerInstance.CODEC;
+    }
 
-        public static TriggerInstance rightClickedBlueMoldCheese() {
-            return new TriggerInstance(ContextAwarePredicate.ANY);
-        }
+    public record TriggerInstance(Optional<ContextAwarePredicate> player, Optional<ContextAwarePredicate> location)
+            implements SimpleCriterionTrigger.SimpleInstance {
 
-        @Override
-        public JsonObject serializeToJson(SerializationContext context) {
-            return super.serializeToJson(context);
+        public static final Codec<RightClickedBlueMoldCheeseTrigger.TriggerInstance> CODEC = RecordCodecBuilder.create(
+                instance -> instance.group(
+                                EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(RightClickedBlueMoldCheeseTrigger.TriggerInstance::player),
+                                EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("location").forGetter(RightClickedBlueMoldCheeseTrigger.TriggerInstance::location)
+                        )
+                        .apply(instance, RightClickedBlueMoldCheeseTrigger.TriggerInstance::new)
+        );
+
+        public static Criterion<RightClickedBlueMoldCheeseTrigger.TriggerInstance> placedMoldCheeseInDark() {
+            return CheesusCriteriaInit.RIGHT_CLICKED_BLUE_MOLD_CHEESE
+                    .createCriterion(new RightClickedBlueMoldCheeseTrigger.TriggerInstance(Optional.empty(), Optional.empty()));
         }
     }
 }

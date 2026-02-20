@@ -1,52 +1,28 @@
 package net.stehschnitzel.cheesus.common.items;
 
-import net.minecraft.stats.Stats;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Equipable;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.equipment.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorMaterials;
+import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.world.level.block.Block;
 
-public class CheeseCoverItem extends BlockItem implements Equipable {
+public class CheeseCoverItem extends BlockItem {
+    public CheeseCoverItem(Block block, Properties properties) {
+        super(block, properties);
+        this.humanoidArmor(ArmorMaterials.LEATHER, ArmorType.HELMET);
+    }
 
-	public CheeseCoverItem(Block block, Properties proberties) {
-		super(block, proberties);
-	}
-	
-	public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
-		ItemStack itemstack = pPlayer.getItemInHand(pHand);
-		EquipmentSlot equipmentslot = EquipmentSlot.HEAD;
-		ItemStack itemstack1 = pPlayer.getItemBySlot(equipmentslot);
-		if (itemstack1.isEmpty()) {
-			pPlayer.setItemSlot(equipmentslot, itemstack.copy());
-			if (!pLevel.isClientSide()) {
-				pPlayer.awardStat(Stats.ITEM_USED.get(this));
-			}
-
-			itemstack.setCount(0);
-			return InteractionResultHolder.sidedSuccess(itemstack, pLevel.isClientSide());
-		} else {
-			return InteractionResultHolder.fail(itemstack);
-		}
-	}
-
-	@Override
-	public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
-		if (player.getItemBySlot(EquipmentSlot.HEAD).getItem() == this) {
-			player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 10, 0));
-		}
-
-		super.onInventoryTick(stack, level, player, slotIndex, selectedIndex);
-	}
-
-	@Override
-	public EquipmentSlot getEquipmentSlot() {
-		return EquipmentSlot.HEAD;
-	}
+    public Item.Properties humanoidArmor(ArmorMaterial material, ArmorType type) {
+        return new Properties()
+                .attributes(material.createAttributes(type))
+                .enchantable(material.enchantmentValue())
+                .component(
+                        DataComponents.EQUIPPABLE,
+                        Equippable.builder(type.getSlot()).setEquipSound(material.equipSound()).setAsset(material.assetId()).build()
+                )
+                .repairable(material.repairIngredient());
+    }
 }

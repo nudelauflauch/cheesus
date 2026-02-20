@@ -1,36 +1,30 @@
 package net.stehschnitzel.cheesus.common.blocks.entities;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.ItemStackHandler;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
+import net.neoforged.neoforge.transfer.item.ItemResource;
+import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.stehschnitzel.cheesus.init.BlockEntityInit;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
 public class CheeseCoverBlockEntity extends BlockEntity {
 
     private int rotationDeg = 0;
-    public final ItemStackHandler inventory = new ItemStackHandler(1) {
+    public final ItemStacksResourceHandler inventory = new ItemStacksResourceHandler(1) {
         @Override
-        protected int getStackLimit(int slot, @NotNull ItemStack stack) {
+        protected int getCapacity(int index, ItemResource resource) {
             return 1;
-        }
-
-        @Override
-        protected void onContentsChanged(int slot) {
-            setChanged();
-            if (!level.isClientSide()) {
-                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
-            }
         }
     };
 
@@ -38,7 +32,7 @@ public class CheeseCoverBlockEntity extends BlockEntity {
         super(BlockEntityInit.CHEESE_COVER.get(), pPos, pBlockState);
     }
 
-    public ItemStackHandler getInventory() {
+    public ItemStacksResourceHandler getInventory() {
         return inventory;
     }
 
@@ -52,13 +46,13 @@ public class CheeseCoverBlockEntity extends BlockEntity {
 
     public void clearContents() {
         rotationDeg = 0;
-        inventory.setStackInSlot(0, ItemStack.EMPTY);
+        inventory.set(0, ItemResource.EMPTY, 1);
     }
 
     public void drops() {
-        SimpleContainer inv = new SimpleContainer(inventory.getSlots());
-        for (int i = 0; i < inventory.getSlots(); i++) {
-            inv.setItem(i, inventory.getStackInSlot(i));
+        SimpleContainer inv = new SimpleContainer(inventory.size());
+        for (int i = 0; i < inventory.size(); i++) {
+            inv.setItem(i, inventory.getResource(i).toStack());
         }
 
         rotationDeg = 0;
@@ -66,17 +60,17 @@ public class CheeseCoverBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag pTag) {
-        super.saveAdditional(pTag);
-        pTag.put("inventory", inventory.serializeNBT());
-        pTag.putInt("rotation_deg", this.rotationDeg);
+    protected void saveAdditional(ValueOutput output) {
+        super.saveAdditional(output);
+        inventory.serialize(output);
+        output.putInt("rotation_deg", this.rotationDeg);
     }
 
     @Override
-    public void load(CompoundTag pTag) {
-        super.load(pTag);
-        inventory.deserializeNBT(pTag.getCompound("inventory"));
-        this.rotationDeg = pTag.getInt("rotation_deg");
+    protected void loadAdditional(ValueInput input) {
+        super.loadAdditional(input);
+        inventory.deserialize(input);
+        this.rotationDeg = input.getInt("rotation_deg").get();
     }
 
     @Nullable
@@ -86,7 +80,7 @@ public class CheeseCoverBlockEntity extends BlockEntity {
     }
 
     @Override
-    public CompoundTag getUpdateTag() {
-        return saveWithoutMetadata();
+    public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
+        return saveWithoutMetadata(pRegistries);
     }
 }
