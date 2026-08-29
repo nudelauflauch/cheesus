@@ -1,11 +1,6 @@
 package net.stehschnitzel.cheesus.init;
 
-import net.minecraft.advancements.CriteriaTriggers;
 import net.neoforged.bus.api.IEventBus;
-import net.stehschnitzel.cheesus.datagen.triggers.PlacedAltitudeCheeseInBigHeightsTrigger;
-import net.stehschnitzel.cheesus.datagen.triggers.PlacedDiabolicalCheeseInNetherTrigger;
-import net.stehschnitzel.cheesus.datagen.triggers.PlacedMoldCheeseInDarkTrigger;
-import net.stehschnitzel.cheesus.datagen.triggers.RightClickedBlueMoldCheeseTrigger;
 
 public class CheesusCriteriaInit {
 //    public static final PlacedMoldCheeseInDarkTrigger PLACED_MOLD_CHEESE_DARK = CriteriaTriggers.register(

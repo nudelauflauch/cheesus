@@ -14,12 +14,22 @@ public class BlockEntityInit {
 
 	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY = DeferredRegister
 			.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, Cheesus.MOD_ID);
-	
-	public static final Supplier<BlockEntityType<CheeseStrainerBlockEntity>> CHEESE_STRAINER = BLOCK_ENTITY
-			.register("cheese_strainer", () -> new BlockEntityType<>(CheeseStrainerBlockEntity::new, BlockInit.CHEESE_STRAINER.get()));
 
-	public static final Supplier<BlockEntityType<CheeseCoverBlockEntity>> CHEESE_COVER = BLOCK_ENTITY
-			.register("cheese_cover", () -> new BlockEntityType<>(CheeseCoverBlockEntity::new, BlockInit.CHEESE_COVER.get()));
+    public static final Supplier<BlockEntityType<CheeseStrainerBlockEntity>> CHEESE_STRAINER =
+            BLOCK_ENTITY.register("cheese_strainer",
+                    () -> BlockEntityType.Builder.of(
+                            CheeseStrainerBlockEntity::new,
+                            BlockInit.CHEESE_STRAINER.get()
+                    ).build(null)
+            );
+
+    public static final Supplier<BlockEntityType<CheeseCoverBlockEntity>> CHEESE_COVER =
+            BLOCK_ENTITY.register("cheese_cover",
+                    () -> BlockEntityType.Builder.of(
+                            CheeseCoverBlockEntity::new,
+                            BlockInit.CHEESE_COVER.get()
+                    ).build(null)
+            );
 
 	public static void register(IEventBus eventBus) {
 		BLOCK_ENTITY.register(eventBus);

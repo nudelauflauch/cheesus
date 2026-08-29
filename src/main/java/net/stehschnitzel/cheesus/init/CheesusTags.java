@@ -1,6 +1,6 @@
 package net.stehschnitzel.cheesus.init;
 
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -12,7 +12,7 @@ public class CheesusTags {
 
     public static class Blocks {
         private static TagKey<Block> createTag(String name) {
-            return BlockTags.create(Identifier.tryBuild(Cheesus.MOD_ID, name));
+            return BlockTags.create(ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID, name));
         }
     }
 
@@ -21,7 +21,7 @@ public class CheesusTags {
         public static final TagKey<Item> CHEESE_SLICE = createTag("cheese_slice");
 
         private static TagKey<Item> createTag(String name) {
-            return ItemTags.create(Identifier.tryBuild(Cheesus.MOD_ID, name));
+            return ItemTags.create(ResourceLocation.fromNamespaceAndPath(Cheesus.MOD_ID, name));
         }
     }
 

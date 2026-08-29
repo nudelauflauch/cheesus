@@ -8,7 +8,9 @@ import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
@@ -75,7 +77,7 @@ public class EatableCheese extends Block {
 	}
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
             if (player.canEat(player.getFoodData().needsFood())) {
                 player.getFoodData().eat(2, 3);
 
@@ -89,10 +91,10 @@ public class EatableCheese extends Block {
                     player.addEffect(new MobEffectInstance(this.effect, 200, 0));
                 }
 
-                level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.GENERIC_EAT.value(), SoundSource.BLOCKS, 1.0F, 1.0F, false);
-                return InteractionResult.SUCCESS;
+                level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.GENERIC_EAT, SoundSource.BLOCKS, 1.0F, 1.0F, false);
+                return ItemInteractionResult.SUCCESS;
             }
-            return InteractionResult.FAIL;
+            return ItemInteractionResult.FAIL;
     }
 
 	@Override

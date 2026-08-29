@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "tag": "cheesus:cheese_slice"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "cheesus:scrambled_eggs"
+  }
+}

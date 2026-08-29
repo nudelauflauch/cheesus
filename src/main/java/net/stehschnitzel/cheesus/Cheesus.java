@@ -21,16 +21,15 @@ public class Cheesus {
 	public static final String MOD_ID = "cheesus";
 	public static final Logger LOGGER = LogUtils.getLogger();
 
-	public Cheesus(IEventBus bus, ModContainer modContainer) {
+    public Cheesus(IEventBus bus, ModContainer modContainer) {
 		bus.addListener(this::setup);
 		bus.addListener(this::commonSetup);
-		NeoForge.EVENT_BUS.register(this);
 
 		BlockInit.register(bus);
 		ItemInit.register(bus);
 		BlockEntityInit.register(bus);
 		CheesusItemTabInit.register(bus);
-//		CheesusCriteriaInit.register(bus);
+		CheesusCriteriaInit.register(bus);
     
 	}
 

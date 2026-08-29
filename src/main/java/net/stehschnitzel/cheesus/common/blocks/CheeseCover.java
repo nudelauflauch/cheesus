@@ -6,6 +6,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -19,7 +20,6 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.stehschnitzel.cheesus.common.blocks.entities.CheeseCoverBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
@@ -54,29 +54,29 @@ public class CheeseCover extends BaseEntityBlock {
 	}
 
     @Override
-    public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, ItemStack toolStack, boolean willHarvest, FluidState fluid) {
+    public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
         if (level.getBlockEntity(pos) instanceof CheeseCoverBlockEntity cheeseCoverBlockEntity) {
             cheeseCoverBlockEntity.drops();
             level.updateNeighbourForOutputSignal(pos, this);
         }
 
-        return super.onDestroyedByPlayer(state, level, pos, player, toolStack, willHarvest, fluid);
+        return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
     }
 
     @Override
-    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (level.getBlockEntity(pos) instanceof CheeseCoverBlockEntity cheeseCoverBlockEntity) {
             if (player.isCrouching()) {
                 cheeseCoverBlockEntity.increaseRotationDeg();
-                return InteractionResult.SUCCESS;
-            } else if (cheeseCoverBlockEntity.inventory.getResource(0).isEmpty()) {
-                cheeseCoverBlockEntity.inventory.set(0, ItemResource.of(stack.copy()), 1);
+                return ItemInteractionResult.SUCCESS;
+            } else if (cheeseCoverBlockEntity.inventory.getStackInSlot(0).isEmpty()) {
+                cheeseCoverBlockEntity.inventory.setStackInSlot(0, stack.copy());
                 stack.shrink(1);
                 level.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1f, 2f);
 
             }
         }
-        return InteractionResult.TRY_WITH_EMPTY_HAND;
+        return ItemInteractionResult.FAIL;
     }
 
     @Override
@@ -85,7 +85,7 @@ public class CheeseCover extends BaseEntityBlock {
             if (player.isCrouching()) {
                 cheeseCoverBlockEntity.increaseRotationDeg();
                 return InteractionResult.SUCCESS;
-            } else if (!cheeseCoverBlockEntity.inventory.getResource(0).isEmpty()) {
+            } else if (!cheeseCoverBlockEntity.inventory.getStackInSlot(0).isEmpty()) {
 //				ItemStack stackOnCheeseCover = cheeseCoverBlockEntity.inventory.extractItem(0, 1, false);
 //				if (pPlayer.addItem(stackOnCheeseCover)) {
 //					pPlayer.drop(stackOnCheeseCover, false);

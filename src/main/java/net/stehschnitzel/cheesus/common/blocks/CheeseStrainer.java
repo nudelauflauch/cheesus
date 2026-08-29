@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
@@ -97,15 +98,15 @@ public class CheeseStrainer extends BaseEntityBlock {
 	}
 
     @Override
-	public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos, Direction direction) {
-        return switch (pState.getValue(LEVEL)) {
+    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+        return switch (state.getValue(LEVEL)) {
             case 1, 5 -> 1;
-            case 2, 3 -> pState.getValue(LEVEL);
+            case 2, 3 -> state.getValue(LEVEL);
             case 4, 6 -> 4;
-            case 7, 8, 9, 10, 11 -> 15 - (pState.getValue(LEVEL) - 7) * 3;
+            case 7, 8, 9, 10, 11 -> 15 - (state.getValue(LEVEL) - 7) * 3;
             default -> 0;
         };
-	}
+    }
 
 	@Override
 	public @Nullable PushReaction getPistonPushReaction(BlockState state) {
@@ -119,8 +120,8 @@ public class CheeseStrainer extends BaseEntityBlock {
 	}
 
     @Override
-    protected InteractionResult useItemOn(ItemStack stack, BlockState state, 
-                                          Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state,
+                                              Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
 		int milkLevel = level.getBlockState(pos).getValue(LEVEL);
 		Item item = stack.getItem();
 
@@ -158,7 +159,7 @@ public class CheeseStrainer extends BaseEntityBlock {
             }
             level.setBlockAndUpdate(pos, state.setValue(LEVEL, milkLevel));
             level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.VILLAGER_WORK_LEATHERWORKER, SoundSource.BLOCKS, 1F, 1.0F, false);
-            return InteractionResult.CONSUME;
+            return ItemInteractionResult.CONSUME;
 
             //get milk out of the strainer again
         } else if (0 < milkLevel && milkLevel <= 3 && stack.is(Items.BUCKET)) {
@@ -175,7 +176,7 @@ public class CheeseStrainer extends BaseEntityBlock {
 			}
             level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.CORAL_BLOCK_PLACE, SoundSource.BLOCKS, 0.8F, 1.0F, false);
 
-            return InteractionResult.CONSUME;
+            return ItemInteractionResult.CONSUME;
 
 		} else if ((milkLevel == 0 || milkLevel >= 7) && item == Items.WATER_BUCKET) {
             if (!player.isCreative()) {
@@ -185,23 +186,23 @@ public class CheeseStrainer extends BaseEntityBlock {
             level.setBlockAndUpdate(pos, state.setValue(LEVEL, 7));
 
             level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.VILLAGER_WORK_LEATHERWORKER, SoundSource.BLOCKS, 1F, 1.0F, false);
-            return InteractionResult.CONSUME;
+            return ItemInteractionResult.CONSUME;
 
 		} else if (milkLevel == 4) {
 			addItemOrDrop(BlockInit.CHEESE.get(), player);
 			level.setBlockAndUpdate(pos, state.setValue(LEVEL, 0));
             level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.3F, 1.0F, false);
 
-            return InteractionResult.CONSUME;
+            return ItemInteractionResult.CONSUME;
 		} else if (milkLevel == 6) {
 			addItemOrDrop(BlockInit.GREY_CHEESE.get(), player);
 			level.setBlockAndUpdate(pos, state.setValue(LEVEL, 0));
             level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.3F, 1.0F, false);
 
-			return InteractionResult.CONSUME;
+			return ItemInteractionResult.CONSUME;
 		}
 
-		return InteractionResult.PASS;
+		return ItemInteractionResult.sidedSuccess(!level.isClientSide());
 	}
 
 	private void addItemOrDrop(ItemLike item, Player player) {

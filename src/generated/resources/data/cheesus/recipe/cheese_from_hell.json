@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 300,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "cheesus:diabolical_cheese_slice"
+  },
+  "result": {
+    "count": 1,
+    "id": "cheesus:cheese_from_hell"
+  }
+}

@@ -1,6 +1,8 @@
 package net.stehschnitzel.cheesus.datagen;
 
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
@@ -11,7 +13,6 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraftforge.registries.RegistryObject;
 import net.stehschnitzel.cheesus.common.blocks.CheeseStrainer;
 import net.stehschnitzel.cheesus.common.blocks.EatableCheese;
 import net.stehschnitzel.cheesus.init.BlockInit;
@@ -20,8 +21,8 @@ import net.stehschnitzel.cheesus.init.ItemInit;
 import java.util.Set;
 
 public class CheesusLootTableProvider extends BlockLootSubProvider {
-    protected CheesusLootTableProvider() {
-        super(Set.of(), FeatureFlags.REGISTRY.allFlags());
+    protected CheesusLootTableProvider(HolderLookup.Provider registries) {
+        super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
     }
 
     @Override
@@ -125,6 +126,6 @@ public class CheesusLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+        return BlockInit.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
     }
 }

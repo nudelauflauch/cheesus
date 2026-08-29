@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "cheesus:cheesecake"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "cheesus:cheesecake_slice"
+  }
+}

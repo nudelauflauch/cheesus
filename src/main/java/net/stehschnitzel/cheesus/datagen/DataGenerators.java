@@ -3,13 +3,17 @@ package net.stehschnitzel.cheesus.datagen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.stehschnitzel.cheesus.Cheesus;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -23,15 +27,15 @@ public class DataGenerators {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        generator.addProvider(event.includeClient(), new CheesusBlockStateProvider(packOutput, existingFileHelper));
-        generator.addProvider(event.includeServer(), LootTableProvider.create(packOutput));
-        generator.addProvider(event.includeClient(), new CheesusItemModelProvider(packOutput, existingFileHelper));
-        generator.addProvider(event.includeServer(), new CheesusRecipeProvider(packOutput));
+        generator.addProvider(event.includeClient(), new CheesusModelProvider(packOutput, existingFileHelper));
+        generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(),
+                List.of(new LootTableProvider.SubProviderEntry(CheesusLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
+        generator.addProvider(event.includeServer(), new CheesusRecipeProvider(packOutput, lookupProvider));
 
         BlockTagsProvider blockTagsProvider = new CheesusBlockTagProvider(packOutput, lookupProvider, existingFileHelper);
         generator.addProvider(event.includeServer(), blockTagsProvider);
         generator.addProvider(event.includeServer(), new CheesusItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
 
-        generator.addProvider(event.includeClient(), new ForgeAdvancementProvider(packOutput, lookupProvider, existingFileHelper, List.of(new CheesusAdvancmentProvider())));
+//        generator.addProvider(event.includeClient(), new CheesusAdvancementProvider(packOutput, lookupProvider, existingFileHelper));
     }
 }

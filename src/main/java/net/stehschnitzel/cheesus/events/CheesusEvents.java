@@ -10,7 +10,7 @@ import net.neoforged.neoforge.event.level.BlockEvent;
 import net.stehschnitzel.cheesus.Cheesus;
 import net.stehschnitzel.cheesus.init.CheesusCriteriaInit;
 
-@EventBusSubscriber(modid = Cheesus.MOD_ID)
+//@EventBusSubscriber(modid = Cheesus.MOD_ID)
 public class CheesusEvents {
 
 //    @SubscribeEvent

@@ -5,8 +5,6 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.storage.ValueInput;
-import net.minecraft.world.level.storage.ValueOutput;
 import net.stehschnitzel.cheesus.common.blocks.CheeseStrainer;
 import net.stehschnitzel.cheesus.init.BlockEntityInit;
 import net.minecraft.core.BlockPos;
@@ -48,15 +46,15 @@ public class CheeseStrainerBlockEntity extends BlockEntity {
 	}
 
     @Override
-    protected void saveAdditional(ValueOutput output) {
-        super.saveAdditional(output);
-        output.putInt("timer", this.timer);
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        tag.putInt("timer", this.timer);
     }
 
     @Override
-    protected void loadAdditional(ValueInput input) {
-        super.loadAdditional(input);
-        this.timer = input.getInt("timer").get();
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+        this.timer = tag.getInt("timer");
     }
 
 	@Nullable

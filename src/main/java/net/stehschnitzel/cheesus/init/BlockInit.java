@@ -27,20 +27,20 @@ public class BlockInit {
 			BlockBehaviour.Properties.of().strength(0.8f, 1.5f).sound(SoundType.CORAL_BLOCK)));
 
 	public static final DeferredBlock<EatableCheese> ALTITUDE_CHEESE = registerBlockWItem("altitude_cheese", () -> new EatableCheese(
-			BlockBehaviour.Properties.ofFullCopy(CHEESE.get()), MobEffects.RESISTANCE.value()));
+			BlockBehaviour.Properties.ofFullCopy(CHEESE.get()), MobEffects.ABSORPTION));
 
 	public static final DeferredBlock<EatableCheese> BLUE_MOLD_CHEESE = registerBlockWItem("blue_mold_cheese", () -> new EatableCheese(
-			BlockBehaviour.Properties.ofFullCopy(CHEESE.get()), MobEffects.SATURATION.value()));
+			BlockBehaviour.Properties.ofFullCopy(CHEESE.get()), MobEffects.SATURATION));
 
 	public static final DeferredBlock<EatableCheese> DIABOLICAL_CHEESE = registerBlockWItem("diabolical_cheese",
 			() -> new EatableCheese(
-					BlockBehaviour.Properties.ofFullCopy(CHEESE.value()), MobEffects.FIRE_RESISTANCE.value()));
+					BlockBehaviour.Properties.ofFullCopy(CHEESE.value()), MobEffects.FIRE_RESISTANCE));
 
 	public static final DeferredBlock<EatableCheese> GREY_CHEESE = registerBlockWItem("grey_cheese", () -> new SmallCheese(
-			BlockBehaviour.Properties.ofFullCopy(CHEESE.get()), MobEffects.STRENGTH.value()));
+			BlockBehaviour.Properties.ofFullCopy(CHEESE.get()), MobEffects.DAMAGE_BOOST));
 
 	public static final DeferredBlock<EatableCheese> WHITE_MOLD_CHEESE = registerBlockWItem("white_mold_cheese", () -> new SmallCheese(
-			BlockBehaviour.Properties.ofFullCopy(CHEESE.get()), MobEffects.REGENERATION.value()));
+			BlockBehaviour.Properties.ofFullCopy(CHEESE.get()), MobEffects.REGENERATION));
 
 	public static final DeferredBlock<Block> CHEESECAKE = registerBlockWItem("cheesecake", () -> new SmallCheese(
 			BlockBehaviour.Properties.ofFullCopy(CHEESE.get())));
