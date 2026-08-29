@@ -1,6 +1,7 @@
 package net.stehschnitzel.cheesus.common.blocks;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
@@ -13,8 +14,8 @@ public class SmallCheese extends EatableCheese {
         super(pProperties);
     }
 
-    public SmallCheese(Properties pProperties, MobEffect effect) {
-        super(pProperties, effect);
+    public SmallCheese(Properties pProperties, Holder<MobEffect> effect) {
+        super(pProperties,  effect);
     }
 
     @Override

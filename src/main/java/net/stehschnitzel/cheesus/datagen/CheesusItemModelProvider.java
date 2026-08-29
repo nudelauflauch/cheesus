@@ -1,16 +1,12 @@
 package net.stehschnitzel.cheesus.datagen;
 
+import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
 import net.stehschnitzel.cheesus.Cheesus;
 import net.stehschnitzel.cheesus.init.BlockInit;
 import net.stehschnitzel.cheesus.init.ItemInit;
 
-public class CheesusItemModelProvider extends ItemModelProvider {
+public class CheesusItemModelProvider extends ModelProvider {
     public CheesusItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, Cheesus.MOD_ID, existingFileHelper);
     }

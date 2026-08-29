@@ -1,9 +1,12 @@
 package net.stehschnitzel.cheesus.common.blocks.entities;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.stehschnitzel.cheesus.common.blocks.CheeseStrainer;
 import net.stehschnitzel.cheesus.init.BlockEntityInit;
 import net.minecraft.core.BlockPos;
@@ -44,17 +47,17 @@ public class CheeseStrainerBlockEntity extends BlockEntity {
 		}
 	}
 
-	@Override
-	protected void saveAdditional(CompoundTag pTag) {
-		super.saveAdditional(pTag);
-		pTag.putInt("timer", this.timer);
-	}
+    @Override
+    protected void saveAdditional(ValueOutput output) {
+        super.saveAdditional(output);
+        output.putInt("timer", this.timer);
+    }
 
-	@Override
-	public void load(CompoundTag pTag) {
-		super.load(pTag);
-		this.timer = pTag.getInt("timer");
-	}
+    @Override
+    protected void loadAdditional(ValueInput input) {
+        super.loadAdditional(input);
+        this.timer = input.getInt("timer").get();
+    }
 
 	@Nullable
 	@Override
@@ -62,8 +65,8 @@ public class CheeseStrainerBlockEntity extends BlockEntity {
 		return ClientboundBlockEntityDataPacket.create(this);
 	}
 
-	@Override
-	public CompoundTag getUpdateTag() {
-		return saveWithoutMetadata();
-	}
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
+        return saveWithoutMetadata(pRegistries);
+    }
 }

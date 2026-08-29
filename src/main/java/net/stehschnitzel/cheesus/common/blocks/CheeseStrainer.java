@@ -1,8 +1,8 @@
 package net.stehschnitzel.cheesus.common.blocks;
 
-import com.sammy.minersdelight.setup.MDItems;
-import com.teamabnormals.caverns_and_chasms.core.registry.CCItems;
-import net.minecraft.core.BlockSource;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.core.Direction;
+import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.particles.ParticleTypes;
@@ -34,9 +34,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.stehschnitzel.cheesus.init.BlockInit;
 import org.jetbrains.annotations.Nullable;
-import vectorwing.farmersdelight.common.tag.ForgeTags;
-
-import java.util.Arrays;
 
 public class CheeseStrainer extends BaseEntityBlock {
 
@@ -49,8 +46,8 @@ public class CheeseStrainer extends BaseEntityBlock {
 		protected ItemStack execute(BlockSource source, ItemStack stack) {
 			if (stack.getItem() != BlockInit.CHEESE_STRAINER.get().asItem()) return defaultDispenseItemBehavior.dispense(source, stack);
 
-			ServerLevel level = source.getLevel();
-			BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+			ServerLevel level = source.level();
+			BlockPos blockpos = source.pos().relative(source.state().getValue(DispenserBlock.FACING));
 
 			level.setBlockAndUpdate(blockpos, BlockInit.CHEESE_STRAINER.get().defaultBlockState());
 			return ItemStack.EMPTY;
@@ -61,22 +58,22 @@ public class CheeseStrainer extends BaseEntityBlock {
 		private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
 		protected ItemStack execute(BlockSource source, ItemStack stack) {
-            ServerLevel level = source.getLevel();
-            BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+            ServerLevel level = source.level();
+            BlockPos blockpos = source.pos().relative(source.state().getValue(DispenserBlock.FACING));
 
 			if (level.getBlockState(blockpos).is(BlockInit.CHEESE_STRAINER.get())) {
                 BlockState state = level.getBlockState(blockpos);
 
 				if (stack.getItem() == Items.WATER_BUCKET && state.getValue(LEVEL) == 0) {
-					source.getLevel().setBlockAndUpdate(blockpos, state.setValue(LEVEL, 7));
+					source.level().setBlockAndUpdate(blockpos, state.setValue(LEVEL, 7));
 
 					return new ItemStack(Items.BUCKET);
 				} else if (stack.getItem() == Items.MILK_BUCKET && state.getValue(LEVEL) < 3) {
-					source.getLevel().setBlockAndUpdate(blockpos, state.setValue(LEVEL, state.getValue(LEVEL) + 1));
+					source.level().setBlockAndUpdate(blockpos, state.setValue(LEVEL, state.getValue(LEVEL) + 1));
 
 					return new ItemStack(Items.BUCKET);
 				} else if (stack.getItem() == BlockInit.CHEESE.get().asItem() && state.getValue(LEVEL) == 0) {
-					source.getLevel().setBlockAndUpdate(blockpos, state.setValue(LEVEL, 5));
+					source.level().setBlockAndUpdate(blockpos, state.setValue(LEVEL, 5));
 
 					return ItemStack.EMPTY;
 				}
@@ -89,13 +86,18 @@ public class CheeseStrainer extends BaseEntityBlock {
 		super(pProperties);
 	}
 
-	@Override
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return null;
+    }
+
+    @Override
 	public boolean hasAnalogOutputSignal(BlockState pState) {
 		return true;
 	}
 
-	@Override
-	public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
+    @Override
+	public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos, Direction direction) {
         return switch (pState.getValue(LEVEL)) {
             case 1, 5 -> 1;
             case 2, 3 -> pState.getValue(LEVEL);
@@ -116,91 +118,90 @@ public class CheeseStrainer extends BaseEntityBlock {
 		return CheesusVoxels.CheeseStrainer();
 	}
 
-	@Override
-	public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
-			Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-		int level = pLevel.getBlockState(pPos).getValue(LEVEL);
-        ItemStack stack = pPlayer.getItemInHand(pHand);
+    @Override
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, 
+                                          Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+		int milkLevel = level.getBlockState(pos).getValue(LEVEL);
 		Item item = stack.getItem();
 
         //add milk to the strainer from milk buckets, golden milk buckets and milk cup
         //has to be #contains milk otherwise it doesnt work when the mods arent loaded
-		if (level < 3 && stack.getDescriptionId().contains("milk")) {
-            if (stack.getDescriptionId().contains("golden_milk_bucket")) {
-                int milk_level = stack.getOrCreateTag().getInt("FluidLevel");
-                for (int i = milk_level; i > -1; i--) {
-                    level++;
-                    milk_level--;
-                    if (level > 2) break;
-                }
-                if (!pPlayer.isCreative()) {
-                    if (milk_level <= -1) {
-                        stack.shrink(1);
-                        addItemOrDrop(CCItems.GOLDEN_BUCKET.get(), pPlayer);
-                    } else {
-                        stack.getOrCreateTag().putInt("FluidLevel", milk_level);
-                    }
-                }
-
-            } else if (stack.getDescriptionId().contains("milk_cup")) {
-                if (!pPlayer.isCreative()) {
-                    pPlayer.getMainHandItem().shrink(1);
-                    addItemOrDrop(MDItems.COPPER_CUP, pPlayer);
-                }
-                level++;
-            } else if (item.equals(Items.MILK_BUCKET)) {
-                if (!pPlayer.isCreative()) {
-                    pPlayer.getMainHandItem().shrink(1);
-                    addItemOrDrop(Items.BUCKET, pPlayer);
-                }
-                level++;
+		if (milkLevel < 3 && stack.getComponents().keySet().contains("milk")) {
+            if (stack.getComponents().keySet().contains("golden_milk_bucket")) {
+//                int milk_level = stack.getOrCreateTag().getInt("FluidLevel");
+//                for (int i = milk_level; i > -1; i--) {
+//                    milkLevel++;
+//                    milk_level--;
+//                    if (milkLevel > 2) break;
+//                }
+//                if (!player.isCreative()) {
+//                    if (milk_level <= -1) {
+//                        stack.shrink(1);
+//                        addItemOrDrop(CCItems.GOLDEN_BUCKET.get(), player);
+//                    } else {
+//                        stack.getOrCreateTag().putInt("FluidLevel", milk_level);
+//                    }
+//                }
+//
+//            } else if (stack.getDescriptionId().contains("milk_cup")) {
+//                if (!player.isCreative()) {
+//                    player.getMainHandItem().shrink(1);
+//                    addItemOrDrop(MDItems.COPPER_CUP, player);
+//                }
+//                milkLevel++;
+//            } else if (item.equals(Items.MILK_BUCKET)) {
+//                if (!player.isCreative()) {
+//                    player.getMainHandItem().shrink(1);
+//                    addItemOrDrop(Items.BUCKET, player);
+//                }
+//                milkLevel++;
             }
-            pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, level));
-            pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.VILLAGER_WORK_LEATHERWORKER, SoundSource.BLOCKS, 1F, 1.0F, false);
-            return InteractionResult.sidedSuccess(pLevel.isClientSide());
+            level.setBlockAndUpdate(pos, state.setValue(LEVEL, milkLevel));
+            level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.VILLAGER_WORK_LEATHERWORKER, SoundSource.BLOCKS, 1F, 1.0F, false);
+            return InteractionResult.CONSUME;
 
             //get milk out of the strainer again
-        } else if (0 < level && level <= 3 && stack.is(Items.BUCKET)) {
+        } else if (0 < milkLevel && milkLevel <= 3 && stack.is(Items.BUCKET)) {
             stack.shrink(1);
-            addItemOrDrop(Items.MILK_BUCKET, pPlayer);
-            pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, pLevel.getBlockState(pPos).getValue(LEVEL)-1));
+            addItemOrDrop(Items.MILK_BUCKET, player);
+            level.setBlockAndUpdate(pos, state.setValue(LEVEL, level.getBlockState(pos).getValue(LEVEL)-1));
 
-            pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 0.8F, 1.0F, false);
+            level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 0.8F, 1.0F, false);
 
-        } else if (level == 0 && item == BlockInit.CHEESE.get().asItem()) {
-			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 5));
-			if (!pPlayer.isCreative()) {
-				pPlayer.getItemInHand(pHand).shrink(1);
+        } else if (milkLevel == 0 && item == BlockInit.CHEESE.get().asItem()) {
+			level.setBlockAndUpdate(pos, state.setValue(LEVEL, 5));
+			if (!player.isCreative()) {
+				stack.shrink(1);
 			}
-            pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.CORAL_BLOCK_PLACE, SoundSource.BLOCKS, 0.8F, 1.0F, false);
+            level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.CORAL_BLOCK_PLACE, SoundSource.BLOCKS, 0.8F, 1.0F, false);
 
-			return InteractionResult.sidedSuccess(pLevel.isClientSide());
+            return InteractionResult.CONSUME;
 
-		} else if ((level == 0 || level >= 7) && item == Items.WATER_BUCKET) {
-            if (!pPlayer.isCreative()) {
+		} else if ((milkLevel == 0 || milkLevel >= 7) && item == Items.WATER_BUCKET) {
+            if (!player.isCreative()) {
                 stack.shrink(1);
-                addItemOrDrop(Items.BUCKET, pPlayer);
+                addItemOrDrop(Items.BUCKET, player);
             }
-            pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 7));
+            level.setBlockAndUpdate(pos, state.setValue(LEVEL, 7));
 
-            pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.VILLAGER_WORK_LEATHERWORKER, SoundSource.BLOCKS, 1F, 1.0F, false);
-			return InteractionResult.sidedSuccess(pLevel.isClientSide());
+            level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.VILLAGER_WORK_LEATHERWORKER, SoundSource.BLOCKS, 1F, 1.0F, false);
+            return InteractionResult.CONSUME;
 
-		} else if (level == 4) {
-			addItemOrDrop(BlockInit.CHEESE.get(), pPlayer);
-			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 0));
-            pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.3F, 1.0F, false);
+		} else if (milkLevel == 4) {
+			addItemOrDrop(BlockInit.CHEESE.get(), player);
+			level.setBlockAndUpdate(pos, state.setValue(LEVEL, 0));
+            level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.3F, 1.0F, false);
 
-			return InteractionResult.sidedSuccess(pLevel.isClientSide());
-		} else if (level == 6) {
-			addItemOrDrop(BlockInit.GREY_CHEESE.get(), pPlayer);
-			pLevel.setBlockAndUpdate(pPos, pState.setValue(LEVEL, 0));
-            pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.3F, 1.0F, false);
+            return InteractionResult.CONSUME;
+		} else if (milkLevel == 6) {
+			addItemOrDrop(BlockInit.GREY_CHEESE.get(), player);
+			level.setBlockAndUpdate(pos, state.setValue(LEVEL, 0));
+            level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.3F, 1.0F, false);
 
-			return InteractionResult.sidedSuccess(pLevel.isClientSide());
+			return InteractionResult.CONSUME;
 		}
 
-		return InteractionResult.FAIL;
+		return InteractionResult.PASS;
 	}
 
 	private void addItemOrDrop(ItemLike item, Player player) {

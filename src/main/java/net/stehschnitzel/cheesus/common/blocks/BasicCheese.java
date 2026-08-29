@@ -1,8 +1,5 @@
 package net.stehschnitzel.cheesus.common.blocks;
 
-import net.minecraft.core.BlockSource;
-import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
-import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -10,10 +7,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.stehschnitzel.cheesus.init.BlockInit;
 import net.minecraft.core.BlockPos;
@@ -30,29 +25,27 @@ public class BasicCheese extends EatableCheese {
 		super(pProperties);
 	}
 
-	@Override
-	public InteractionResult use(BlockState state, Level pLevel, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    @Override
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (state.getValue(BITES) == 0 && stack.is(ItemTags.SWORDS)) {
+            level.setBlockAndUpdate(pos, BlockInit.BLUE_MOLD_CHEESE.get().defaultBlockState());
 
-		if (state.getValue(BITES) == 0 && player.getMainHandItem().is(ItemTags.SWORDS)) {
-			pLevel.setBlockAndUpdate(pos, BlockInit.BLUE_MOLD_CHEESE.get().defaultBlockState());
+            double d0 = (double)pos.getX() + 0.5D;
+            double d1 = (double)pos.getY() + 0.5D;
+            double d2 = (double)pos.getZ() + 0.5D;
 
-			double d0 = (double)pos.getX() + 0.5D;
-			double d1 = (double)pos.getY() + 0.5D;
-			double d2 = (double)pos.getZ() + 0.5D;
-
-			for (int i = 0; i < 20; i++) {
-				double r0 = pLevel.getRandom().nextDouble() * 0.6 - 0.3D;
-				double r1 = pLevel.getRandom().nextDouble() * 0.1;
-				double r2 = pLevel.getRandom().nextDouble() * 0.6 - 0.3D;
-				pLevel.addParticle(ParticleTypes.CRIT, d0 + r0, d1 + r1, d2 + r2,
-						0.0D, 0.0D, 0.0D);
-			}
-			pLevel.playLocalSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.SLIME_SQUISH, SoundSource.BLOCKS, 1.0F, 1.0F, false);
-			return InteractionResult.sidedSuccess(pLevel.isClientSide());
-		}
-
-		return super.use(state, pLevel, pos, player, handIn, hit);
-	}
+            for (int i = 0; i < 20; i++) {
+                double r0 = level.getRandom().nextDouble() * 0.6 - 0.3D;
+                double r1 = level.getRandom().nextDouble() * 0.1;
+                double r2 = level.getRandom().nextDouble() * 0.6 - 0.3D;
+                level.addParticle(ParticleTypes.CRIT, d0 + r0, d1 + r1, d2 + r2,
+                        0.0D, 0.0D, 0.0D);
+            }
+            level.playLocalSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.SLIME_SQUISH, SoundSource.BLOCKS, 1.0F, 1.0F, false);
+            return InteractionResult.SUCCESS;
+        }
+        return super.useWithoutItem(state, level, pos, player, hitResult);
+    }
 
 	@Override
 	public boolean isRandomlyTicking(BlockState pState) {
@@ -71,7 +64,7 @@ public class BasicCheese extends EatableCheese {
 		double r1 = pRandom.nextDouble() * 0.1;
 		double r2 = pRandom.nextDouble() * 0.6 - 0.3D;
 
-		if (pLevel.dimensionTypeId() == BuiltinDimensionTypes.OVERWORLD) {
+		if (pLevel.dimensionTypeRegistration() == BuiltinDimensionTypes.OVERWORLD) {
 			if (pPos.getY() > 150) {
 				pLevel.addParticle(
 						new BlockParticleOption(ParticleTypes.FALLING_DUST, Blocks.WHITE_CONCRETE.defaultBlockState()),
@@ -81,7 +74,7 @@ public class BasicCheese extends EatableCheese {
 				pLevel.addParticle(ParticleTypes.MYCELIUM, d0 + r0, d1 + r1, d2 + r2,
 						0.0D, 0.0D, 0.0D);
 			}
-		} else if (pLevel.dimensionTypeId() == BuiltinDimensionTypes.NETHER) {
+		} else if (pLevel.dimensionTypeRegistration() == BuiltinDimensionTypes.NETHER) {
 			pLevel.addParticle(ParticleTypes.FALLING_LAVA, d0 + r0, d1 + r1, d2 + r2,
 					0.0D, 0.0D, 0.0D);
 		}
@@ -89,13 +82,13 @@ public class BasicCheese extends EatableCheese {
 
 	@Override
 	public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-		if (pLevel.dimensionTypeId() == BuiltinDimensionTypes.OVERWORLD) {
+		if (pLevel.dimensionTypeRegistration() == BuiltinDimensionTypes.OVERWORLD) {
 			if (pPos.getY() > 150) {
 				pLevel.setBlockAndUpdate(pPos, BlockInit.ALTITUDE_CHEESE.get().defaultBlockState());
 			} else if (pLevel.getRawBrightness(pPos, 0) < 5) {
 				pLevel.setBlockAndUpdate(pPos, BlockInit.WHITE_MOLD_CHEESE.get().defaultBlockState());
 			}
-		} else if (pLevel.dimensionTypeId() == BuiltinDimensionTypes.NETHER) {
+		} else if (pLevel.dimensionTypeRegistration() == BuiltinDimensionTypes.NETHER) {
 			pLevel.setBlockAndUpdate(pPos, BlockInit.DIABOLICAL_CHEESE.get().defaultBlockState());
 		}
 	}
