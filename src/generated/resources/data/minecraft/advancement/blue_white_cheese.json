@@ -1,0 +1,33 @@
+{
+  "parent": "cheesus:advancement/cheese_root",
+  "criteria": {
+    "sword_click": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cheesus:blue_mold_cheese"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.husbandry.blue_moldy.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "cheesus:blue_mold_cheese"
+    },
+    "title": {
+      "translate": "advancements.husbandry.blue_moldy.title"
+    }
+  },
+  "requirements": [
+    [
+      "sword_click"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

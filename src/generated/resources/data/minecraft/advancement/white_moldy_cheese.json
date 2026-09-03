@@ -1,0 +1,33 @@
+{
+  "parent": "cheesus:advancement/cheese_root",
+  "criteria": {
+    "placed_mold_cheese_dark": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cheesus:white_mold_cheese"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.husbandry.white_moldy.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "cheesus:white_mold_cheese"
+    },
+    "title": {
+      "translate": "advancements.husbandry.white_moldy.title"
+    }
+  },
+  "requirements": [
+    [
+      "placed_mold_cheese_dark"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -36,6 +36,6 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), blockTagsProvider);
         generator.addProvider(event.includeServer(), new CheesusItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
 
-//        generator.addProvider(event.includeClient(), new CheesusAdvancementProvider(packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(event.includeClient(), new CheesusAdvancementProvider(packOutput, lookupProvider, existingFileHelper));
     }
 }

@@ -1,0 +1,44 @@
+{
+  "parent": "cheesus:advancement/cheese_root",
+  "criteria": {
+    "cheese_click": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "cheesus:cheese"
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": "#minecraft:swords"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:item_used_on_block"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.husbandry.grey_cheese.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "cheesus:grey_cheese"
+    },
+    "title": {
+      "translate": "advancements.husbandry.grey_cheese.title"
+    }
+  },
+  "requirements": [
+    [
+      "cheese_click"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
