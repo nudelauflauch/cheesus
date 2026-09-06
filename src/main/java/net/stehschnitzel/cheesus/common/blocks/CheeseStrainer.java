@@ -1,6 +1,9 @@
 package net.stehschnitzel.cheesus.common.blocks;
 
 import com.mojang.serialization.MapCodec;
+import com.sammy.minersdelight.setup.MDItems;
+import com.teamabnormals.caverns_and_chasms.core.registry.CCDataComponents;
+import com.teamabnormals.caverns_and_chasms.core.registry.CCItems;
 import net.minecraft.core.Direction;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
@@ -129,33 +132,33 @@ public class CheeseStrainer extends BaseEntityBlock {
         //has to be #contains milk otherwise it doesnt work when the mods arent loaded
 		if (milkLevel < 3 && stack.getComponents().keySet().contains("milk")) {
             if (stack.getComponents().keySet().contains("golden_milk_bucket")) {
-//                int milk_level = stack.getOrCreateTag().getInt("FluidLevel");
-//                for (int i = milk_level; i > -1; i--) {
-//                    milkLevel++;
-//                    milk_level--;
-//                    if (milkLevel > 2) break;
-//                }
-//                if (!player.isCreative()) {
-//                    if (milk_level <= -1) {
-//                        stack.shrink(1);
-//                        addItemOrDrop(CCItems.GOLDEN_BUCKET.get(), player);
-//                    } else {
-//                        stack.getOrCreateTag().putInt("FluidLevel", milk_level);
-//                    }
-//                }
-//
-//            } else if (stack.getDescriptionId().contains("milk_cup")) {
-//                if (!player.isCreative()) {
-//                    player.getMainHandItem().shrink(1);
-//                    addItemOrDrop(MDItems.COPPER_CUP, player);
-//                }
-//                milkLevel++;
-//            } else if (item.equals(Items.MILK_BUCKET)) {
-//                if (!player.isCreative()) {
-//                    player.getMainHandItem().shrink(1);
-//                    addItemOrDrop(Items.BUCKET, player);
-//                }
-//                milkLevel++;
+                int milk_level = stack.get(CCDataComponents.FLUID_LEVEL);
+                for (int i = milk_level; i > -1; i--) {
+                    milkLevel++;
+                    milk_level--;
+                    if (milkLevel > 2) break;
+                }
+                if (!player.isCreative()) {
+                    if (milk_level <= -1) {
+                        stack.shrink(1);
+                        addItemOrDrop(CCItems.GOLDEN_BUCKET.get(), player);
+                    } else {
+                        stack.set(CCDataComponents.FLUID_LEVEL, milk_level);
+                    }
+                }
+
+            } else if (stack.getDescriptionId().contains("milk_cup")) {
+                if (!player.isCreative()) {
+                    player.getMainHandItem().shrink(1);
+                    addItemOrDrop(MDItems.COPPER_CUP.get(), player);
+                }
+                milkLevel++;
+            } else if (item.equals(Items.MILK_BUCKET)) {
+                if (!player.isCreative()) {
+                    player.getMainHandItem().shrink(1);
+                    addItemOrDrop(Items.BUCKET, player);
+                }
+                milkLevel++;
             }
             level.setBlockAndUpdate(pos, state.setValue(LEVEL, milkLevel));
             level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.VILLAGER_WORK_LEATHERWORKER, SoundSource.BLOCKS, 1F, 1.0F, false);
