@@ -164,7 +164,6 @@ public class CheesusModelProvider extends BlockStateProvider {
                         modelName,
                         modLoc("block/" + parentName)
                 )
-                .texture("base", texture)
-                .texture("particle", texture);
+                .texture("texture", texture);
     }
 }

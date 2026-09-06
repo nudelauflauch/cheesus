@@ -1,7 +1,6 @@
 {
   "parent": "cheesus:block/small_cheese_3",
   "textures": {
-    "base": "cheesus:block/cheesecake",
-    "particle": "cheesus:block/cheesecake"
+    "texture": "cheesus:block/cheesecake"
   }
 }

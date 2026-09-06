@@ -1,7 +1,6 @@
 {
   "parent": "cheesus:block/normal_cheese_0",
   "textures": {
-    "base": "cheesus:block/diabolical_cheese",
-    "particle": "cheesus:block/diabolical_cheese"
+    "texture": "cheesus:block/diabolical_cheese"
   }
 }
