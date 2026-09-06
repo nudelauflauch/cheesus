@@ -1,4 +1,4 @@
-// 1.21.1	2026-08-28T22:14:41.6900492	Recipes
+// 1.21.1	2026-09-06T09:16:28.1684702	Recipes
 be87c2eba3c5119b511061629e855ba84b4dc506 data/cheesus/advancement/recipes/food/altitude_cheese_from_slice.json
 16f2cc7f924d076cbdd8cb3e5d2bda568accac1c data/cheesus/advancement/recipes/food/altitude_cheese_slice.json
 2383c527e6baffa2fd70887164c9db6c73949923 data/cheesus/advancement/recipes/food/baked_cheese_from_campfire_cooking.json
@@ -22,6 +22,8 @@ d7c17885b611c4282289fda64c1f70db5afd23e1 data/cheesus/advancement/recipes/food/g
 96710ff1a9d724ba27fb33df2f7004c8ff581476 data/cheesus/advancement/recipes/food/grey_cheese_slice.json
 82ac102ab8a4f590d877d45567946c78ae3ce2b4 data/cheesus/advancement/recipes/food/scalloped_potato.json
 9b64acc16570ccda90260457f09e6289deff31e3 data/cheesus/advancement/recipes/food/scrambled_eggs.json
+eb2ed9f62391326ec1ac7fc0fd44e063ce5dfb36 data/cheesus/advancement/recipes/food/silent_cheese_from_slice.json
+c3361beb201a9ce8d94e9212bf050f0ce47141f9 data/cheesus/advancement/recipes/food/silent_cheese_slice.json
 6e1ae7c7e0ae65fc07840e4921da4dda0200d401 data/cheesus/advancement/recipes/food/white_mold_cheese_from_slice.json
 1774de834b2dfba87cc00752b13263c46626fd81 data/cheesus/advancement/recipes/food/white_mold_cheese_slice.json
 ed3ee39c2f313cd0625282759f1e69c60ebf5117 data/cheesus/advancement/recipes/misc/cheese_cover.json
@@ -67,6 +69,9 @@ c40cdc05a46bcf6eea5e76f658e679efb532af01 data/cheesus/recipe/grey_cheese_from_sl
 cf873d073b9676db2b628620b066ff41fea7743e data/cheesus/recipe/savoury_pasta.json
 2186e8042886ec00c667eb18f9c3d8dee9445aa5 data/cheesus/recipe/scalloped_potato.json
 876f9a85322db70062d60146bffa57f3b5a69b31 data/cheesus/recipe/scrambled_eggs.json
+ae3988827757812f5d4cb4f8dd810d9889f068cb data/cheesus/recipe/silent_cheese_cutting_board.json
+01d3c4678aaeb1436b2965a2b42a7c4465dff10c data/cheesus/recipe/silent_cheese_from_slice.json
+8821a5dbcb412ea207d766ae0a0bb23f32f5d0a0 data/cheesus/recipe/silent_cheese_slice.json
 d31ae57503cadedc6a649c5fec582fa38167c707 data/cheesus/recipe/white_mold_cheese_cutting_board.json
 20bbe5b9d9324e9400dd6511aeab72a012c7dad3 data/cheesus/recipe/white_mold_cheese_from_slice.json
 65c406131ac95d1624c35c6ffcf585e412e1886b data/cheesus/recipe/white_mold_cheese_slice.json

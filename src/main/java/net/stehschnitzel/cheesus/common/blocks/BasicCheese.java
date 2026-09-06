@@ -9,6 +9,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.stehschnitzel.cheesus.init.BlockInit;
@@ -65,16 +66,21 @@ public class BasicCheese extends EatableCheese {
 		double r1 = pRandom.nextDouble() * 0.1;
 		double r2 = pRandom.nextDouble() * 0.6 - 0.3D;
 
-		if (pLevel.dimensionTypeRegistration() == BuiltinDimensionTypes.OVERWORLD) {
+		if (pLevel.dimensionTypeRegistration().getKey() == BuiltinDimensionTypes.OVERWORLD) {
 			if (pPos.getY() > 150) {
 				pLevel.addParticle(
 						new BlockParticleOption(ParticleTypes.FALLING_DUST, Blocks.WHITE_CONCRETE.defaultBlockState()),
 						d0 + r0, d1 + r1, d2 + r2,
 						0.0D, 0.0D, 0.0D);
-			} else if (pLevel.getRawBrightness(pPos, 0) < 5) {
+			} else if (pLevel.getRawBrightness(pPos, 0) < 5 &&
+                    !pLevel.getBiome(pPos).is(Biomes.DEEP_DARK)) {
 				pLevel.addParticle(ParticleTypes.MYCELIUM, d0 + r0, d1 + r1, d2 + r2,
 						0.0D, 0.0D, 0.0D);
-			}
+			} else if (pRandom.nextDouble() < 0.3 && pLevel.getBiome(pPos).is(Biomes.DEEP_DARK) &&
+                    pPos.getY() < 0 &&pLevel.getRawBrightness(pPos, 0) < 3) {
+                pLevel.addParticle(ParticleTypes.ASH, d0 + r0, d1 + r1, d2 + r2,
+                        0.0D, 0.0D, 0.0D);
+            }
 		} else if (pLevel.dimensionTypeRegistration() == BuiltinDimensionTypes.NETHER) {
 			pLevel.addParticle(ParticleTypes.FALLING_LAVA, d0 + r0, d1 + r1, d2 + r2,
 					0.0D, 0.0D, 0.0D);
@@ -83,12 +89,16 @@ public class BasicCheese extends EatableCheese {
 
 	@Override
 	public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-		if (pLevel.dimensionTypeRegistration() == BuiltinDimensionTypes.OVERWORLD) {
+		if (pLevel.dimensionTypeRegistration().getKey() == BuiltinDimensionTypes.OVERWORLD) {
 			if (pPos.getY() > 150) {
 				pLevel.setBlockAndUpdate(pPos, BlockInit.ALTITUDE_CHEESE.get().defaultBlockState());
-			} else if (pLevel.getRawBrightness(pPos, 0) < 5) {
+			} else if (pLevel.getRawBrightness(pPos, 0) < 5 &&
+                !pLevel.getBiome(pPos).is(Biomes.DEEP_DARK)) {
 				pLevel.setBlockAndUpdate(pPos, BlockInit.WHITE_MOLD_CHEESE.get().defaultBlockState());
-			}
+			} else if (pLevel.getBiome(pPos).is(Biomes.DEEP_DARK) &&
+                pPos.getY() < 0 &&pLevel.getRawBrightness(pPos, 0) < 3) {
+                pLevel.setBlockAndUpdate(pPos, BlockInit.SILENT_CHEESE.get().defaultBlockState());
+            }
 		} else if (pLevel.dimensionTypeRegistration() == BuiltinDimensionTypes.NETHER) {
 			pLevel.setBlockAndUpdate(pPos, BlockInit.DIABOLICAL_CHEESE.get().defaultBlockState());
 		}

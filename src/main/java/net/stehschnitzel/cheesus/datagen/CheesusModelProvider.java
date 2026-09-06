@@ -40,6 +40,7 @@ public class CheesusModelProvider extends BlockStateProvider {
         // Small cheese blocks
         smallCheeseBuilder(BlockInit.GREY_CHEESE);
         smallCheeseBuilder(BlockInit.WHITE_MOLD_CHEESE);
+        smallCheeseBuilder(BlockInit.SILENT_CHEESE);
         smallCheeseBuilder(BlockInit.CHEESECAKE);
 
 
@@ -50,6 +51,7 @@ public class CheesusModelProvider extends BlockStateProvider {
         generateSimpleItem(ItemInit.DIABOLICAL_CHEESE_SLICE);
         generateSimpleItem(ItemInit.GREY_CHEESE_SLICE);
         generateSimpleItem(ItemInit.WHITE_MOLD_CHEESE_SLICE);
+        generateSimpleItem(ItemInit.SILENT_CHEESE_SLICE);
         generateSimpleItem(ItemInit.CHEESECAKE_SLICE);
 
         generateSimpleItem(ItemInit.BAKED_CHEESE);

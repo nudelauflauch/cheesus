@@ -42,6 +42,9 @@ public class BlockInit {
 	public static final DeferredBlock<EatableCheese> WHITE_MOLD_CHEESE = registerBlockWItem("white_mold_cheese", () -> new SmallCheese(
 			BlockBehaviour.Properties.ofFullCopy(CHEESE.get()), MobEffects.REGENERATION));
 
+    public static final DeferredBlock<EatableCheese> SILENT_CHEESE = registerBlockWItem("silent_cheese", () -> new SmallCheese(
+            BlockBehaviour.Properties.ofFullCopy(CHEESE.get()), CheesusEffectInit.SILENT_EFFECT));
+
 	public static final DeferredBlock<Block> CHEESECAKE = registerBlockWItem("cheesecake", () -> new SmallCheese(
 			BlockBehaviour.Properties.ofFullCopy(CHEESE.get())));
 

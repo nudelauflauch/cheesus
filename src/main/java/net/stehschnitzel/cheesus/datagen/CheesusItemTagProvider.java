@@ -27,7 +27,8 @@ public class CheesusItemTagProvider extends ItemTagsProvider {
                 .add(BlockInit.BLUE_MOLD_CHEESE.get().asItem())
                 .add(BlockInit.DIABOLICAL_CHEESE.get().asItem())
                 .add(BlockInit.GREY_CHEESE.get().asItem())
-                .add(BlockInit.WHITE_MOLD_CHEESE.get().asItem());
+                .add(BlockInit.WHITE_MOLD_CHEESE.get().asItem())
+                .add(BlockInit.SILENT_CHEESE.get().asItem());
 
         tag(CheesusTags.Items.CHEESE_SLICE)
                 .add(ItemInit.CHEESE_SLICE.get().asItem())
@@ -35,6 +36,7 @@ public class CheesusItemTagProvider extends ItemTagsProvider {
                 .add(ItemInit.BLUE_MOLD_CHEESE_SLICE.get().asItem())
                 .add(ItemInit.DIABOLICAL_CHEESE_SLICE.get().asItem())
                 .add(ItemInit.GREY_CHEESE_SLICE.get().asItem())
-                .add(ItemInit.WHITE_MOLD_CHEESE_SLICE.get().asItem());
+                .add(ItemInit.WHITE_MOLD_CHEESE_SLICE.get().asItem())
+                .add(ItemInit.SILENT_CHEESE_SLICE.get().asItem());
     }
 }

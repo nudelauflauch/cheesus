@@ -56,6 +56,7 @@ public class CheesusItemTabInit {
 		DispenserBlock.registerBehavior(BlockInit.DIABOLICAL_CHEESE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
 		DispenserBlock.registerBehavior(BlockInit.GREY_CHEESE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
 		DispenserBlock.registerBehavior(BlockInit.WHITE_MOLD_CHEESE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
+		DispenserBlock.registerBehavior(BlockInit.SILENT_CHEESE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
 		DispenserBlock.registerBehavior(BlockInit.CHEESECAKE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
 	}
 
@@ -66,6 +67,7 @@ public class CheesusItemTabInit {
 		items.accept(BlockInit.DIABOLICAL_CHEESE.get());
 		items.accept(BlockInit.GREY_CHEESE.get());
 		items.accept(BlockInit.WHITE_MOLD_CHEESE.get());
+		items.accept(BlockInit.SILENT_CHEESE.get());
 	}
 
 	private static void registerCheesePieces(CreativeModeTab.Output items) {
@@ -75,6 +77,7 @@ public class CheesusItemTabInit {
 		items.accept(ItemInit.DIABOLICAL_CHEESE_SLICE.get());
 		items.accept(ItemInit.GREY_CHEESE_SLICE.get());
 		items.accept(ItemInit.WHITE_MOLD_CHEESE_SLICE.get());
+		items.accept(ItemInit.SILENT_CHEESE_SLICE.get());
 		items.accept(ItemInit.CHEESECAKE_SLICE.get());
 	}
 

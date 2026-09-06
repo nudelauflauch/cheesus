@@ -1,10 +1,11 @@
-// 1.21.1	2026-09-05T19:18:10.8070439	Block States: cheesus
+// 1.21.1	2026-09-06T09:16:28.1614684	Block States: cheesus
 a323c9fea2c42ff4cf00f0cf771b2deb3e09cf64 assets/cheesus/blockstates/altitude_cheese.json
 85136ae3209f93ed8a784a6c6abf0272a3de3c31 assets/cheesus/blockstates/blue_mold_cheese.json
 5b7a40833dafcb6945049acbf41f33aa8d8faee3 assets/cheesus/blockstates/cheese.json
 9b9ada1f45bacb89f4a3111f08be122ac8635ca8 assets/cheesus/blockstates/cheesecake.json
 364b8c07ff35e55a07947b68235dffe195e890c3 assets/cheesus/blockstates/diabolical_cheese.json
 b1377b305195034396d80069627ed2cb0d08a108 assets/cheesus/blockstates/grey_cheese.json
+8a9d85ff34932fe803e38a5a6e0522e8b408bbef assets/cheesus/blockstates/silent_cheese.json
 e495ef46c5830c6cea114e163531f0b3c4e3c586 assets/cheesus/blockstates/white_mold_cheese.json
 322b4acee0621e0cab17ec75fe5bb8ee30052965 assets/cheesus/models/block/altitude_cheese_0.json
 25fffdef6d6b62deddd701dcc81fe82481a3d786 assets/cheesus/models/block/altitude_cheese_1.json
@@ -30,6 +31,10 @@ d665264fd0227934cc973ad199fe08e6b4f9b634 assets/cheesus/models/block/grey_cheese
 417095d0272851a2341cd4af7f6bda5a5e449c72 assets/cheesus/models/block/grey_cheese_1.json
 fb0d6808c44af20480cd098f67758dd896cdecac assets/cheesus/models/block/grey_cheese_2.json
 fe6ed8a488e257220624906d5e62843b3b2711e0 assets/cheesus/models/block/grey_cheese_3.json
+958c597f6fb186e5e92b5ab9b4b98ea7b289e7da assets/cheesus/models/block/silent_cheese_0.json
+333d8e7b57eb77770d81d04414e4aef189d20ce4 assets/cheesus/models/block/silent_cheese_1.json
+36a8911c37b82e8c084f453e67f1b31edd09e89f assets/cheesus/models/block/silent_cheese_2.json
+8d90a888c28dad08068bee64e1ee07ad1e6f37f0 assets/cheesus/models/block/silent_cheese_3.json
 b8596a302b228429b24cd51adac77c2956c2a1be assets/cheesus/models/block/white_mold_cheese_0.json
 70f296caf496a17e2814aa61c3a7f995225c9bd6 assets/cheesus/models/block/white_mold_cheese_1.json
 72d1d06f23cd1c445a3ca216172e89de3ef78c3d assets/cheesus/models/block/white_mold_cheese_2.json
@@ -58,5 +63,7 @@ dde68f984125a195fcf75a5b38d74ad9023d32ff assets/cheesus/models/item/diabolical_c
 83145bb64772bbae3de2f13646ed8479b04d9574 assets/cheesus/models/item/savoury_pasta.json
 ee445ee3f3c8ce6574be11928db7958329cd1bfd assets/cheesus/models/item/scalloped_potato.json
 f8fc7e9bb1fcdd4726a97098e6dfd868d67fa8a5 assets/cheesus/models/item/scrambled_eggs.json
+bbaa17e51fe3efa39726299124aee2d2acb85902 assets/cheesus/models/item/silent_cheese.json
+51e5a7e2a7d7cf2b1f92ae2f8b1d689cd72dccb6 assets/cheesus/models/item/silent_cheese_slice.json
 21ee81192188035af3197921f3830d0445ddb27e assets/cheesus/models/item/white_mold_cheese.json
 ef66daab7939ecf4992af8dfad81f843ef7d3264 assets/cheesus/models/item/white_mold_cheese_slice.json

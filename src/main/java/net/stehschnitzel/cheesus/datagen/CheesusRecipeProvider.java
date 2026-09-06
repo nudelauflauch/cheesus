@@ -38,6 +38,7 @@ public class CheesusRecipeProvider extends RecipeProvider implements IConditionB
         cheeseRecipe(BlockInit.DIABOLICAL_CHEESE.get(), ItemInit.DIABOLICAL_CHEESE_SLICE.get(), recipeOutput);
         cheeseRecipe(BlockInit.GREY_CHEESE.get(), ItemInit.GREY_CHEESE_SLICE.get(), recipeOutput);
         cheeseRecipe(BlockInit.WHITE_MOLD_CHEESE.get(), ItemInit.WHITE_MOLD_CHEESE_SLICE.get(), recipeOutput);
+        cheeseRecipe(BlockInit.SILENT_CHEESE.get(), ItemInit.SILENT_CHEESE_SLICE.get(), recipeOutput);
         cheeseRecipe(BlockInit.CHEESECAKE.get(), ItemInit.CHEESECAKE_SLICE.get(), recipeOutput);
 
         //with farmers delight

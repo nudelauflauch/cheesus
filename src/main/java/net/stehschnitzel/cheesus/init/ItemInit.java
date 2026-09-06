@@ -57,6 +57,12 @@ public class ItemInit {
                             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 200, 0), 1.0F)
                             .build())));
 
+    public static final DeferredItem<Item> SILENT_CHEESE_SLICE = ITEMS.register("silent_cheese_slice",
+            () -> new Item(new Item.Properties()
+                    .food(new FoodProperties.Builder().nutrition(3).saturationModifier(1.0F)
+                            .effect(() -> new MobEffectInstance(CheesusEffectInit.SILENT_EFFECT, 200, 0), 1.0F)
+                            .build())));
+
     public static final DeferredItem<Item> CHEESECAKE_SLICE = ITEMS.register("cheesecake_slice",
             () -> new Item(new Item.Properties()
                     .food(new FoodProperties.Builder().nutrition(3).saturationModifier(1.0F)

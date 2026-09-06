@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "cheesus:silent_cheese"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "cheesus:silent_cheese_slice"
+  }
+}
