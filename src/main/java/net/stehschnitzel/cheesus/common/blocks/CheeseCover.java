@@ -69,11 +69,22 @@ public class CheeseCover extends BaseEntityBlock {
             if (player.isCrouching()) {
                 cheeseCoverBlockEntity.increaseRotationDeg();
                 return ItemInteractionResult.SUCCESS;
-            } else if (cheeseCoverBlockEntity.inventory.getStackInSlot(0).isEmpty()) {
-                cheeseCoverBlockEntity.inventory.setStackInSlot(0, stack.copy());
+            } else if (!cheeseCoverBlockEntity.inventory.getStackInSlot(0).isEmpty()
+                    && player.getHandSlots().iterator().next().isEmpty()) {
+                ItemStack stackOnCheeseCover = cheeseCoverBlockEntity.inventory.extractItem(0, 1, false);
+                if (player.addItem(stackOnCheeseCover)) {
+                    player.drop(stackOnCheeseCover, false);
+                }
+                cheeseCoverBlockEntity.drops();
+                cheeseCoverBlockEntity.clearContents();
+                level.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.5f, 1f);
+                return ItemInteractionResult.SUCCESS;
+            } else if (cheeseCoverBlockEntity.inventory.getStackInSlot(0).isEmpty()
+                    && !player.getHandSlots().iterator().next().isEmpty()) {
+                cheeseCoverBlockEntity.inventory.setStackInSlot(0, new ItemStack(stack.getItem(), 1));
                 stack.shrink(1);
-                level.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1f, 2f);
-
+                level.playSound(player, pos, SoundEvents.DISPENSER_DISPENSE, SoundSource.BLOCKS, 0.5f, 2f);
+                return ItemInteractionResult.SUCCESS;
             }
         }
         return ItemInteractionResult.FAIL;
@@ -86,16 +97,16 @@ public class CheeseCover extends BaseEntityBlock {
                 cheeseCoverBlockEntity.increaseRotationDeg();
                 return InteractionResult.SUCCESS;
             } else if (!cheeseCoverBlockEntity.inventory.getStackInSlot(0).isEmpty()) {
-//				ItemStack stackOnCheeseCover = cheeseCoverBlockEntity.inventory.extractItem(0, 1, false);
-//				if (pPlayer.addItem(stackOnCheeseCover)) {
-//					pPlayer.drop(stackOnCheeseCover, false);
-//				}
+                ItemStack stackOnCheeseCover = cheeseCoverBlockEntity.inventory.extractItem(0, 1, false);
+                if (player.addItem(stackOnCheeseCover)) {
+                    player.drop(stackOnCheeseCover, false);
+                }
                 cheeseCoverBlockEntity.drops();
                 cheeseCoverBlockEntity.clearContents();
-                level.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1f, 1f);
-                return InteractionResult.CONSUME;
+                level.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.5f, 1f);
+                return InteractionResult.SUCCESS;
             }
         }
-        return InteractionResult.PASS;
+        return InteractionResult.FAIL;
     }
 }
