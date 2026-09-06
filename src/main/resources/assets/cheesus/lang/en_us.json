@@ -31,6 +31,8 @@
 	"item.cheesus.gourmet_cheese": "Gourmet Cheese",
 	"item.cheesus.lasagna": "Lasagna",
 
+	"effect.cheesus.silent": "Silent",
+
 	"itemGroup.cheesus_tab":"Cheesus",
 
 	"advancements.husbandry.cheese_root.title": "Acquire cheese",

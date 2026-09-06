@@ -31,7 +31,8 @@ public class Cheesus {
 		BlockEntityInit.register(bus);
 		CheesusItemTabInit.register(bus);
 		CheesusCriteriaInit.register(bus);
-    
+		CheesusEffectInit.register(bus);
+
 	}
 
 	private void setup(final FMLClientSetupEvent event) {
