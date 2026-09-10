@@ -130,9 +130,9 @@ public class CheeseStrainer extends BaseEntityBlock {
 
         //add milk to the strainer from milk buckets, golden milk buckets and milk cup
         //has to be #contains milk otherwise it doesnt work when the mods arent loaded
-		if (milkLevel < 3 && stack.getComponents().keySet().contains("milk")) {
-            if (stack.getComponents().keySet().contains("golden_milk_bucket")) {
-                int milk_level = stack.get(CCDataComponents.FLUID_LEVEL);
+		if (milkLevel < 3 && stack.getItem().toString().contains("milk")) {
+            if (stack.getItem().toString().contains("golden_milk_bucket")) {
+                int milk_level = stack.getOrDefault(CCDataComponents.FLUID_LEVEL, 0);
                 for (int i = milk_level; i > -1; i--) {
                     milkLevel++;
                     milk_level--;

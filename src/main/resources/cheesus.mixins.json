@@ -6,7 +6,13 @@
 	"mixins": [
 		"VibrationMixin",
         "SculkSensorMixin",
-        "SculkShriekerBlockMixin"
+        "SculkShriekerBlockMixin",
+        "ClientLevelSoundMuterMixin",
+
+        "BlockMixin",
+        "LevelRendererMixin",
+        "BlockItemMixin",
+        "MultiPlayerGameModeMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

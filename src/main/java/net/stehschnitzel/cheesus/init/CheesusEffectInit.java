@@ -15,7 +15,7 @@ public class CheesusEffectInit {
             DeferredRegister.create(BuiltInRegistries.MOB_EFFECT, Cheesus.MOD_ID);
 
     public static final Holder<MobEffect> SILENT_EFFECT = MOB_EFFECT.register("silent",
-            () -> new SilentEffect(MobEffectCategory.BENEFICIAL, 0xfffff));
+            () -> new SilentEffect(MobEffectCategory.BENEFICIAL, 0x009295));
 
     public static void register(IEventBus bus) {
         MOB_EFFECT.register(bus);

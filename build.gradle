@@ -50,6 +50,9 @@ neoForge {
             client()
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            programArguments = [
+                    "--username", "dev"
+            ]
         }
 
         server {
@@ -112,6 +115,10 @@ dependencies {
     implementation "curse.maven:farmers-delight-398521:8083481"
     implementation "curse.maven:caverns-and-chasms-438005:8155745"
     implementation "curse.maven:miners-delight-689630:8011049"
+
+    //helpers
+    implementation "curse.maven:lodestone-616457:7264731"
+    implementation "curse.maven:blueprint-382216:8819375"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
