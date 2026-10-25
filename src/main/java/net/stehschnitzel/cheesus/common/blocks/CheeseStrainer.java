@@ -41,6 +41,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class CheeseStrainer extends BaseEntityBlock {
 
+	public static final MapCodec<CheeseStrainer> CODEC = simpleCodec(CheeseStrainer::new);
 	public static final IntegerProperty LEVEL = IntegerProperty.create("level",
 			0, 11);
 
@@ -97,7 +98,7 @@ public class CheeseStrainer extends BaseEntityBlock {
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
-        return null;
+        return CODEC;
     }
 
     @Override
