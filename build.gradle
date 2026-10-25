@@ -26,6 +26,10 @@ repositories {
     maven {
         url = "https://www.cursemaven.com"
     }
+    maven {
+        // JEI
+        url = "https://maven.blamejared.com/"
+    }
 }
 
 base {
@@ -115,6 +119,11 @@ dependencies {
     implementation "curse.maven:farmers-delight-398521:8083481"
     implementation "curse.maven:caverns-and-chasms-438005:8155745"
     implementation "curse.maven:miners-delight-689630:8011049"
+
+    // JEI: compile against the API only, run the full mod in dev
+    compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
+    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
+    localRuntime "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
 
     //helpers
     implementation "curse.maven:lodestone-616457:7264731"
