@@ -61,5 +61,16 @@
 
 	"jei.cheesus.category.straining": "Cheese Straining",
 	"jei.cheesus.straining.collect": "Use the strainer to collect the result",
-	"jei.cheesus.straining.time": "Curdles slowly over time"
+	"jei.cheesus.straining.time": "Curdles slowly over time",
+
+	"jei.cheesus.category.ripening": "Cheese Ripening",
+	"jei.cheesus.ripening.place": "Place a whole wheel of Cheese here",
+	"jei.cheesus.ripening.time": "Ripens slowly over time",
+	"jei.cheesus.ripening.altitude": "Overworld, above Y 150",
+	"jei.cheesus.ripening.white_mold": "Overworld, light level 4 or lower",
+	"jei.cheesus.ripening.white_mold.biome": "not in the Deep Dark",
+	"jei.cheesus.ripening.silent": "Deep Dark, below Y 0",
+	"jei.cheesus.ripening.silent.light": "light level 2 or lower",
+	"jei.cheesus.ripening.diabolical": "In the Nether",
+	"jei.cheesus.ripening.blue_mold": "Use a sword on a whole wheel"
 }

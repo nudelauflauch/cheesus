@@ -11,6 +11,8 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.data.ModelData;
 
+import java.util.List;
+
 //renders a block state the same way block items are drawn in inventories, just at any size
 public class BlockStateDrawable implements IDrawable {
 
@@ -38,20 +40,31 @@ public class BlockStateDrawable implements IDrawable {
     }
 
     public static void draw(GuiGraphics guiGraphics, BlockState state, int x, int y, int size) {
+        drawColumn(guiGraphics, List.of(state), x, y, size);
+    }
+
+    //draws the states stacked on top of each other (first one at the bottom), scaled down so the column fits into size
+    public static void drawColumn(GuiGraphics guiGraphics, List<BlockState> column, int x, int y, int size) {
+        //on screen a rotated block is cos(30) high per block plus sin(30) * sqrt(2) for the top face
+        float blockScale = 0.625F * 1.573F / (0.866F * column.size() + 0.707F);
+
         PoseStack pose = guiGraphics.pose();
         pose.pushPose();
         pose.translate(x + size / 2F, y + size / 2F, 100);
         pose.scale(size, -size, size);
 
-        //same rotation and scale as the vanilla block item gui transform
+        //same rotation as the vanilla block item gui transform
         pose.mulPose(Axis.XP.rotationDegrees(30));
         pose.mulPose(Axis.YP.rotationDegrees(225));
-        pose.scale(0.625F, 0.625F, 0.625F);
-        pose.translate(-0.5F, -0.5F, -0.5F);
+        pose.scale(blockScale, blockScale, blockScale);
+        pose.translate(-0.5F, -column.size() / 2F, -0.5F);
 
         Lighting.setupFor3DItems();
-        Minecraft.getInstance().getBlockRenderer().renderSingleBlock(state, pose, guiGraphics.bufferSource(),
-                LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, null);
+        for (BlockState state : column) {
+            Minecraft.getInstance().getBlockRenderer().renderSingleBlock(state, pose, guiGraphics.bufferSource(),
+                    LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, null);
+            pose.translate(0, 1, 0);
+        }
         guiGraphics.flush();
         pose.popPose();
     }
