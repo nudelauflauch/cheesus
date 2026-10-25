@@ -33,10 +33,15 @@ public abstract class ClientLevelSoundMuterMixin {
 
     @Inject(method = "playSound", at = @At("HEAD"), cancellable = true)
     private void muteSoundDefault(double x, double y, double z, SoundEvent soundEvent, SoundSource source, float volume, float pitch, boolean distanceDelay, long seed, CallbackInfo ci) {
-        if (this.minecraft.player.hasEffect(CheesusEffectInit.SILENT_EFFECT) &&
+        Player localPlayer = this.minecraft.player;
+        if (localPlayer == null) {
+            return;
+        }
+
+        if (localPlayer.hasEffect(CheesusEffectInit.SILENT_EFFECT) &&
                 source.equals(SoundSource.PLAYERS)) {
             ci.cancel();
-        } else if (this.minecraft.player.hasEffect(CheesusEffectInit.SILENT_EFFECT) &&
+        } else if (localPlayer.hasEffect(CheesusEffectInit.SILENT_EFFECT) &&
                 (soundEvent.equals(SoundEvents.PLAYER_BURP)
                 || soundEvent.equals(SoundEvents.AMBIENT_UNDERWATER_ENTER)
                 || soundEvent.equals(SoundEvents.AMBIENT_UNDERWATER_EXIT))) {
@@ -65,7 +70,7 @@ public abstract class ClientLevelSoundMuterMixin {
 
     @Inject(method = "playSeededSound(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Holder;Lnet/minecraft/sounds/SoundSource;FFJ)V", at = @At("HEAD"), cancellable = true)
     private void muteSeededSound(Player player, Entity entity, Holder<SoundEvent> sound, SoundSource category, float volume, float pitch, long seed, CallbackInfo ci) {
-        if (player.hasEffect(CheesusEffectInit.SILENT_EFFECT) &&
+        if (player != null && player.hasEffect(CheesusEffectInit.SILENT_EFFECT) &&
                 category.equals(SoundSource.PLAYERS)) {
             ci.cancel();
         }
