@@ -57,5 +57,9 @@
 
 	"jei.cheesus.info.cheese_strainer": "Pour up to three buckets of milk into the Cheese Strainer and give it time: the milk slowly curdles into a wheel of Cheese, which you collect by using the strainer.\n\nPut a wheel of Cheese back in to strain it again into Grey Cheese. An empty bucket takes milk back out, and a Water Bucket rinses the strainer.\n\nDispensers can fill it, and comparators read how full it is.",
 	"jei.cheesus.info.cheese_cover": "Use an item on the Cheese Cover to put it on display, and use it with an empty hand to take it back. Sneak and use the cover to rotate whatever is under it.",
-	"jei.cheesus.info.cheese": "A whole wheel of Cheese ripens depending on where it is placed: high up in the mountains, in the dark, deep in the Deep Dark or in the Nether. Stabbing it with a sword grows blue mold.\n\nPlaced cheese can be eaten bite by bite, and dispensers can place it."
+	"jei.cheesus.info.cheese": "A whole wheel of Cheese ripens depending on where it is placed: high up in the mountains, in the dark, deep in the Deep Dark or in the Nether. Stabbing it with a sword grows blue mold.\n\nPlaced cheese can be eaten bite by bite, and dispensers can place it.",
+
+	"jei.cheesus.category.straining": "Cheese Straining",
+	"jei.cheesus.straining.collect": "Use the strainer to collect the result",
+	"jei.cheesus.straining.time": "Curdles slowly over time"
 }

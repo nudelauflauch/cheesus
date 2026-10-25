@@ -2,6 +2,8 @@ package net.stehschnitzel.cheesus.compat.jei;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.registration.IRecipeCatalystRegistration;
+import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -22,10 +24,22 @@ public class CheesusJeiPlugin implements IModPlugin {
     }
 
     @Override
+    public void registerCategories(IRecipeCategoryRegistration registration) {
+        registration.addRecipeCategories(new StrainingCategory(registration.getJeiHelpers().getGuiHelper()));
+    }
+
+    @Override
     public void registerRecipes(IRecipeRegistration registration) {
+        registration.addRecipes(StrainingCategory.TYPE, StrainingRecipe.all());
+
         addInfo(registration, BlockInit.CHEESE_STRAINER.get(), "cheese_strainer");
         addInfo(registration, ItemInit.CHEESE_COVER.get(), "cheese_cover");
         addInfo(registration, BlockInit.CHEESE.get(), "cheese");
+    }
+
+    @Override
+    public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
+        registration.addRecipeCatalysts(StrainingCategory.TYPE, BlockInit.CHEESE_STRAINER.get());
     }
 
     private static void addInfo(IRecipeRegistration registration, ItemLike item, String key) {
