@@ -149,13 +149,13 @@ public class CheeseStrainer extends BaseEntityBlock {
 
             } else if (stack.getDescriptionId().contains("milk_cup")) {
                 if (!player.isCreative()) {
-                    player.getMainHandItem().shrink(1);
+                    stack.shrink(1);
                     addItemOrDrop(MDItems.COPPER_CUP.get(), player);
                 }
                 milkLevel++;
             } else if (item.equals(Items.MILK_BUCKET)) {
                 if (!player.isCreative()) {
-                    player.getMainHandItem().shrink(1);
+                    stack.shrink(1);
                     addItemOrDrop(Items.BUCKET, player);
                 }
                 milkLevel++;
