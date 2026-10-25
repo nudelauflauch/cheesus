@@ -1,10 +1,12 @@
 package net.stehschnitzel.cheesus.init;
 
+import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -37,20 +39,15 @@ public class CheesusItemTabInit {
 		 registerCheese(items);
 		 registerCheesePieces(items);
 		 registerFood(items);
-
-
-		 registerDispensable();
 	}
 
 
-	//TODO has to be registered here because if i would register it normaly CHEESE would be none
-	// because it gets called to early so idk how to fix it and make it look good
+	//called from FMLCommonSetupEvent so the blocks are already registered
 	public static void registerDispensable() {
 		DispenserBlock.registerBehavior(BlockInit.CHEESE_STRAINER.get(), CheeseStrainer.DISPENSE_CHEESE_STRAINER_BEHAVIOR);
-		DispenserBlock.registerBehavior(Items.MILK_BUCKET, CheeseStrainer.DISPENSE_INTO_CHEESE_STRAINER_BEHAVIOR);
-		DispenserBlock.registerBehavior(Items.WATER_BUCKET, CheeseStrainer.DISPENSE_INTO_CHEESE_STRAINER_BEHAVIOR);
-		DispenserBlock.registerBehavior(BlockInit.CHEESE.get(), CheeseStrainer.DISPENSE_INTO_CHEESE_STRAINER_BEHAVIOR);
-		DispenserBlock.registerBehavior(BlockInit.CHEESE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
+		registerDispenseIntoCheeseStrainer(Items.MILK_BUCKET, DispenserBlock.DISPENSER_REGISTRY.get(Items.MILK_BUCKET));
+		registerDispenseIntoCheeseStrainer(Items.WATER_BUCKET, DispenserBlock.DISPENSER_REGISTRY.get(Items.WATER_BUCKET));
+		registerDispenseIntoCheeseStrainer(BlockInit.CHEESE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
 		DispenserBlock.registerBehavior(BlockInit.ALTITUDE_CHEESE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
 		DispenserBlock.registerBehavior(BlockInit.BLUE_MOLD_CHEESE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
 		DispenserBlock.registerBehavior(BlockInit.DIABOLICAL_CHEESE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
@@ -58,6 +55,10 @@ public class CheesusItemTabInit {
 		DispenserBlock.registerBehavior(BlockInit.WHITE_MOLD_CHEESE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
 		DispenserBlock.registerBehavior(BlockInit.SILENT_CHEESE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
 		DispenserBlock.registerBehavior(BlockInit.CHEESECAKE.get(), EatableCheese.DISPENSE_CHEESE_BEHAVIOR);
+	}
+
+	private static void registerDispenseIntoCheeseStrainer(ItemLike item, DispenseItemBehavior fallback) {
+		DispenserBlock.registerBehavior(item, CheeseStrainer.dispenseIntoCheeseStrainer(fallback));
 	}
 
 	private static void registerCheese(CreativeModeTab.Output items) {
