@@ -17,9 +17,6 @@ import org.spongepowered.asm.mixin.injection.At;
 public class MultiPlayerGameModeMixin {
 
     @Shadow
-    private GameType localPlayerMode;
-
-    @Shadow
     @Final
     private Minecraft minecraft;
 

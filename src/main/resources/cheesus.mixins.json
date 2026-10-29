@@ -1,20 +1,21 @@
 {
-	"minVersion": "0.8",
-	"required": true,
-	"package": "net.stehschnitzel.cheesus.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"VibrationMixin",
-        "SculkSensorMixin",
-        "SculkShriekerBlockMixin",
-        "ClientLevelSoundMuterMixin",
+  "minVersion": "0.8",
+  "required": true,
+  "package": "net.stehschnitzel.cheesus.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "VibrationMixin",
+    "ChannelAccessor",
+    "SculkSensorMixin",
+    "SculkShriekerBlockMixin",
+    "SoundEngineMixin",
+    "VibrationMixin"
 
-        "BlockMixin",
-        "LevelRendererMixin",
-        "BlockItemMixin",
-        "MultiPlayerGameModeMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	}
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+
+  ]
 }

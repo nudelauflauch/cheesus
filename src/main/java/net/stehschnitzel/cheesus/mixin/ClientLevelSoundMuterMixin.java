@@ -41,9 +41,6 @@ public abstract class ClientLevelSoundMuterMixin {
                 || soundEvent.equals(SoundEvents.AMBIENT_UNDERWATER_ENTER)
                 || soundEvent.equals(SoundEvents.AMBIENT_UNDERWATER_EXIT))) {
             ci.cancel();
-        } else {
-            System.out.println(soundEvent);
-            System.out.println(source);
         }
     }
 
