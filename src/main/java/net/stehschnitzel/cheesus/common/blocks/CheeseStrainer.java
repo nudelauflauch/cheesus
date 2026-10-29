@@ -41,6 +41,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class CheeseStrainer extends BaseEntityBlock {
 
+	public static final MapCodec<CheeseStrainer> CODEC = simpleCodec(CheeseStrainer::new);
 	public static final IntegerProperty LEVEL = IntegerProperty.create("level",
 			0, 11);
 
@@ -48,43 +49,48 @@ public class CheeseStrainer extends BaseEntityBlock {
 		private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
 		protected ItemStack execute(BlockSource source, ItemStack stack) {
-			if (stack.getItem() != BlockInit.CHEESE_STRAINER.get().asItem()) return defaultDispenseItemBehavior.dispense(source, stack);
-
 			ServerLevel level = source.level();
 			BlockPos blockpos = source.pos().relative(source.state().getValue(DispenserBlock.FACING));
 
-			level.setBlockAndUpdate(blockpos, BlockInit.CHEESE_STRAINER.get().defaultBlockState());
-			return ItemStack.EMPTY;
-		}
-	};
-
-	public static final DispenseItemBehavior DISPENSE_INTO_CHEESE_STRAINER_BEHAVIOR = new DefaultDispenseItemBehavior() {
-		private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
-
-		protected ItemStack execute(BlockSource source, ItemStack stack) {
-            ServerLevel level = source.level();
-            BlockPos blockpos = source.pos().relative(source.state().getValue(DispenserBlock.FACING));
-
-			if (level.getBlockState(blockpos).is(BlockInit.CHEESE_STRAINER.get())) {
-                BlockState state = level.getBlockState(blockpos);
-
-				if (stack.getItem() == Items.WATER_BUCKET && state.getValue(LEVEL) == 0) {
-					source.level().setBlockAndUpdate(blockpos, state.setValue(LEVEL, 7));
-
-					return new ItemStack(Items.BUCKET);
-				} else if (stack.getItem() == Items.MILK_BUCKET && state.getValue(LEVEL) < 3) {
-					source.level().setBlockAndUpdate(blockpos, state.setValue(LEVEL, state.getValue(LEVEL) + 1));
-
-					return new ItemStack(Items.BUCKET);
-				} else if (stack.getItem() == BlockInit.CHEESE.get().asItem() && state.getValue(LEVEL) == 0) {
-					source.level().setBlockAndUpdate(blockpos, state.setValue(LEVEL, 5));
-
-					return ItemStack.EMPTY;
-				}
+			if (stack.getItem() != BlockInit.CHEESE_STRAINER.get().asItem() || !level.getBlockState(blockpos).isAir()) {
+				return defaultDispenseItemBehavior.dispense(source, stack);
 			}
-			return defaultDispenseItemBehavior.dispense(source,stack);
+
+			level.setBlockAndUpdate(blockpos, BlockInit.CHEESE_STRAINER.get().defaultBlockState());
+			stack.shrink(1);
+			return stack;
 		}
 	};
+
+	//falls back to whatever behavior the item had before, so e.g. water buckets still place water
+	public static DispenseItemBehavior dispenseIntoCheeseStrainer(DispenseItemBehavior fallback) {
+		return new DefaultDispenseItemBehavior() {
+			protected ItemStack execute(BlockSource source, ItemStack stack) {
+				ServerLevel level = source.level();
+				BlockPos blockpos = source.pos().relative(source.state().getValue(DispenserBlock.FACING));
+
+				if (level.getBlockState(blockpos).is(BlockInit.CHEESE_STRAINER.get())) {
+					BlockState state = level.getBlockState(blockpos);
+
+					if (stack.getItem() == Items.WATER_BUCKET && (state.getValue(LEVEL) == 0 || state.getValue(LEVEL) >= 7)) {
+						level.setBlockAndUpdate(blockpos, state.setValue(LEVEL, 7));
+
+						return new ItemStack(Items.BUCKET);
+					} else if (stack.getItem() == Items.MILK_BUCKET && state.getValue(LEVEL) < 3) {
+						level.setBlockAndUpdate(blockpos, state.setValue(LEVEL, state.getValue(LEVEL) + 1));
+
+						return new ItemStack(Items.BUCKET);
+					} else if (stack.getItem() == BlockInit.CHEESE.get().asItem() && state.getValue(LEVEL) == 0) {
+						level.setBlockAndUpdate(blockpos, state.setValue(LEVEL, 5));
+
+						stack.shrink(1);
+						return stack;
+					}
+				}
+				return fallback.dispense(source, stack);
+			}
+		};
+	}
 
 	public CheeseStrainer(Properties pProperties) {
 		super(pProperties);
@@ -92,7 +98,7 @@ public class CheeseStrainer extends BaseEntityBlock {
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
-        return null;
+        return CODEC;
     }
 
     @Override
@@ -149,13 +155,13 @@ public class CheeseStrainer extends BaseEntityBlock {
 
             } else if (stack.getDescriptionId().contains("milk_cup")) {
                 if (!player.isCreative()) {
-                    player.getMainHandItem().shrink(1);
+                    stack.shrink(1);
                     addItemOrDrop(MDItems.COPPER_CUP.get(), player);
                 }
                 milkLevel++;
             } else if (item.equals(Items.MILK_BUCKET)) {
                 if (!player.isCreative()) {
-                    player.getMainHandItem().shrink(1);
+                    stack.shrink(1);
                     addItemOrDrop(Items.BUCKET, player);
                 }
                 milkLevel++;

@@ -53,5 +53,24 @@
 	"advancements.husbandry.altitude_cheese.description": "Let a wheel of cheese absorb the fresh mountain air",
 
 	"advancements.husbandry.grey_cheese.title": "Double strained",
-	"advancements.husbandry.grey_cheese.description": "Strain cheese in the cheese strainer"
+	"advancements.husbandry.grey_cheese.description": "Strain cheese in the cheese strainer",
+
+	"jei.cheesus.info.cheese_strainer": "Pour up to three buckets of milk into the Cheese Strainer and give it time: the milk slowly curdles into a wheel of Cheese, which you collect by using the strainer.\n\nPut a wheel of Cheese back in to strain it again into Grey Cheese. An empty bucket takes milk back out, and a Water Bucket rinses the strainer.\n\nDispensers can fill it, and comparators read how full it is.",
+	"jei.cheesus.info.cheese_cover": "Use an item on the Cheese Cover to put it on display, and use it with an empty hand to take it back. Sneak and use the cover to rotate whatever is under it.",
+	"jei.cheesus.info.cheese": "A whole wheel of Cheese ripens depending on where it is placed: high up in the mountains, in the dark, deep in the Deep Dark or in the Nether. Stabbing it with a sword grows blue mold.\n\nPlaced cheese can be eaten bite by bite, and dispensers can place it.",
+
+	"jei.cheesus.category.straining": "Cheese Straining",
+	"jei.cheesus.straining.collect": "Use the strainer to collect the result",
+	"jei.cheesus.straining.time": "Curdles slowly over time",
+
+	"jei.cheesus.category.ripening": "Cheese Ripening",
+	"jei.cheesus.ripening.place": "Place a whole wheel of Cheese here",
+	"jei.cheesus.ripening.time": "Ripens slowly over time",
+	"jei.cheesus.ripening.altitude": "Overworld, above Y 150",
+	"jei.cheesus.ripening.white_mold": "Overworld, light level 4 or lower",
+	"jei.cheesus.ripening.white_mold.biome": "not in the Deep Dark",
+	"jei.cheesus.ripening.silent": "Deep Dark, below Y 0",
+	"jei.cheesus.ripening.silent.light": "light level 2 or lower",
+	"jei.cheesus.ripening.diabolical": "In the Nether",
+	"jei.cheesus.ripening.blue_mold": "Use a sword on a whole wheel"
 }

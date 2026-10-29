@@ -66,7 +66,7 @@ public class BasicCheese extends EatableCheese {
 		double r1 = pRandom.nextDouble() * 0.1;
 		double r2 = pRandom.nextDouble() * 0.6 - 0.3D;
 
-		if (pLevel.dimensionTypeRegistration().getKey() == BuiltinDimensionTypes.OVERWORLD) {
+		if (pLevel.dimensionTypeRegistration().is(BuiltinDimensionTypes.OVERWORLD)) {
 			if (pPos.getY() > 150) {
 				pLevel.addParticle(
 						new BlockParticleOption(ParticleTypes.FALLING_DUST, Blocks.WHITE_CONCRETE.defaultBlockState()),
@@ -81,7 +81,7 @@ public class BasicCheese extends EatableCheese {
                 pLevel.addParticle(ParticleTypes.ASH, d0 + r0, d1 + r1, d2 + r2,
                         0.0D, 0.0D, 0.0D);
             }
-		} else if (pLevel.dimensionTypeRegistration() == BuiltinDimensionTypes.NETHER) {
+		} else if (pLevel.dimensionTypeRegistration().is(BuiltinDimensionTypes.NETHER)) {
 			pLevel.addParticle(ParticleTypes.FALLING_LAVA, d0 + r0, d1 + r1, d2 + r2,
 					0.0D, 0.0D, 0.0D);
 		}
@@ -89,7 +89,7 @@ public class BasicCheese extends EatableCheese {
 
 	@Override
 	public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-		if (pLevel.dimensionTypeRegistration().getKey() == BuiltinDimensionTypes.OVERWORLD) {
+		if (pLevel.dimensionTypeRegistration().is(BuiltinDimensionTypes.OVERWORLD)) {
 			if (pPos.getY() > 150) {
 				pLevel.setBlockAndUpdate(pPos, BlockInit.ALTITUDE_CHEESE.get().defaultBlockState());
 			} else if (pLevel.getRawBrightness(pPos, 0) < 5 &&
@@ -99,7 +99,7 @@ public class BasicCheese extends EatableCheese {
                 pPos.getY() < 0 &&pLevel.getRawBrightness(pPos, 0) < 3) {
                 pLevel.setBlockAndUpdate(pPos, BlockInit.SILENT_CHEESE.get().defaultBlockState());
             }
-		} else if (pLevel.dimensionTypeRegistration() == BuiltinDimensionTypes.NETHER) {
+		} else if (pLevel.dimensionTypeRegistration().is(BuiltinDimensionTypes.NETHER)) {
 			pLevel.setBlockAndUpdate(pPos, BlockInit.DIABOLICAL_CHEESE.get().defaultBlockState());
 		}
 	}

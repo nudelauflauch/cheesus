@@ -9,6 +9,7 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
@@ -24,6 +25,11 @@ public class CheeseCoverBlockEntity extends BlockEntity {
         public int getSlotLimit(int slot) {
             return 1;
         }
+
+        @Override
+        protected void onContentsChanged(int slot) {
+            markUpdated();
+        }
     };
 
     public CheeseCoverBlockEntity(BlockPos pPos, BlockState pBlockState) {
@@ -36,6 +42,14 @@ public class CheeseCoverBlockEntity extends BlockEntity {
 
     public void increaseRotationDeg() {
         this.rotationDeg = this.rotationDeg > 359 ? 45 : this.rotationDeg + 45;
+        markUpdated();
+    }
+
+    private void markUpdated() {
+        setChanged();
+        if (this.level != null) {
+            this.level.sendBlockUpdated(this.worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+        }
     }
 
     public int getRotationDeg() {
@@ -60,14 +74,14 @@ public class CheeseCoverBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        inventory.serializeNBT(registries);
+        tag.put("inventory", inventory.serializeNBT(registries));
         tag.putInt("rotation_deg", this.rotationDeg);
     }
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        inventory.deserializeNBT(registries, tag);
+        inventory.deserializeNBT(registries, tag.getCompound("inventory"));
         this.rotationDeg = tag.getInt("rotation_deg");
     }
 

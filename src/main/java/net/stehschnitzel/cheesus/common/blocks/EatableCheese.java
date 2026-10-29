@@ -20,7 +20,6 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -55,13 +54,14 @@ public class EatableCheese extends Block {
         protected ItemStack execute(BlockSource source, ItemStack stack) {
             ServerLevel level = source.level();
             BlockPos blockpos = source.pos().relative(source.state().getValue(DispenserBlock.FACING));
-            if (!(level.getBlockState(blockpos).getBlock() == Blocks.AIR &&
+            if (!(level.getBlockState(blockpos).isAir() &&
                     stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof EatableCheese)) {
                 return defaultDispenseItemBehavior.dispense(source, stack);
             }
 
             level.setBlockAndUpdate(blockpos, blockItem.getBlock().defaultBlockState());
-            return ItemStack.EMPTY;
+            stack.shrink(1);
+            return stack;
         }
     };
 

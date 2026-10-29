@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -54,13 +53,13 @@ public class CheeseCover extends BaseEntityBlock {
 	}
 
     @Override
-    public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
-        if (level.getBlockEntity(pos) instanceof CheeseCoverBlockEntity cheeseCoverBlockEntity) {
+    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+        if (!state.is(newState.getBlock()) && level.getBlockEntity(pos) instanceof CheeseCoverBlockEntity cheeseCoverBlockEntity) {
             cheeseCoverBlockEntity.drops();
             level.updateNeighbourForOutputSignal(pos, this);
         }
 
-        return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
+        super.onRemove(state, level, pos, newState, movedByPiston);
     }
 
     @Override
@@ -69,25 +68,17 @@ public class CheeseCover extends BaseEntityBlock {
             if (player.isCrouching()) {
                 cheeseCoverBlockEntity.increaseRotationDeg();
                 return ItemInteractionResult.SUCCESS;
-            } else if (!cheeseCoverBlockEntity.inventory.getStackInSlot(0).isEmpty()
-                    && player.getHandSlots().iterator().next().isEmpty()) {
-                ItemStack stackOnCheeseCover = cheeseCoverBlockEntity.inventory.extractItem(0, 1, false);
-                if (player.addItem(stackOnCheeseCover)) {
-                    player.drop(stackOnCheeseCover, false);
-                }
-                cheeseCoverBlockEntity.drops();
-                cheeseCoverBlockEntity.clearContents();
-                level.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.5f, 1f);
+            } else if (!cheeseCoverBlockEntity.inventory.getStackInSlot(0).isEmpty() && stack.isEmpty()) {
+                takeItem(cheeseCoverBlockEntity, level, pos, player);
                 return ItemInteractionResult.SUCCESS;
-            } else if (cheeseCoverBlockEntity.inventory.getStackInSlot(0).isEmpty()
-                    && !player.getHandSlots().iterator().next().isEmpty()) {
-                cheeseCoverBlockEntity.inventory.setStackInSlot(0, new ItemStack(stack.getItem(), 1));
+            } else if (cheeseCoverBlockEntity.inventory.getStackInSlot(0).isEmpty() && !stack.isEmpty()) {
+                cheeseCoverBlockEntity.inventory.setStackInSlot(0, stack.copyWithCount(1));
                 stack.shrink(1);
                 level.playSound(player, pos, SoundEvents.DISPENSER_DISPENSE, SoundSource.BLOCKS, 0.5f, 2f);
                 return ItemInteractionResult.SUCCESS;
             }
         }
-        return ItemInteractionResult.FAIL;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override
@@ -97,16 +88,19 @@ public class CheeseCover extends BaseEntityBlock {
                 cheeseCoverBlockEntity.increaseRotationDeg();
                 return InteractionResult.SUCCESS;
             } else if (!cheeseCoverBlockEntity.inventory.getStackInSlot(0).isEmpty()) {
-                ItemStack stackOnCheeseCover = cheeseCoverBlockEntity.inventory.extractItem(0, 1, false);
-                if (player.addItem(stackOnCheeseCover)) {
-                    player.drop(stackOnCheeseCover, false);
-                }
-                cheeseCoverBlockEntity.drops();
-                cheeseCoverBlockEntity.clearContents();
-                level.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.5f, 1f);
+                takeItem(cheeseCoverBlockEntity, level, pos, player);
                 return InteractionResult.SUCCESS;
             }
         }
-        return InteractionResult.FAIL;
+        return InteractionResult.PASS;
+    }
+
+    private void takeItem(CheeseCoverBlockEntity cheeseCoverBlockEntity, Level level, BlockPos pos, Player player) {
+        ItemStack stackOnCheeseCover = cheeseCoverBlockEntity.inventory.extractItem(0, 1, false);
+        if (!player.addItem(stackOnCheeseCover)) {
+            player.drop(stackOnCheeseCover, false);
+        }
+        cheeseCoverBlockEntity.clearContents();
+        level.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.5f, 1f);
     }
 }

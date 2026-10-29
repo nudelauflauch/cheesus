@@ -39,6 +39,7 @@ public class Cheesus {
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event) {
+		event.enqueueWork(CheesusItemTabInit::registerDispensable);
 	}
 
 	@EventBusSubscriber(modid = MOD_ID, value = Dist.CLIENT)
