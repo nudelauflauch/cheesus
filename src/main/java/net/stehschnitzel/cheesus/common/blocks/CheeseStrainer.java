@@ -152,7 +152,6 @@ public class CheeseStrainer extends BaseEntityBlock {
                         stack.set(CCDataComponents.FLUID_LEVEL, milk_level);
                     }
                 }
-
             } else if (stack.getDescriptionId().contains("milk_cup")) {
                 if (!player.isCreative()) {
                     stack.shrink(1);
@@ -168,7 +167,7 @@ public class CheeseStrainer extends BaseEntityBlock {
             }
             level.setBlockAndUpdate(pos, state.setValue(LEVEL, milkLevel));
             level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.VILLAGER_WORK_LEATHERWORKER, SoundSource.BLOCKS, 1F, 1.0F, false);
-            return ItemInteractionResult.CONSUME;
+            return ItemInteractionResult.SUCCESS;
 
             //get milk out of the strainer again
         } else if (0 < milkLevel && milkLevel <= 3 && stack.is(Items.BUCKET)) {
@@ -177,7 +176,7 @@ public class CheeseStrainer extends BaseEntityBlock {
             level.setBlockAndUpdate(pos, state.setValue(LEVEL, level.getBlockState(pos).getValue(LEVEL)-1));
 
             level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 0.8F, 1.0F, false);
-
+            return ItemInteractionResult.SUCCESS;
         } else if (milkLevel == 0 && item == BlockInit.CHEESE.get().asItem()) {
 			level.setBlockAndUpdate(pos, state.setValue(LEVEL, 5));
 			if (!player.isCreative()) {
@@ -185,7 +184,7 @@ public class CheeseStrainer extends BaseEntityBlock {
 			}
             level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.CORAL_BLOCK_PLACE, SoundSource.BLOCKS, 0.8F, 1.0F, false);
 
-            return ItemInteractionResult.CONSUME;
+            return ItemInteractionResult.SUCCESS;
 
 		} else if ((milkLevel == 0 || milkLevel >= 7) && item == Items.WATER_BUCKET) {
             if (!player.isCreative()) {
@@ -195,20 +194,20 @@ public class CheeseStrainer extends BaseEntityBlock {
             level.setBlockAndUpdate(pos, state.setValue(LEVEL, 7));
 
             level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.VILLAGER_WORK_LEATHERWORKER, SoundSource.BLOCKS, 1F, 1.0F, false);
-            return ItemInteractionResult.CONSUME;
+            return ItemInteractionResult.SUCCESS;
 
 		} else if (milkLevel == 4) {
 			addItemOrDrop(BlockInit.CHEESE.get(), player);
 			level.setBlockAndUpdate(pos, state.setValue(LEVEL, 0));
             level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.3F, 1.0F, false);
 
-            return ItemInteractionResult.CONSUME;
+            return ItemInteractionResult.SUCCESS;
 		} else if (milkLevel == 6) {
 			addItemOrDrop(BlockInit.GREY_CHEESE.get(), player);
 			level.setBlockAndUpdate(pos, state.setValue(LEVEL, 0));
             level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.3F, 1.0F, false);
 
-			return ItemInteractionResult.CONSUME;
+			return ItemInteractionResult.SUCCESS;
 		}
 
 		return ItemInteractionResult.sidedSuccess(!level.isClientSide());

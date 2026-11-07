@@ -32,6 +32,7 @@ public class Cheesus {
 		CheesusItemTabInit.register(bus);
 		CheesusCriteriaInit.register(bus);
 		CheesusEffectInit.register(bus);
+		CheesusPotionInit.register(bus);
 
 	}
 

@@ -35,6 +35,14 @@
 
 	"effect.cheesus.silent": "Silent",
 
+    "item.minecraft.potion.effect.silent_potion": "Silent Potion",
+    "item.minecraft.splash_potion.effect.silent_potion": "Silent Splash Potion",
+    "item.minecraft.lingering_potion.effect.silent_potion": "Silent Lingering Potion",
+
+    "item.minecraft.potion.effect.long_silent_potion": "Silent Potion",
+    "item.minecraft.splash_potion.effect.long_silent_potion": "Silent Splash Potion",
+    "item.minecraft.lingering_potion.effect.long_silent_potion": "Silent Lingering Potion",
+
 	"itemGroup.cheesus_tab":"Cheesus",
 
 	"advancements.husbandry.cheese_root.title": "Acquire cheese",
