@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.MultiPlayerGameMode;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.client.sounds.SoundManager;
-import net.minecraft.world.level.GameType;
 import net.stehschnitzel.cheesus.init.CheesusEffectInit;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,7 +13,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(MultiPlayerGameMode.class)
-public class MultiPlayerGameModeMixin {
+public class BreakingBlockSoundMuter {
 
     @Shadow
     @Final
@@ -23,9 +22,9 @@ public class MultiPlayerGameModeMixin {
     @WrapOperation(method = "continueDestroyBlock", at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/client/sounds/SoundManager;play(Lnet/minecraft/client/resources/sounds/SoundInstance;)V"))
-    private void muteBreakingBlock(SoundManager instance, SoundInstance sound, Operation<Void> original) {
+    private void muteBreakingBlockSound(SoundManager instance, SoundInstance sound, Operation<Void> original) {
         if (this.minecraft.player.hasEffect(CheesusEffectInit.SILENT_EFFECT)) {
-            return;
+            Minecraft.getInstance().getSoundManager().play(sound);
         }
         original.call(instance, sound);
     }

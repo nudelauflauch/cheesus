@@ -2,11 +2,14 @@ package net.stehschnitzel.cheesus.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.multiplayer.ClientPacketListener;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.protocol.game.ClientboundTakeItemEntityPacket;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.stehschnitzel.cheesus.init.CheesusEffectInit;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,6 +29,14 @@ public class ClientPacketListenerMixin {
     ClientboundTakeItemEntityPacket packet) {
         if (level.getEntity(packet.getPlayerId()) instanceof LivingEntity entity
                 && entity.hasEffect(CheesusEffectInit.SILENT_EFFECT)) {
+            Minecraft.getInstance().getSoundManager().play(
+                    new SimpleSoundInstance(
+                            sound,
+                            SoundSource.BLOCKS,
+                            volume,
+                            pitch,
+                            RandomSource.create(),
+                            x,y,z));
             return;
         }
         original.call(instance, x, y, z, sound, category, volume, pitch, distanceDelay);

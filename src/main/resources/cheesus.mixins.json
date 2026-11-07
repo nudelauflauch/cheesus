@@ -9,8 +9,11 @@
     "SculkSensorMixin",
     "SculkShriekerBlockMixin",
     "SoundEngineMixin",
-    "VibrationMixin"
-
+    "BlockItemMixin",
+    "BlockMixin",
+    "LevelBreakingSoundMuter",
+    "BreakingBlockSoundMuter",
+    "LocalPlayerMuter"
   ],
   "injectors": {
     "defaultRequire": 1

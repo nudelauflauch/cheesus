@@ -70,9 +70,10 @@ public class MuffledSoundHandler {
             return;
         }
 
-        if (sound != null && sound.getSource().equals(SoundSource.MASTER)) {
+        if (sound == null || sound.getSource().equals(SoundSource.MASTER)) {
             return;
         }
+        System.out.println(sound.getSource());
 
         int source = ((ChannelAccessor) channel).getSourceId();
 
