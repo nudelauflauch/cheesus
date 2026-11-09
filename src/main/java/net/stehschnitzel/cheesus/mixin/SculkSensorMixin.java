@@ -18,7 +18,7 @@ public class SculkSensorMixin {
     @Inject(method = "stepOn", at = @At("HEAD"), cancellable = true)
     private static void isValidMix(
             Level level, BlockPos pos, BlockState state, Entity entity, CallbackInfo ci) {
-        if (entity instanceof LivingEntity livingEntity && livingEntity.hasEffect(CheesusEffectInit.SILENT_EFFECT)) {
+        if (entity instanceof LivingEntity livingEntity && livingEntity.hasEffect(CheesusEffectInit.MUTED_EFFECT)) {
             ci.cancel();
         }
     }

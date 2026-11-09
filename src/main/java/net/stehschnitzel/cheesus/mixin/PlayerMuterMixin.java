@@ -18,7 +18,7 @@ public class PlayerMuterMixin {
             target = "Lnet/minecraft/world/level/Level;playSound(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V"))
     private void muteBurpSound(Level instance, Player player, double x, double y, double z, SoundEvent sound, SoundSource category, float volume, float pitch, Operation<Void> original) {
         Player eatingPlayer = (Player) (Object) this;
-        if (eatingPlayer.hasEffect(CheesusEffectInit.SILENT_EFFECT)) {
+        if (eatingPlayer.hasEffect(CheesusEffectInit.MUTED_EFFECT)) {
             return;
         }
         original.call(instance, player, x, y, z, sound, category, volume, pitch);
@@ -29,7 +29,7 @@ public class PlayerMuterMixin {
             target = "Lnet/minecraft/world/level/Level;playSound(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V"))
     private void muteAttackSounds(Level instance, Player player, double x, double y, double z, SoundEvent sound, SoundSource category, float volume, float pitch, Operation<Void> original) {
         Player attackingPlayer = (Player) (Object) this;
-        if (attackingPlayer.hasEffect(CheesusEffectInit.SILENT_EFFECT)) {
+        if (attackingPlayer.hasEffect(CheesusEffectInit.MUTED_EFFECT)) {
             return;
         }
         original.call(instance, player, x, y, z, sound, category, volume, pitch);
@@ -40,7 +40,7 @@ public class PlayerMuterMixin {
             target = "Lnet/minecraft/world/level/Level;playSound(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V"))
     private void muteXPLevelUpSound(Level instance, Player player, double x, double y, double z, SoundEvent sound, SoundSource category, float volume, float pitch, Operation<Void> original) {
         Player attackingPlayer = (Player) (Object) this;
-        if (attackingPlayer.hasEffect(CheesusEffectInit.SILENT_EFFECT)) {
+        if (attackingPlayer.hasEffect(CheesusEffectInit.MUTED_EFFECT)) {
             return;
         }
         original.call(instance, player, x, y, z, sound, category, volume, pitch);
@@ -51,7 +51,7 @@ public class PlayerMuterMixin {
             target = "Lnet/minecraft/world/entity/player/Player;playSound(Lnet/minecraft/sounds/SoundEvent;FF)V"))
     private void muteShildBreakSound(Player instance, SoundEvent sound, float volume, float pitch, Operation<Void> original) {
         Player attackingPlayer = (Player) (Object) this;
-        if (attackingPlayer.hasEffect(CheesusEffectInit.SILENT_EFFECT)) {
+        if (attackingPlayer.hasEffect(CheesusEffectInit.MUTED_EFFECT)) {
             return;
         }
         original.call(instance, sound, volume, pitch);

@@ -18,7 +18,7 @@ public class BlockMixin {
 
     @Inject(method = "spawnDestroyParticles", at = @At("HEAD"), cancellable = true)
     private void dontPlaySound(Level level, Player player, BlockPos pos, BlockState state, CallbackInfo ci) {
-        if (player != null && player.hasEffect(CheesusEffectInit.SILENT_EFFECT)) {
+        if (player != null && player.hasEffect(CheesusEffectInit.MUTED_EFFECT)) {
             level.levelEvent(player, 20010, pos, getId(state));
             ci.cancel();
         }

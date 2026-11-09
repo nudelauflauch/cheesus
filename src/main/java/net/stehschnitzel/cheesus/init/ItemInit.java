@@ -4,7 +4,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.PotionItem;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -61,7 +60,7 @@ public class ItemInit {
     public static final DeferredItem<Item> SILENT_CHEESE_SLICE = ITEMS.register("silent_cheese_slice",
             () -> new Item(new Item.Properties()
                     .food(new FoodProperties.Builder().nutrition(3).saturationModifier(1.0F)
-                            .effect(() -> new MobEffectInstance(CheesusEffectInit.SILENT_EFFECT, 200, 0), 1.0F)
+                            .effect(() -> new MobEffectInstance(CheesusEffectInit.MUTED_EFFECT, 200, 0), 1.0F)
                             .build())));
 
     public static final DeferredItem<Item> CHEESECAKE_SLICE = ITEMS.register("cheesecake_slice",

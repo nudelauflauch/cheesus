@@ -39,7 +39,7 @@ public class RipeningCategory implements IRecipeCategory<RipeningRecipe> {
     private final IDrawable icon;
 
     public RipeningCategory(IGuiHelper guiHelper) {
-        this.icon = guiHelper.createDrawableItemLike(BlockInit.BLUE_MOLD_CHEESE.get());
+        this.icon = guiHelper.createDrawableItemLike(BlockInit.CHEESE.get());
     }
 
     @Override

@@ -30,7 +30,7 @@ public class LocalPlayerMuter {
             ci.cancel();
             return;
         }
-        if (entity instanceof LivingEntity livingEntity && livingEntity.hasEffect(CheesusEffectInit.SILENT_EFFECT)) {
+        if (entity instanceof LivingEntity livingEntity && livingEntity.hasEffect(CheesusEffectInit.MUTED_EFFECT)) {
             SoundType soundtype = state.getSoundType(level, pos, entity);
             Minecraft.getInstance().getSoundManager().play(
                     new SimpleSoundInstance(

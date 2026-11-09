@@ -23,7 +23,7 @@ public class BreakingBlockSoundMuter {
             value = "INVOKE",
             target = "Lnet/minecraft/client/sounds/SoundManager;play(Lnet/minecraft/client/resources/sounds/SoundInstance;)V"))
     private void muteBreakingBlockSound(SoundManager instance, SoundInstance sound, Operation<Void> original) {
-        if (this.minecraft.player.hasEffect(CheesusEffectInit.SILENT_EFFECT)) {
+        if (this.minecraft.player.hasEffect(CheesusEffectInit.MUTED_EFFECT)) {
             Minecraft.getInstance().getSoundManager().play(sound);
         }
         original.call(instance, sound);

@@ -24,7 +24,7 @@ import org.lwjgl.openal.EXTEfx;
 @EventBusSubscriber(modid = Cheesus.MOD_ID, value = Dist.CLIENT)
 public class MuffledSoundHandler {
 
-    private static volatile boolean hasSilentEffect = false;
+    private static volatile boolean hasMutedEffect = false;
 
     private static SoundEngine soundEngine;
     private static int lowPassFilter = 0;
@@ -38,12 +38,12 @@ public class MuffledSoundHandler {
 
     @SubscribeEvent
     public static void onSound(PlaySoundSourceEvent event) {
-        applyFilter(event.getSound(), event.getChannel(), hasSilentEffect);
+        applyFilter(event.getSound(), event.getChannel(), hasMutedEffect);
     }
 
     @SubscribeEvent
     public static void onStreamingSound(PlayStreamingSourceEvent event) {
-        applyFilter(event.getSound(), event.getChannel(), hasSilentEffect);
+        applyFilter(event.getSound(), event.getChannel(), hasMutedEffect);
     }
 
     @SubscribeEvent
@@ -51,17 +51,17 @@ public class MuffledSoundHandler {
         Minecraft minecraft = Minecraft.getInstance();
 
         if (minecraft.player == null || minecraft.level == null || soundEngine == null) {
-            hasSilentEffect = false;
+            hasMutedEffect = false;
             return;
         }
 
-        hasSilentEffect =
-                minecraft.player.hasEffect(CheesusEffectInit.SILENT_EFFECT);
+        hasMutedEffect =
+                minecraft.player.hasEffect(CheesusEffectInit.MUTED_EFFECT);
 
         ChannelAccess access = ((SoundEngineMixin) soundEngine).getChannelAccess();
 
         access.executeOnChannels(channels ->
-                channels.forEach(channel -> applyFilter(null, channel, hasSilentEffect))
+                channels.forEach(channel -> applyFilter(null, channel, hasMutedEffect))
         );
     }
 
@@ -73,7 +73,6 @@ public class MuffledSoundHandler {
         if (sound == null || sound.getSource().equals(SoundSource.MASTER)) {
             return;
         }
-        System.out.println(sound.getSource());
 
         int source = ((ChannelAccessor) channel).getSourceId();
 

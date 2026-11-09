@@ -33,7 +33,7 @@ public class LevelBreakingSoundMuter {
 
     @Inject(method = "levelEvent", at = @At("HEAD"))
     private void readEventToMute(int type, BlockPos pos, int data, CallbackInfo ci) {
-        if (type == 20010 && minecraft.player.hasEffect(CheesusEffectInit.SILENT_EFFECT)) {
+        if (type == 20010 && minecraft.player.hasEffect(CheesusEffectInit.MUTED_EFFECT)) {
             BlockState blockstate1 = Block.stateById(data);
             if (!blockstate1.isAir() && !net.neoforged.neoforge.client.extensions.common.IClientBlockExtensions.of(blockstate1).playBreakSound(blockstate1, this.level, pos)) {
                 SoundType soundtype = blockstate1.getSoundType(this.level, pos, null);

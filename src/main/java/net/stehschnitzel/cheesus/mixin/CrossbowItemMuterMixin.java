@@ -31,7 +31,7 @@ public class CrossbowItemMuterMixin {
                                                            LivingEntity entityLiving,
                                                            int timeLeft) {
         if (entityLiving != null &&
-                entityLiving.hasEffect(CheesusEffectInit.SILENT_EFFECT)) {
+                entityLiving.hasEffect(CheesusEffectInit.MUTED_EFFECT)) {
             return Optional.empty();
         }
         return original.call(instance);
@@ -42,7 +42,7 @@ public class CrossbowItemMuterMixin {
     private Optional<Holder<SoundEvent>> muteStartChargingSound(CrossbowItem.ChargingSounds instance,
                                                            Operation<Optional<Holder<SoundEvent>>> original,
                                                            Level level, LivingEntity livingEntity, ItemStack stack, int count) {
-        if (livingEntity != null && livingEntity.hasEffect(CheesusEffectInit.SILENT_EFFECT)) {
+        if (livingEntity != null && livingEntity.hasEffect(CheesusEffectInit.MUTED_EFFECT)) {
             return Optional.empty();
         }
         return original.call(instance);
@@ -53,7 +53,7 @@ public class CrossbowItemMuterMixin {
     private Optional<Holder<SoundEvent>> muteMidChargingSound(CrossbowItem.ChargingSounds instance,
                                                                 Operation<Optional<Holder<SoundEvent>>> original,
                                                                 Level level, LivingEntity livingEntity, ItemStack stack, int count) {
-        if (livingEntity != null && livingEntity.hasEffect(CheesusEffectInit.SILENT_EFFECT)) {
+        if (livingEntity != null && livingEntity.hasEffect(CheesusEffectInit.MUTED_EFFECT)) {
             return Optional.empty();
         }
         return original.call(instance);
@@ -63,7 +63,7 @@ public class CrossbowItemMuterMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;playSound(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V"))
     private void muteShootingSound(Level instance, Player player, double x, double y, double z, SoundEvent sound, SoundSource category, float volume, float pitch, Operation<Void> original,
             LivingEntity shooter, Projectile projectile, int index, float velocity, float inaccuracy, float angle, @Nullable LivingEntity target) {
-        if (shooter != null && shooter.hasEffect(CheesusEffectInit.SILENT_EFFECT)) {
+        if (shooter != null && shooter.hasEffect(CheesusEffectInit.MUTED_EFFECT)) {
             return;
         }
         original.call(instance, player, x, y, z, sound, category, volume, pitch);

@@ -27,7 +27,7 @@ public class BlockItemMixin {
                 BlockPos pos, SoundEvent sound,
                 SoundSource category, float volume,
                 float pitch, Operation<Void> original) {
-            if (player != null && player.hasEffect(CheesusEffectInit.SILENT_EFFECT) && sound != null) {
+            if (player != null && player.hasEffect(CheesusEffectInit.MUTED_EFFECT) && sound != null) {
                 Minecraft.getInstance().getSoundManager().play(new EntityBoundSoundInstance(sound, category, volume, pitch, player, RandomSource.create().nextLong()));
                 return;
             }

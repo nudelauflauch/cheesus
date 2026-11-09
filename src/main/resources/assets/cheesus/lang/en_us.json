@@ -33,17 +33,17 @@
 	"item.cheesus.gourmet_cheese": "Gourmet Cheese",
 	"item.cheesus.lasagna": "Lasagna",
 
-	"effect.cheesus.silent": "Silent",
+	"effect.cheesus.muted_effect": "Muted Effect",
 
     "item.minecraft.potion.effect.silent_potion": "Silent Potion",
-    "item.minecraft.splash_potion.effect.silent_potion": "Silent Splash Potion",
-    "item.minecraft.lingering_potion.effect.silent_potion": "Silent Lingering Potion",
+    "item.minecraft.splash_potion.effect.silent_potion": "Splash Potion of Silence",
+    "item.minecraft.lingering_potion.effect.silent_potion": "Lingering Potion of Silence",
+    "item.minecraft.tipped_arrow.effect.silent_potion": "Arrow of silence",
 
     "item.minecraft.potion.effect.long_silent_potion": "Silent Potion",
-    "item.minecraft.splash_potion.effect.long_silent_potion": "Silent Splash Potion",
-    "item.minecraft.lingering_potion.effect.long_silent_potion": "Silent Lingering Potion",
-
-	"itemGroup.cheesus_tab":"Cheesus",
+    "item.minecraft.splash_potion.effect.long_silent_potion": "Splash Potion of Silence",
+    "item.minecraft.lingering_potion.effect.long_silent_potion": "Lingering Potion of Silence",
+    "item.minecraft.tipped_arrow.effect.long_silent_potion": "Arrow of silence",
 
 	"advancements.husbandry.cheese_root.title": "Acquire cheese",
 	"advancements.husbandry.cheese_root.description": "Obtain your ever first cheese by curdling milk in a cheese strainer",
@@ -63,9 +63,12 @@
 	"advancements.husbandry.grey_cheese.title": "Double strained",
 	"advancements.husbandry.grey_cheese.description": "Strain cheese in the cheese strainer",
 
-	"jei.cheesus.info.cheese_strainer": "Pour up to three buckets of milk into the Cheese Strainer and give it time: the milk slowly curdles into a wheel of Cheese, which you collect by using the strainer.\n\nPut a wheel of Cheese back in to strain it again into Grey Cheese. An empty bucket takes milk back out, and a Water Bucket rinses the strainer.\n\nDispensers can fill it, and comparators read how full it is.",
-	"jei.cheesus.info.cheese_cover": "Use an item on the Cheese Cover to put it on display, and use it with an empty hand to take it back. Sneak and use the cover to rotate whatever is under it.",
-	"jei.cheesus.info.cheese": "A whole wheel of Cheese ripens depending on where it is placed: high up in the mountains, in the dark, deep in the Deep Dark or in the Nether. Stabbing it with a sword grows blue mold.\n\nPlaced cheese can be eaten bite by bite, and dispensers can place it.",
+	"advancements.husbandry.silent_cheese.title": "Eerie Agnings",
+	"advancements.husbandry.silent_cheese.description": "Leave some cheese exposed to sculk and darkness",
+
+	"jei.cheesus.info.cheese_strainer": "Pour three buckets of milk into the Cheese Strainer and give it time: the milk slowly curdles into a wheel of Cheese.\n\nA Bucket of Water slowly rinses the strainer.\n\nComparators read how full it is, Dispensers can fill and place the Strainer, and it can be destroyed by Pistons",
+	"jei.cheesus.info.cheese_cover": "Use an item on the Cheese Cover to put it on display. Use sneak-right-click with an empty hand to rotate whatever is under it.",
+	"jei.cheesus.info.cheese": "Placed cheese can be eaten bit by bit.\n\nCan also be placed by Dispensers, and destroyed by Pistons",
 
 	"jei.cheesus.category.straining": "Cheese Straining",
 	"jei.cheesus.straining.collect": "Use the strainer to collect the result",
@@ -80,5 +83,7 @@
 	"jei.cheesus.ripening.silent": "Deep Dark, below Y 0",
 	"jei.cheesus.ripening.silent.light": "light level 2 or lower",
 	"jei.cheesus.ripening.diabolical": "In the Nether",
-	"jei.cheesus.ripening.blue_mold": "Use a sword on a whole wheel"
+	"jei.cheesus.ripening.blue_mold": "Stab with a sword",
+
+    "itemGroup.cheesus_tab":"Cheesus"
 }

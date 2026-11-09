@@ -14,10 +14,10 @@ public class CheesusPotionInit {
             DeferredRegister.create(BuiltInRegistries.POTION, Cheesus.MOD_ID);
 
     public static final Holder<Potion> SILENT_POTION = POTIONS.register("silent_potion",
-            ()-> new Potion(new MobEffectInstance(CheesusEffectInit.SILENT_EFFECT, 1200, 0)));
+            ()-> new Potion(new MobEffectInstance(CheesusEffectInit.MUTED_EFFECT, 1200, 0)));
 
     public static final Holder<Potion> LONG_SILENT_POTION = POTIONS.register("long_silent_potion",
-            ()-> new Potion(new MobEffectInstance(CheesusEffectInit.SILENT_EFFECT, 3600, 0)));
+            ()-> new Potion(new MobEffectInstance(CheesusEffectInit.MUTED_EFFECT, 3600, 0)));
 
 
     public static void register(IEventBus bus) {

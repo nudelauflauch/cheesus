@@ -28,7 +28,7 @@ public class ClientPacketListenerMixin {
     private void muteItemAOrbPickupSounds(ClientLevel instance, double x, double y, double z, SoundEvent sound, SoundSource category, float volume, float pitch, boolean distanceDelay, Operation<Void> original,
     ClientboundTakeItemEntityPacket packet) {
         if (level.getEntity(packet.getPlayerId()) instanceof LivingEntity entity
-                && entity.hasEffect(CheesusEffectInit.SILENT_EFFECT)) {
+                && entity.hasEffect(CheesusEffectInit.MUTED_EFFECT)) {
             Minecraft.getInstance().getSoundManager().play(
                     new SimpleSoundInstance(
                             sound,

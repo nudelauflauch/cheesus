@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.data.ModelData;
+import org.joml.Quaternionf;
 
 import java.util.List;
 
@@ -64,6 +65,7 @@ public class BlockStateDrawable implements IDrawable {
             Minecraft.getInstance().getBlockRenderer().renderSingleBlock(state, pose, guiGraphics.bufferSource(),
                     LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, null);
             pose.translate(0, 1, 0);
+            pose.rotateAround(new Quaternionf(), 0F, 0F, 0F);
         }
         guiGraphics.flush();
         pose.popPose();
