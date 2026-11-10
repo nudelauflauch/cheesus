@@ -96,7 +96,7 @@ public class BasicCheese extends EatableCheese {
                 !pLevel.getBiome(pPos).is(Biomes.DEEP_DARK)) {
 				pLevel.setBlockAndUpdate(pPos, BlockInit.WHITE_MOLD_CHEESE.get().defaultBlockState());
 			} else if (pLevel.getBiome(pPos).is(Biomes.DEEP_DARK) &&
-                pPos.getY() < 0 &&pLevel.getRawBrightness(pPos, 0) < 3) {
+                pPos.getY() < 0 && pRandom.nextDouble() < 0.3F) {
                 pLevel.setBlockAndUpdate(pPos, BlockInit.SILENT_CHEESE.get().defaultBlockState());
             }
 		} else if (pLevel.dimensionTypeRegistration().is(BuiltinDimensionTypes.NETHER)) {
