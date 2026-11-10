@@ -1,5 +1,5 @@
 {
-  "parent": "cheesus:advancement/cheese_root",
+  "parent": "cheesus:husbandry/cheese_root",
   "criteria": {
     "cheese_click": {
       "conditions": {
@@ -8,14 +8,14 @@
             "condition": "minecraft:location_check",
             "predicate": {
               "block": {
-                "blocks": "cheesus:cheese"
+                "blocks": "cheesus:cheese_strainer"
               }
             }
           },
           {
             "condition": "minecraft:match_tool",
             "predicate": {
-              "items": "#minecraft:swords"
+              "items": "cheesus:cheese"
             }
           }
         ]

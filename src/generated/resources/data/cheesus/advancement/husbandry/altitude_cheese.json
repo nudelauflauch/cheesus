@@ -1,13 +1,17 @@
 {
-  "parent": "cheesus:advancement/cheese_root",
+  "parent": "cheesus:husbandry/cheese_root",
   "criteria": {
-    "placed_diabolical_cheese_nether": {
+    "placed_altitude_cheese_nether": {
       "conditions": {
         "location": [
           {
             "condition": "minecraft:location_check",
             "predicate": {
-              "dimension": "minecraft:the_nether"
+              "position": {
+                "y": {
+                  "min": 140.0
+                }
+              }
             }
           },
           {
@@ -23,19 +27,19 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.husbandry.diabolical_cheese.description"
+      "translate": "advancements.husbandry.altitude_cheese.description"
     },
     "icon": {
       "count": 1,
-      "id": "cheesus:diabolical_cheese"
+      "id": "cheesus:altitude_cheese"
     },
     "title": {
-      "translate": "advancements.husbandry.diabolical_cheese.title"
+      "translate": "advancements.husbandry.altitude_cheese.title"
     }
   },
   "requirements": [
     [
-      "placed_diabolical_cheese_nether"
+      "placed_altitude_cheese_nether"
     ]
   ],
   "sends_telemetry_event": true

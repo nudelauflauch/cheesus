@@ -1,7 +1,8 @@
-// 1.21.1	2026-09-03T10:53:57.2400338	Advancements
-3eb32a2ce878db95c95f09ff3d82662e5b5af87f data/cheesus/advancement/advancement/cheese_root.json
-0c674575e6f47bf9d93552ef05582e113a20a139 data/minecraft/advancement/altitude_cheese.json
-caffcf850a96895833e6a934fb1eb1c1195a0865 data/minecraft/advancement/blue_white_cheese.json
-27cdd831053e2dea6d4b9f55651151e7a62ed6c2 data/minecraft/advancement/diabolical_cheese.json
-ea58b04bea0b19fdd2eaf6fb2842c27ac981ee23 data/minecraft/advancement/grey_cheese.json
-6b8f8b68ca2b6ff959c939ffc50ff5fbe50abd59 data/minecraft/advancement/white_moldy_cheese.json
+// 1.21.1	2026-11-09T20:05:00.4275201	Advancements
+28937d023079d75e5a553302bf65ca52c542d615 data/cheesus/advancement/husbandry/altitude_cheese.json
+cacee09d3dc88fab0daa1cf2587d9deb8e45563a data/cheesus/advancement/husbandry/blue_mold_cheese.json
+3eb32a2ce878db95c95f09ff3d82662e5b5af87f data/cheesus/advancement/husbandry/cheese_root.json
+e3bae038828d562395a3add8a0bddbe2c942e412 data/cheesus/advancement/husbandry/diabolical_cheese.json
+c072d9de96d827f10e41d960cae384bb7f1513eb data/cheesus/advancement/husbandry/grey_cheese.json
+83351d033e2c40f58cd0c4e640e45121e3233ba6 data/cheesus/advancement/husbandry/silent_cheese.json
+32e1d1f586c7e42d7dca11e34cc801150d503d44 data/cheesus/advancement/husbandry/white_moldy_cheese.json

@@ -1,15 +1,8 @@
 {
-  "parent": "cheesus:advancement/cheese_root",
+  "parent": "cheesus:husbandry/cheese_root",
   "criteria": {
     "sword_click": {
-      "conditions": {
-        "items": [
-          {
-            "items": "cheesus:blue_mold_cheese"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
+      "trigger": "minecraft:impossible"
     }
   },
   "display": {

@@ -1,19 +1,18 @@
 package net.stehschnitzel.cheesus.init;
 
-import net.minecraft.world.effect.MobEffects;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredItem;
-import net.neoforged.neoforge.registries.DeferredRegister;
-import net.stehschnitzel.cheesus.common.blocks.*;
 import com.google.common.base.Supplier;
-
-import net.stehschnitzel.cheesus.Cheesus;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.stehschnitzel.cheesus.Cheesus;
+import net.stehschnitzel.cheesus.common.blocks.*;
 
 public class BlockInit {
 	public static final DeferredRegister.Items BLOCK_ITEMS = DeferredRegister

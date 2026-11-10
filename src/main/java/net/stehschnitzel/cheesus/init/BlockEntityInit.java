@@ -1,12 +1,12 @@
 package net.stehschnitzel.cheesus.init;
 
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.stehschnitzel.cheesus.Cheesus;
 import net.stehschnitzel.cheesus.common.blocks.entities.CheeseCoverBlockEntity;
 import net.stehschnitzel.cheesus.common.blocks.entities.CheeseStrainerBlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 
 import java.util.function.Supplier;
 

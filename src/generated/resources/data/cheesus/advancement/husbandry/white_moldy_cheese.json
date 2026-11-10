@@ -1,15 +1,28 @@
 {
-  "parent": "cheesus:advancement/cheese_root",
+  "parent": "cheesus:husbandry/cheese_root",
   "criteria": {
     "placed_mold_cheese_dark": {
       "conditions": {
-        "items": [
+        "location": [
           {
-            "items": "cheesus:white_mold_cheese"
+            "block": "cheesus:cheese",
+            "condition": "minecraft:block_state_property"
+          },
+          {
+            "condition": "minecraft:location_check",
+            "offsetY": 1,
+            "predicate": {
+              "light": {
+                "light": {
+                  "max": 3,
+                  "min": 0
+                }
+              }
+            }
           }
         ]
       },
-      "trigger": "minecraft:inventory_changed"
+      "trigger": "minecraft:placed_block"
     }
   },
   "display": {

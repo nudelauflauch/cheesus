@@ -1,6 +1,5 @@
 package net.stehschnitzel.cheesus.datagen;
 
-import net.minecraft.client.resources.sounds.UnderwaterAmbientSoundHandler;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -23,7 +22,6 @@ import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 import vectorwing.farmersdelight.data.recipe.CuttingRecipes;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
 
 public class CheesusRecipeProvider extends RecipeProvider implements IConditionBuilder {
     public CheesusRecipeProvider(PackOutput recipeOutput, CompletableFuture<HolderLookup.Provider> registries) {
