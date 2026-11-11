@@ -22,7 +22,7 @@ public record RipeningRecipe(ItemStack output, @Nullable BlockState ground, Ingr
         return List.of(
                 placed(BlockInit.ALTITUDE_CHEESE.get(), Blocks.SNOW_BLOCK, "altitude"),
                 placed(BlockInit.WHITE_MOLD_CHEESE.get(), Blocks.COBBLESTONE, "white_mold", "white_mold.biome"),
-                placed(BlockInit.SILENT_CHEESE.get(), Blocks.SCULK, "silent", "silent.light"),
+                placed(BlockInit.SILENT_CHEESE.get(), Blocks.SCULK, "silent"),
                 placed(BlockInit.DIABOLICAL_CHEESE.get(), Blocks.NETHERRACK, "diabolical"),
                 new RipeningRecipe(new ItemStack(BlockInit.BLUE_MOLD_CHEESE.get()), null, Ingredient.of(ItemTags.SWORDS),
                         List.of(condition("blue_mold")))

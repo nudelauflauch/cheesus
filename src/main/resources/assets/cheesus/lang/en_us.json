@@ -66,7 +66,7 @@
 	"advancements.husbandry.silent_cheese.title": "Eerie Agnings",
 	"advancements.husbandry.silent_cheese.description": "Leave some cheese exposed to sculk and darkness",
 
-	"jei.cheesus.info.cheese_strainer": "Pour three buckets of milk into the Cheese Strainer and give it time: the milk slowly curdles into a wheel of Cheese.\n\nA Bucket of Water slowly rinses the strainer.\n\nComparators read how full it is, Dispensers can fill and place the Strainer, and it can be destroyed by Pistons",
+	"jei.cheesus.info.cheese_strainer": "Pour three buckets of Milk into the Cheese Strainer and give it time: the milk slowly curdles into a wheel of Cheese.\n\nA Bucket of Water slowly rinses the strainer.\n\nComparators read how full it is, Dispensers can fill and place the Strainer, and it can be destroyed by Pistons",
 	"jei.cheesus.info.cheese_cover": "Use an item on the Cheese Cover to put it on display. Use sneak-right-click with an empty hand to rotate whatever is under it.",
 	"jei.cheesus.info.cheese": "Placed cheese can be eaten bit by bit.\n\nCan also be placed by Dispensers, and destroyed by Pistons",
 
@@ -81,7 +81,6 @@
 	"jei.cheesus.ripening.white_mold": "Overworld, light level 4 or lower",
 	"jei.cheesus.ripening.white_mold.biome": "not in the Deep Dark",
 	"jei.cheesus.ripening.silent": "Deep Dark, below Y 0",
-	"jei.cheesus.ripening.silent.light": "light level 2 or lower",
 	"jei.cheesus.ripening.diabolical": "In the Nether",
 	"jei.cheesus.ripening.blue_mold": "Stab with a sword",
 

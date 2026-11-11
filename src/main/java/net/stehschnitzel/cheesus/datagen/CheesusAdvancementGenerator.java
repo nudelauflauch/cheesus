@@ -119,7 +119,7 @@ public class CheesusAdvancementGenerator implements AdvancementProvider.Advancem
                         Component.translatable("advancements.husbandry.silent_cheese.description"),
                         Optional.empty(), AdvancementType.TASK,
                         true, true, false))
-                .parent(blue_moldy_cheese)
+                .parent(white_moldy_cheese)
                 .addCriterion("placed_silent_cheese_deep_dark", ItemUsedOnLocationTrigger.TriggerInstance.itemUsedOnBlock(
                         LocationPredicate.Builder.inBiome(registries.lookupOrThrow(Registries.BIOME).getOrThrow(Biomes.DEEP_DARK)),
                         ItemPredicate.Builder.item().of(BlockInit.CHEESE.asItem())))

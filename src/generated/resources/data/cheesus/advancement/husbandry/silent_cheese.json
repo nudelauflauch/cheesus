@@ -1,5 +1,5 @@
 {
-  "parent": "cheesus:husbandry/blue_mold_cheese",
+  "parent": "cheesus:husbandry/white_moldy_cheese",
   "criteria": {
     "placed_silent_cheese_deep_dark": {
       "conditions": {

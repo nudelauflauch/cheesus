@@ -38,7 +38,7 @@ public class CheesusEvents {
     public static void onBrewingRecipeRegister(RegisterBrewingRecipesEvent event) {
         PotionBrewing.Builder builder = event.getBuilder();
 
-        builder.addMix(Potions.AWKWARD, Items.SCULK, CheesusPotionInit.SILENT_POTION);
+        builder.addMix(Potions.AWKWARD, BlockInit.SILENT_CHEESE.asItem(), CheesusPotionInit.SILENT_POTION);
         builder.addMix(CheesusPotionInit.SILENT_POTION, Items.REDSTONE, CheesusPotionInit.LONG_SILENT_POTION);
     }
 }
